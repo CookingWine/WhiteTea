@@ -23,7 +23,7 @@ namespace UnityGameFramework.Editor
 #endif
             "Assembly-CSharp",
 
-            "GameCollection.BuiltinRuntime"
+            "UGHGame.BuiltinRuntime"
         };
 
         private static readonly string[] RuntimeOrEditorAssemblyNames =
@@ -36,8 +36,8 @@ namespace UnityGameFramework.Editor
             "UnityGameFramework.Editor",
 #endif
             "Assembly-CSharp-Editor",
-            "GameCollection.CWEditor",
-            "GameCollection.BuiltinRuntime"
+            "UGHGame.GameEditor",
+            "UGHGame.BuiltinRuntime"
         };
 
         /// <summary>

@@ -1,18 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class GameCollectionEntry : MonoBehaviour
+namespace UGHGame.BuiltinRuntime
 {
-    // Start is called before the first frame update
-    void Start()
+    /// <summary>
+    /// 游戏入口
+    /// </summary>
+    public partial class GameCollectionEntry:MonoBehaviour
     {
-        
-    }
+        private void Start( )
+        {
+            InitBuiltinComponents( );
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+            InitCustomComponents( );
+        }
     }
 }
