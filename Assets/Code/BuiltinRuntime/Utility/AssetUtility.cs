@@ -133,5 +133,15 @@ namespace UGHGame.BuiltinRuntime
         {
             return Utility.Text.Format("Assets/HotfixAssets/AotMetadata/{0}.bytes" , assetName);
         }
+
+        /// <summary>
+        /// 获取ScriptableObject资源路径
+        /// </summary>
+        /// <param name="assetName">资源名</param>
+        /// <returns>ScriptableObject资源路径</returns>
+        public static string GetScriptableObjectAsset(string assetName)
+        {
+            return Utility.Text.Format("Assets/HotfixAssets/ScriptableObjectAssets/{0}.asset" , assetName);
+        }
     }
 }
