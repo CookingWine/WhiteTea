@@ -212,5 +212,14 @@ namespace UGHGame.BuiltinRuntime
             UI = GameEntry.GetComponent<UIComponent>( );
             WebRequest = GameEntry.GetComponent<WebRequestComponent>( );
         }
+
+        /// <summary>
+        /// 关闭游戏框架
+        /// </summary>
+        /// <param name="shutdownType"></param>
+        public static void ShutdownGameFramework(ShutdownType shutdownType = ShutdownType.Quit)
+        {
+            GameEntry.Shutdown(shutdownType);
+        }
     }
 }
