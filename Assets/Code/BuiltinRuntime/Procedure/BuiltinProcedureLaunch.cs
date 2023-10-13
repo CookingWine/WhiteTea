@@ -32,7 +32,7 @@ namespace UGHGame.BuiltinRuntime
             {
                 return;
             }
-            ChangeState(procedureOwner , typeof(BuiltinProcedureLaunch));
+            ChangeState(procedureOwner , typeof(BuiltinProcedureAuthorization));
         }
     }
 }
