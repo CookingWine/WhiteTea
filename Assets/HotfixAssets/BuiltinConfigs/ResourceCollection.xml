@@ -1,7 +1,11 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <UnityGameFramework>
   <ResourceCollection>
-    <Resources />
-    <Assets />
+    <Resources>
+      <Resource Name="AppHotfixConfig" LoadType="0" Packed="False" />
+    </Resources>
+    <Assets>
+      <Asset Guid="99b17953f8b19c347a7f16cc4dcc9997" ResourceName="AppHotfixConfig" />
+    </Assets>
   </ResourceCollection>
 </UnityGameFramework>
