@@ -10,9 +10,10 @@ namespace UGHGame.BuiltinRuntime
         protected override void OnEnter(ProcedureOwner procedureOwner)
         {
             base.OnEnter(procedureOwner);
-            Log.Info("The framework is successfully started and the default application configuration is loaded.");
-            //TODO:初始化构建配置
+            Log.Info("Launch the framework and start loading the application's default configuration.");
 
+            //TODO:初始化构建配置
+            GameCollectionEntry.BuiltinData.InitBuildInfo( );
             //TODO:初始化默认语言配置
 
             //TODO:初始化变体配置
@@ -20,7 +21,8 @@ namespace UGHGame.BuiltinRuntime
             //TODO:初始化字典配置
 
             //TODO:初始化加载界面配置
-
+            GameCollectionEntry.BuiltinData.InitResourceUI( );
+            //到这里应用基础配置加载完毕:300毫秒
             IsEnterNextProduce = true;
         }
 
