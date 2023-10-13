@@ -22,11 +22,6 @@ namespace UGHGame.BuiltinRuntime
         {
             base.OnUpdate(procedureOwner , elapseSeconds , realElapseSeconds);
 
-            if(!GameCollectionEntry.BuiltinData.GameMainInterface.IsValidateCompleted)
-            {
-                //等待网络验证成功
-                return;
-            }
             if(!GameCollectionEntry.BuiltinData.GameMainInterface.IsPlayVideoOver)
             {
                 //等待视频播放完成
