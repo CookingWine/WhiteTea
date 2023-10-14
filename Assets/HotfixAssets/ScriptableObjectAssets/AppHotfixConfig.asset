@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36ed407b0653aff4eb0569f3200d6155, type: 3}
   m_Name: AppHotfixConfig
   m_EditorClassIdentifier: 
+  m_HotfixProcedures: []

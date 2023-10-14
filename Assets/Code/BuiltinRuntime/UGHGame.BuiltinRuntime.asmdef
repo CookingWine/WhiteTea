@@ -2,13 +2,13 @@
     "name": "UGHGame.BuiltinRuntime",
     "rootNamespace": "",
     "references": [
-        "GUID:42ebe3d5f3e8af1459c2b0a4d21ed067",
-        "GUID:13ba8ce62aa80c74598530029cb2d649",
-        "GUID:363c5eb08ff8e6a439b85e37b8c20d96"
+        "AvPro Video",
+        "HybridCLR.Runtime",
+        "UnityGameFramework.Runtime"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
-    "allowUnsafeCode": true,
+    "allowUnsafeCode": false,
     "overrideReferences": false,
     "precompiledReferences": [],
     "autoReferenced": true,

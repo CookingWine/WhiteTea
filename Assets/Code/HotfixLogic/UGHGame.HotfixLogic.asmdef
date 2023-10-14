@@ -2,13 +2,13 @@
     "name": "UGHGame.HotfixLogic",
     "rootNamespace": "",
     "references": [
-        "GUID:45868c05d1f3b3d4abb0d48445cb74b6",
-        "GUID:363c5eb08ff8e6a439b85e37b8c20d96",
-        "GUID:343deaaf83e0cee4ca978e7df0b80d21",
-        "GUID:2bafac87e7f4b9b418d9448d219b01ab",
-        "GUID:0acc523941302664db1f4e527237feb3",
-        "GUID:27619889b8ba8c24980f49ee34dbb44a",
-        "GUID:42ebe3d5f3e8af1459c2b0a4d21ed067"
+        "UGHGame.BuiltinRuntime",
+        "UnityGameFramework.Runtime",
+        "UnityEditor.UI",
+        "UnityEngine.UI",
+        "UnityEditor.TestRunner",
+        "UnityEngine.TestRunner",
+        "AvPro Video"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
