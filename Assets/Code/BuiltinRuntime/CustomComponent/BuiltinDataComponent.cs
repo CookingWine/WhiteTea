@@ -18,15 +18,6 @@ namespace UGHGame.BuiltinRuntime
         }
 
         /// <summary>
-        /// 应用运行时配置【热更配置,需要全部资源加载完成后进行补充】
-        /// </summary>
-        public AppHotfixConfig AppHotfixRutimeConfig
-        {
-            get;
-            private set;
-        }
-
-        /// <summary>
         /// 游戏加载界面【主界面】
         /// </summary>
         public LoadingInterface GameMainInterface
@@ -67,19 +58,6 @@ namespace UGHGame.BuiltinRuntime
                 GameMainInterface = Instantiate(Resources.Load<GameObject>("Builtin/UIPrefabs/LoadingInterface") , group.transform).GetComponent<LoadingInterface>( );
                 GameMainInterface.transform.SetLocalPositionAndRotation(Vector3.one , Quaternion.identity);
                 GameMainInterface.transform.localScale = Vector3.one;
-            }
-        }
-
-        /// <summary>
-        /// 初始化应用热更配置
-        /// </summary>
-        /// <param name="config">配置数据</param>
-        public void InitAppHotfixConfig(AppHotfixConfig config)
-        {
-            AppHotfixRutimeConfig = config;
-            if(AppHotfixRutimeConfig == null)
-            {
-                Log.Error("补充热更数据失败");
             }
         }
     }

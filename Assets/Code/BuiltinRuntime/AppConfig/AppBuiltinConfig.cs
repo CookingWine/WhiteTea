@@ -13,9 +13,6 @@ namespace UGHGame.BuiltinRuntime
         /// </summary>
         public string CheckVersionURL;
 
-        /// <summary>
-        /// 游戏加载界面背景音乐
-        /// </summary>
-        public AudioSource GameLoadingBGM;
+
     }
 }

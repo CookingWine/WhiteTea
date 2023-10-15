@@ -29,13 +29,7 @@ namespace UGHGame.BuiltinRuntime
         /// </summary>
         private void OnInitResourceComplete( )
         {
-            //等待资源初始化完成后,加载热更配置文件
-            GameCollectionEntry.Resource.LoadAsset(AssetUtility.GetScriptableObjectAsset("AppHotfixConfig") , new GameFramework.Resource.LoadAssetCallbacks((assetName , asset , duration , userData) =>
-            {
-                AppHotfixConfig config = asset as AppHotfixConfig;
-                GameCollectionEntry.BuiltinData.InitAppHotfixConfig(config);
-                IsEnterNextProduce = true;
-            }));
+
         }
     }
 }

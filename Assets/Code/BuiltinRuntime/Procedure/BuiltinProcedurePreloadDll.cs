@@ -14,16 +14,6 @@ namespace UGHGame.BuiltinRuntime
             base.OnEnter(procedureOwner);
             Log.Info("Enter the hot patch process.");
 
-            if(GameCollectionEntry.Base.EditorResourceMode)
-            {
-                GameCollectionEntry.Resource.LoadAsset(AssetUtility.GetScriptableObjectAsset("AppHotfixConfig") , new GameFramework.Resource.LoadAssetCallbacks((assetName , asset , duration , userData) =>
-                {
-                    AppHotfixConfig config = asset as AppHotfixConfig;
-                    GameCollectionEntry.BuiltinData.InitAppHotfixConfig(config);
-                    ReadyEnterHotfixEntry( );
-                }));
-            }
-
             ReadyEnterHotfixEntry();
         }
 
