@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace UGHGame.BuiltinRuntime
+namespace UGHGame.HotfixLogic
 {
     /// <summary>
     /// app热更配置
