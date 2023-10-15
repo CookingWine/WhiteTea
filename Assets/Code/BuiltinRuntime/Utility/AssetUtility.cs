@@ -1,3 +1,4 @@
+using System.IO;
 using GameFramework;
 namespace UGHGame.BuiltinRuntime
 {
@@ -6,6 +7,16 @@ namespace UGHGame.BuiltinRuntime
     /// </summary>
     public class AssetUtility
     {
+        /// <summary>
+        /// 获取组合路径
+        /// </summary>
+        /// <param name="paths"></param>
+        /// <returns></returns>
+        public static string GetCombinePath(params string[] paths)
+        {
+            return Utility.Path.GetRegularPath(Path.Combine(paths));
+        }
+
         /// <summary>
         /// 获取配置资源路径
         /// </summary>
