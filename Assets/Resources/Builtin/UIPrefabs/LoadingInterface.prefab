@@ -527,9 +527,9 @@ MonoBehaviour:
   m_sourceChannels: 0
   m_manuallySetAudioSourceProperties: 0
   _optionsWindows:
-    overridePath: 0
+    overridePath: 1
     pathLocation: 2
-    path: 
+    path: LoginVideo/GameLoad.mp4
     videoApi: 0
     useHardwareDecoding: 1
     useUnityAudio: 0
@@ -568,9 +568,9 @@ MonoBehaviour:
     base64EncodedKeyBlob: 
     useYpCbCr420Textures: 1
   _optionsAndroid:
-    overridePath: 0
+    overridePath: 1
     pathLocation: 2
-    path: 
+    path: LoginVideo/GameLoad.mp4
     videoApi: 2
     useFastOesPath: 0
     showPosterFrame: 0
