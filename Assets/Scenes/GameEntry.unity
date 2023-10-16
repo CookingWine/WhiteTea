@@ -1557,6 +1557,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_AvailableProcedureTypeNames:
   - UGHGame.BuiltinRuntime.BuiltinProcedureAuthorization
+  - UGHGame.BuiltinRuntime.BuiltinProcedureInitResources
   - UGHGame.BuiltinRuntime.BuiltinProcedureLaunch
   - UGHGame.BuiltinRuntime.BuiltinProcedurePreloadDll
   m_EntranceProcedureTypeName: UGHGame.BuiltinRuntime.BuiltinProcedureLaunch
