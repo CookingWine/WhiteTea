@@ -2,10 +2,17 @@
 <UnityGameFramework>
   <ResourceCollection>
     <Resources>
-      <Resource Name="AppHotfixConfig" LoadType="0" Packed="False" />
+      <Resource Name="AotMetadata" LoadType="0" Packed="False" />
+      <Resource Name="Fonts" LoadType="0" Packed="False" />
+      <Resource Name="HotfixDLL" LoadType="0" Packed="False" />
+      <Resource Name="Textures" LoadType="0" Packed="False" />
     </Resources>
     <Assets>
-      <Asset Guid="99b17953f8b19c347a7f16cc4dcc9997" ResourceName="AppHotfixConfig" />
+      <Asset Guid="5919b86d541e25344b6a26d78b69c8ff" ResourceName="HotfixDLL" />
+      <Asset Guid="60bb08712af544d408b7b417172d3f6f" ResourceName="AotMetadata" />
+      <Asset Guid="891e5746ab7100a458803eae6106abee" ResourceName="Fonts" />
+      <Asset Guid="970d66c3a42edbc4fbac7f33a65ea12f" ResourceName="AotMetadata" />
+      <Asset Guid="a8540454e0880904c82d0b6aabe6a620" ResourceName="Textures" />
     </Assets>
   </ResourceCollection>
 </UnityGameFramework>
