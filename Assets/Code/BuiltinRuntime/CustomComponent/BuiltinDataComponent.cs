@@ -9,15 +9,6 @@ namespace UGHGame.BuiltinRuntime
     public class BuiltinDataComponent:GameFrameworkComponent
     {
         /// <summary>
-        /// 应用运行时配置【内置配置非热更资源】
-        /// </summary>
-        public AppBuiltinConfig AppRutimeConfig
-        {
-            get;
-            private set;
-        }
-
-        /// <summary>
         /// 游戏加载界面【主界面】
         /// </summary>
         public LoadingInterface GameMainInterface
@@ -31,14 +22,7 @@ namespace UGHGame.BuiltinRuntime
         /// </summary>
         public void InitBuildInfo( )
         {
-            //appRuntimeConfig资源为内置资源,就直接使用resources.load进行加载
-            AppRutimeConfig = Resources.Load<AppBuiltinConfig>("Builtin/ScriptableAssets/AppBuiltinConfig");
-            if(AppRutimeConfig == null)
-            {
-                Log.Error("APP基础配置加载失败....自动退出游戏");
-                GameCollectionEntry.ShutdownGameFramework( );
-                return;
-            }
+           
         }
 
         /// <summary>

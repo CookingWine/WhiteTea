@@ -132,7 +132,7 @@ namespace UGHGame.BuiltinRuntime
         /// <returns>热更dll资源路径</returns>
         public static string GetHotfixDllAsset(string assetName)
         {
-            return Utility.Text.Format("Assets/HotfixAssets/HotfixDLL/{0}.bytes" , assetName);
+            return Utility.Text.Format("Assets/HotfixAssets/HotfixDLL/{0}.dll.bytes" , assetName);
         }
 
         /// <summary>
@@ -142,7 +142,7 @@ namespace UGHGame.BuiltinRuntime
         /// <returns>补充元数据的路径</returns>
         public static string GetAotMetadataAsset(string assetName)
         {
-            return Utility.Text.Format("Assets/HotfixAssets/AotMetadata/{0}.bytes" , assetName);
+            return Utility.Text.Format("Assets/HotfixAssets/AotMetadata/{0}.dll.bytes" , assetName);
         }
 
         /// <summary>

@@ -14,7 +14,6 @@ namespace UGHGame.BuiltinRuntime
             Log.Info("Enter the network verification process.");
             //TODO:进行网络通信验证
             GameCollectionEntry.BuiltinData.GameMainInterface.IsValidateCompleted = Application.internetReachability != NetworkReachability.NotReachable;
-
             IsEnterNextProduce = true;
         }
 

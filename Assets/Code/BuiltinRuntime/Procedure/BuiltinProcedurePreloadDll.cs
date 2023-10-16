@@ -14,7 +14,7 @@ namespace UGHGame.BuiltinRuntime
             base.OnEnter(procedureOwner);
             Log.Info("Enter the hot patch process.");
 
-            ReadyEnterHotfixEntry();
+            ReadyEnterHotfixEntry( );
         }
 
         /// <summary>
@@ -22,8 +22,11 @@ namespace UGHGame.BuiltinRuntime
         /// </summary>
         private void ReadyEnterHotfixEntry( )
         {
-            GameCollectionEntry.Hybridclr.HotfixEntry( );
-            GameCollectionEntry.Fsm.DestroyFsm<IProcedureManager>( );
+            GameCollectionEntry.Hybridclr.HotfixEntry(( ) =>
+            {
+                GameCollectionEntry.Fsm.DestroyFsm<IProcedureManager>( );
+            });
+            IsEnterNextProduce = true;
         }
 
     }
