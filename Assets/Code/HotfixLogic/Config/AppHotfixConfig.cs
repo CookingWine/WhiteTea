@@ -10,5 +10,12 @@ namespace UGHGame.HotfixLogic
             "GameFramework",
             "UnityGameFramework.Runtime"
         };
+        /// <summary>
+        /// 热更流程
+        /// </summary>
+        public static string[] Procedures { get; } = new string[]
+        {
+            "ProcedureHotfixEntry"
+        };
     }
 }
