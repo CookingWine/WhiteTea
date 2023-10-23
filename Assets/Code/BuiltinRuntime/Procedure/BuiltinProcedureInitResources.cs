@@ -29,7 +29,7 @@ namespace UGHGame.BuiltinRuntime
         /// </summary>
         private void OnInitResourceComplete( )
         {
-
+            IsEnterNextProduce = true;
         }
     }
 }

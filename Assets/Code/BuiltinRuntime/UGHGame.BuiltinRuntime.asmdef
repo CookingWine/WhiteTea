@@ -2,9 +2,9 @@
     "name": "UGHGame.BuiltinRuntime",
     "rootNamespace": "",
     "references": [
-        "AvPro Video",
         "HybridCLR.Runtime",
-        "UnityGameFramework.Runtime"
+        "UnityGameFramework.Runtime",
+        "AVProVideo.Runtime"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

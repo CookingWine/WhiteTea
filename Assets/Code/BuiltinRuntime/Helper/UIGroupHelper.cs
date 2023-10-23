@@ -12,7 +12,7 @@ namespace UGHGame.BuiltinRuntime
         /// <summary>
         /// 画布宽度
         /// </summary>
-        public static float Screen_width = 1920;
+        public static float Screen_width = 2400;
         /// <summary>
         /// 画布高度
         /// </summary>

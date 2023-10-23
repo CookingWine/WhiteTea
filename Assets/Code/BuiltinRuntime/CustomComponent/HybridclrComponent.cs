@@ -36,7 +36,7 @@ namespace UGHGame.BuiltinRuntime
         public async void HotfixEntry(Action complate)
         {
             m_SuccessComplate = complate;
-
+            Log.Info("开始加载热更程序集");
             await AssemblyLoad(AppBuiltinConfig.HotfixAssembliy);
 
             StartCoroutine(LoadHotfixEntry( ));
@@ -101,7 +101,6 @@ namespace UGHGame.BuiltinRuntime
             MethodInfo start = logic.GetMethod(AppBuiltinConfig.HotfixStartFuntion , BindingFlags.Public | BindingFlags.Static);
             MethodInfo update = logic.GetMethod(AppBuiltinConfig.HotfixUpdate , BindingFlags.Public | BindingFlags.Static);
             MethodInfo shutdown = logic.GetMethod(AppBuiltinConfig.HotfixShutdown , BindingFlags.Public | BindingFlags.Static);
-
             yield return new WaitForEndOfFrame( );
             Log.Info("Hotfix main entry loaded, wait to enter the game!");
             m_SuccessComplate?.Invoke( );
