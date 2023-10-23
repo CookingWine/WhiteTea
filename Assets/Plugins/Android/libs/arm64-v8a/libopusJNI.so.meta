@@ -9,9 +9,9 @@ PluginImporter:
   isPreloaded: 0
   platformData:
     Android:
-      enabled: 0
+      enabled: 1
       settings:
-        CPU: ARMv7
+        CPU: ARM64
     Any:
       enabled: 0
       settings: {}
