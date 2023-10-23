@@ -2,8 +2,6 @@ namespace UGHGame.BuiltinRuntime
 {
     public class AppBuiltinConfig
     {
-
-        #region 热更配置
         /// <summary>
         /// 热更入口类
         /// </summary>
@@ -54,6 +52,5 @@ namespace UGHGame.BuiltinRuntime
                 return "UGHGame.HotfixLogic";
             }
         }
-        #endregion
     }
 }

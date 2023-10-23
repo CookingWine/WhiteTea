@@ -36,15 +36,16 @@ namespace UGHGame.BuiltinRuntime
         public async void HotfixEntry(Action complate)
         {
             m_SuccessComplate = complate;
-            Log.Info("开始加载热更程序集");
+
             await AssemblyLoad(AppBuiltinConfig.HotfixAssembliy);
 
             StartCoroutine(LoadHotfixEntry( ));
         }
 
-        /// </summary>
+        /// <summary>
         /// <param name="dllBytes">dll文件</param>
         /// <returns>是否加载成功</returns>
+        /// </summary>
         public bool LoadMetadataForAOTAssembly(byte[] dllBytes)
         {
             return LoadMetadataForAOT(dllBytes) == LoadImageErrorCode.OK;
