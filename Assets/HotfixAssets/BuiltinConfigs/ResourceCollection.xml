@@ -5,6 +5,7 @@
       <Resource Name="AotMetadata" LoadType="0" Packed="False" />
       <Resource Name="Fonts" LoadType="0" Packed="False" />
       <Resource Name="HotfixDLL" LoadType="0" Packed="False" />
+      <Resource Name="ScriptableObjectAssets" LoadType="0" Packed="False" />
       <Resource Name="Textures" LoadType="0" Packed="False" />
     </Resources>
     <Assets>
@@ -13,6 +14,7 @@
       <Asset Guid="891e5746ab7100a458803eae6106abee" ResourceName="Fonts" />
       <Asset Guid="970d66c3a42edbc4fbac7f33a65ea12f" ResourceName="AotMetadata" />
       <Asset Guid="a8540454e0880904c82d0b6aabe6a620" ResourceName="Textures" />
+      <Asset Guid="eba577b5e3906ba41857788da2e2b8cf" ResourceName="ScriptableObjectAssets" />
     </Assets>
   </ResourceCollection>
 </UnityGameFramework>

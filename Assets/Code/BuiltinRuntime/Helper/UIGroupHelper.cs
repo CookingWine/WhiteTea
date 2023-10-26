@@ -31,7 +31,7 @@ namespace UGHGame.BuiltinRuntime
         /// <param name="depth">界面组深度。</param>
         public override void SetDepth(int depth)
         {
-            Log.Info("Initialize custom UI interface helper, interface depth:{0}." , depth);
+            Log.Debug("Initialize custom UI interface helper, interface depth:{0}." , depth);
             m_Depth = depth;
             m_CachedCanvas.overrideSorting = true;
             m_CachedCanvas.sortingOrder = DepthFactor * depth;

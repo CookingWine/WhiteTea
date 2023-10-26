@@ -103,7 +103,7 @@ namespace UGHGame.BuiltinRuntime
             MethodInfo update = logic.GetMethod(AppBuiltinConfig.HotfixUpdate , BindingFlags.Public | BindingFlags.Static);
             MethodInfo shutdown = logic.GetMethod(AppBuiltinConfig.HotfixShutdown , BindingFlags.Public | BindingFlags.Static);
             yield return new WaitForEndOfFrame( );
-            Log.Info("Hotfix main entry loaded, wait to enter the game!");
+            Log.Debug("Hotfix main entry loaded, wait to enter the game!");
             m_SuccessComplate?.Invoke( );
             start.Invoke(null , null);
             m_UpdateCallback = (Action<float , float>)Delegate.CreateDelegate(typeof(Action<float , float>) , null , update);

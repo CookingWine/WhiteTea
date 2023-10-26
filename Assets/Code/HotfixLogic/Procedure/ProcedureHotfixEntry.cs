@@ -10,7 +10,7 @@ namespace UGHGame.HotfixLogic
         protected internal override void OnEnter(ProcedureOwner procedureOwner)
         {
             base.OnEnter(procedureOwner);
-            Log.Info("进入热更流程的入口了");
+            Log.Debug("进入热更流程的入口了");
         }
 
     }

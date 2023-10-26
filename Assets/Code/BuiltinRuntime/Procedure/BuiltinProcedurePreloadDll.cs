@@ -12,7 +12,7 @@ namespace UGHGame.BuiltinRuntime
         protected override void OnEnter(ProcedureOwner procedureOwner)
         {
             base.OnEnter(procedureOwner);
-            Log.Info("Enter the hot patch process.");
+            Log.Debug("Enter the hot patch process.");
             ReadyEnterHotfixEntry( );
         }
 

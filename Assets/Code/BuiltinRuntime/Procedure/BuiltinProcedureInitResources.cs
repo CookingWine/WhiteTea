@@ -10,7 +10,7 @@ namespace UGHGame.BuiltinRuntime
         protected override void OnEnter(ProcedureOwner procedureOwner)
         {
             base.OnEnter(procedureOwner);
-            Log.Info("Enter standalone mode and begin initializing resources.");
+            Log.Debug("Enter standalone mode and begin initializing resources.");
             GameCollectionEntry.Resource.InitResources(OnInitResourceComplete);
         }
         protected override void OnUpdate(ProcedureOwner procedureOwner , float elapseSeconds , float realElapseSeconds)

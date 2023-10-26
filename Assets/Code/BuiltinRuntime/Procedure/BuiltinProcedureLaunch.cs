@@ -10,7 +10,7 @@ namespace UGHGame.BuiltinRuntime
         protected override void OnEnter(ProcedureOwner procedureOwner)
         {
             base.OnEnter(procedureOwner);
-            Log.Info("Launch the framework and start loading the application's default configuration.");
+            Log.Debug("Launch the framework and start loading the application's default configuration.");
 
             //TODO:初始化构建配置
             GameCollectionEntry.BuiltinData.InitBuildInfo( );
