@@ -31,7 +31,7 @@ namespace UGHGame.BuiltinRuntime
         private TaskCompletionSource<object> s_LoadAssetTcs;
 
         /// <summary>
-        /// 进入热更新【注意:进入热更前,需要先把AOT元数据加载完毕】
+        /// 进入热更新
         /// </summary>
         public async void HotfixEntry(Action complate)
         {

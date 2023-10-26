@@ -1,261 +1,229 @@
-//using System.Collections.Generic;
-//using System.IO;
-//using UGHGame.HotfixLogic;
-//using UnityEditor;
-//using UnityEngine;
+using GameFramework;
+using System;
+using System.Linq;
+using System.Reflection;
+using UGHGame.HotfixLogic;
+using UnityEditor;
+using UnityEngine;
 
-//namespace UGHGame.GameEditor
-//{
+namespace UGHGame.GameEditor
+{
+    /// <summary>
+    /// appHotfixCinfig inspector界面重绘
+    /// </summary>
+    [CustomEditor(typeof(AppHotfixConfig))]
+    internal class AppHotfixConfigInspector:Editor
+    {
+        /// <summary>
+        /// app热更配置
+        /// </summary>
+        private AppHotfixConfig m_AppHotfixConfig;
 
-//    /// <summary>
-//    /// inspector界面重绘
-//    /// </summary>
-//    [CustomEditor(typeof(AppHotfixConfig))]
-//    internal class AppHotfixConfigInspector:Editor
-//    {
-//        /// <summary>
-//        /// 热更配置
-//        /// </summary>
-//        private AppHotfixConfig m_AppHotfixConfig;
-//        /// <summary>
-//        /// 未选中样式
-//        /// </summary>
-//        private GUIStyle m_NormalStyle;
-//        /// <summary>
-//        /// 选中样式
-//        /// </summary>
-//        private GUIStyle m_SelectedStyle;
+        /// <summary>
+        /// 未选中样式
+        /// </summary>
+        private GUIStyle m_NormalStyle;
+
+        /// <summary>
+        /// 选中样式
+        /// </summary>
+        private GUIStyle m_SelectedStyle;
+
+        /// <summary>
+        /// Aot文件路径
+        /// </summary>
+        private readonly string m_AotFilePath = "/HotfixAssets/AotMetadata";
+        /// <summary>
+        /// Aot元数据文件列表
+        /// </summary>
+        private SelectAssetsData[] m_AotFileList;
+        private bool m_DrawAotFile;
+        private Vector2 m_AotFileScrollPos;
+
+        /// <summary>
+        /// 游戏流程
+        /// </summary>
+        private SelectAssetsData[] m_Procedures;
+        private bool m_DrawProcedures;
+        private Vector2 m_ProceduresScrollPos;
+
+        private void OnEnable( )
+        {
+            m_AppHotfixConfig = target as AppHotfixConfig;
+            InitInfo( );
+        }
+
+        /// <summary>
+        /// 初始化信息
+        /// </summary>
+        private void InitInfo( )
+        {
+            m_NormalStyle = new GUIStyle( );
+            m_NormalStyle.normal.textColor = Color.white;
+            m_SelectedStyle = new GUIStyle( );
+            m_SelectedStyle.normal.textColor = Color.green;
+            LoadAppHotfixConfigData(m_AppHotfixConfig);
+        }
+        public override void OnInspectorGUI( )
+        {
+            EditorGUILayout.BeginVertical("box");
+            {
+                DrawAotFileList( );
+            }
+            EditorGUILayout.EndVertical( );
+
+            EditorGUILayout.Space(2);
+
+            //绘制流程界面
+            EditorGUILayout.BeginVertical("box");
+            {
+                DrawProcedures( );
+            }
+            EditorGUILayout.EndVertical( );
+        }
+        /// <summary>
+        /// 绘制AOT文件列表
+        /// </summary>
+        private void DrawAotFileList( )
+        {
+            m_DrawAotFile = EditorGUILayout.Foldout(m_DrawAotFile , "AOTData:");
+            if(m_DrawAotFile)
+            {
+                m_AotFileScrollPos = GUILayout.BeginScrollView(m_AotFileScrollPos);
+                {
+                    if(GUILayout.Button("加载AOT文件"))
+                    {
+                        LoadAotFile(m_AppHotfixConfig);
+                    }
+                    EditorGUI.BeginChangeCheck( );
+                    {
+                        foreach(var item in m_AotFileList)
+                        {
+                            item.IsEnable = EditorGUILayout.ToggleLeft(item.AssetsName , item.IsEnable , item.IsEnable ? m_SelectedStyle : m_NormalStyle);
+                        }
+                    }
+                    if(EditorGUI.EndChangeCheck( ))
+                    {
+                        SaveConfig(m_AppHotfixConfig);
+                    }
+                }
+                GUILayout.EndScrollView( );
+            }
+        }
+
+        /// <summary>
+        /// 绘制Procedures界面
+        /// </summary>
+        private void DrawProcedures( )
+        {
+            m_DrawProcedures = EditorGUILayout.Foldout(m_DrawProcedures , "Procedures:");
+            if(m_DrawProcedures)
+            {
+                m_ProceduresScrollPos = GUILayout.BeginScrollView(m_ProceduresScrollPos);
+                {
+                    EditorGUI.BeginChangeCheck( );
+                    foreach(var item in m_Procedures)
+                    {
+                        item.IsEnable = EditorGUILayout.ToggleLeft(item.AssetsName , item.IsEnable , item.IsEnable ? m_SelectedStyle : m_NormalStyle);
+                    }
+                    if(EditorGUI.EndChangeCheck( ))
+                    {
+                        SaveConfig(m_AppHotfixConfig);
+                    }
+                }
+                GUILayout.EndScrollView( );
+            }
+        }
+        /// <summary>
+        /// 加载游戏流程
+        /// </summary>
+        /// <param name="config"></param>
+        private void LoadAppHotfixConfigData(AppHotfixConfig config)
+        {
+            #region AotFile
+
+            LoadAotFile(config);
+            #endregion
+
+            #region Procedures
+            m_Procedures ??= new SelectAssetsData[0];
+            ArrayUtility.Clear(ref m_Procedures);
+            var hotfixDlls = Utility.Assembly.GetAssemblies( ).Where(dll => HybridCLR.Editor.SettingsUtil.HotUpdateAssemblyNamesIncludePreserved.Contains(dll.GetName( ).Name)).ToArray( );
+
+            foreach(var item in hotfixDlls)
+            {
+                var proceClassArr = item.GetTypes( ).Where(tp => tp.BaseType == typeof(ProcedureBase)).ToArray( );
+                foreach(var proceClass in proceClassArr)
+                {
+                    var proceName = proceClass.FullName;
+                    ArrayUtility.Add(ref m_Procedures , new SelectAssetsData(proceName , config.HotfixProcedure.Contains(proceName)));
+                }
+            }
+            #endregion
+        }
+
+        private void LoadAotFile(AppHotfixConfig config)
+        {
+            m_AotFileList ??= new SelectAssetsData[0];
+            ArrayUtility.Clear(ref m_AotFileList);
+            string path = Application.dataPath + m_AotFilePath;
+            string[] assetsName = EidtorPathUtility.GetAllFile(path);
+            for(int i = 0; i < assetsName.Length; i++)
+            {
+                assetsName[i] = assetsName[i].Split(".dll")[0];
+            }
+            foreach(var item in assetsName)
+            {
+
+                ArrayUtility.Add(ref m_AotFileList , new SelectAssetsData(item , config.AotFileList.Contains(item)));
+            }
+        }
+
+        /// <summary>
+        /// 保存配置
+        /// </summary>
+        /// <param name="config"></param>
+        private void SaveConfig(AppHotfixConfig config)
+        {
+            #region AOTFile
+            string[] aot = new string[0];
+            foreach(var item in m_AotFileList)
+            {
+                if(item.IsEnable)
+                {
+                    ArrayUtility.Add(ref aot , item.AssetsName);
+                }
+            }
+            config.GetType( ).GetField("m_AotFileList" , BindingFlags.Instance | BindingFlags.NonPublic).SetValue(config , aot);
+            #endregion
+
+            #region Procedures
+
+            string[] procedures = new string[0];
+            foreach(var item in m_Procedures)
+            {
+                if(item.IsEnable)
+                {
+                    ArrayUtility.Add(ref procedures , item.AssetsName);
+                }
+            }
+            config.GetType( ).GetField("m_HotfixProcedures" , BindingFlags.Instance | BindingFlags.NonPublic).SetValue(config , procedures);
+            #endregion
 
 
-//        private bool m_DrawDataTable;
-//        private Vector2 m_DataTableScrollPos;
-//        private bool m_DrawConfigTable;
-//        private Vector2 m_ConfigTableScrollPos;
-//        private bool m_DrawProcedures;
-//        private Vector2 m_ProceduresScrollPos;
-//        private bool m_DrawMetadataAot;
-//        private Vector2 m_MetadataAotScrollPos;
-//        private bool m_DrawHotfixFileList;
-//        private Vector2 m_HotfixFileListScrollPos;
-//        private void OnEnable( )
-//        {
-//            m_AppHotfixConfig = (AppHotfixConfig)target;
-//            m_NormalStyle = new GUIStyle( );
-//            m_NormalStyle.normal.textColor = Color.white;
-//            m_SelectedStyle = new GUIStyle( );
-//            m_SelectedStyle.normal.textColor = Color.green;
-//            ReloadScrollView(m_AppHotfixConfig);
-//        }
-
-//        public override void OnInspectorGUI( )
-//        {
-//            EditorGUILayout.BeginVertical("box");
-//            {
-//                m_DrawDataTable = EditorGUILayout.Foldout(m_DrawDataTable , "数据表:");
-//                if(m_DrawDataTable)
-//                {
-//                    m_DataTableScrollPos = EditorGUILayout.BeginScrollView(m_DataTableScrollPos);
-//                    {
-//                        EditorGUILayout.BeginVertical( );
-//                        {
-
-//                        }
-//                        EditorGUILayout.EndVertical( );
-//                        EditorGUILayout.BeginHorizontal( );
-//                        {
-//                            if(GUILayout.Button("All"))
-//                            {
-
-//                            }
-//                            if(GUILayout.Button("None"))
-//                            {
-
-//                            }
-//                        }
-//                        EditorGUILayout.EndHorizontal( );
-//                    }
-//                    EditorGUILayout.EndScrollView( );
-//                }
-//            }
-//            EditorGUILayout.EndVertical( );
-//            EditorGUILayout.Space(2);
-
-//            EditorGUILayout.BeginVertical("box");
-//            {
-//                m_DrawConfigTable = EditorGUILayout.Foldout(m_DrawConfigTable , "配置表:");
-//                if(m_DrawConfigTable)
-//                {
-//                    m_ConfigTableScrollPos = EditorGUILayout.BeginScrollView(m_ConfigTableScrollPos);
-//                    {
-//                        EditorGUILayout.BeginVertical( );
-//                        {
-
-//                        }
-//                        EditorGUILayout.EndVertical( );
-//                        EditorGUILayout.BeginHorizontal( );
-//                        {
-//                            if(GUILayout.Button("All"))
-//                            {
-
-//                            }
-//                            if(GUILayout.Button("None"))
-//                            {
-
-//                            }
-//                        }
-//                        EditorGUILayout.EndHorizontal( );
-//                    }
-//                    EditorGUILayout.EndScrollView( );
-//                }
-//            }
-//            EditorGUILayout.EndVertical( );
-//            EditorGUILayout.Space(2);
-
-//            EditorGUILayout.BeginVertical("box");
-//            {
-//                m_DrawProcedures = EditorGUILayout.Foldout(m_DrawProcedures , "流程:");
-//                if(m_DrawProcedures)
-//                {
-//                    m_ProceduresScrollPos = EditorGUILayout.BeginScrollView(m_ProceduresScrollPos);
-//                    {
-//                        EditorGUILayout.BeginVertical( );
-//                        {
-
-//                        }
-//                        EditorGUILayout.EndVertical( );
-//                        EditorGUILayout.BeginHorizontal( );
-//                        {
-//                            if(GUILayout.Button("All"))
-//                            {
-
-//                            }
-//                            if(GUILayout.Button("None"))
-//                            {
-
-//                            }
-//                        }
-//                        EditorGUILayout.EndHorizontal( );
-//                    }
-//                    EditorGUILayout.EndScrollView( );
-//                }
-//            }
-//            EditorGUILayout.EndVertical( );
-//            EditorGUILayout.Space(2);
-
-//            EditorGUILayout.BeginVertical("box");
-//            {
-//                m_DrawMetadataAot = EditorGUILayout.Foldout(m_DrawMetadataAot , "AotOrMetadata");
-//                if(m_DrawMetadataAot)
-//                {
-//                    m_MetadataAotScrollPos = EditorGUILayout.BeginScrollView(m_MetadataAotScrollPos);
-//                    {
-//                        EditorGUILayout.BeginVertical( );
-//                        {
-
-//                        }
-//                        EditorGUILayout.EndVertical( );
-//                        EditorGUILayout.BeginVertical( );
-//                        {
-//                            EditorGUILayout.BeginVertical( );
-//                            {
-//                                for(int i = 0; i < m_AppHotfixConfig.MetadataAotData.Length; i++)
-//                                {
-//                                    EditorGUILayout.LabelField(m_AppHotfixConfig.MetadataAotData[i]);
-//                                }
-//                            }
-//                            EditorGUILayout.EndVertical( );
-//                            if(GUILayout.Button("加载AotOrMetadata"))
-//                            {
-//                                List<string> aotPath = new List<string>( );
-//                                string path = $"{Application.dataPath}/HotfixAssets/AotMetadata/";
-//                                if(Directory.Exists(path))
-//                                {
-//                                    DirectoryInfo direction = new DirectoryInfo(path);
-//                                    FileInfo[] files = direction.GetFiles("*" , SearchOption.AllDirectories);
-//                                    for(int i = 0; i < files.Length; i++)
-//                                    {
-//                                        if(files[i].Name.EndsWith(".meta"))
-//                                        {
-//                                            continue;
-//                                        }
-//                                        aotPath.Add($"Assets/HotfixAssets/Aotmetadata/{files[i].Name}.bytes");
-//                                    }
-//                                    m_AppHotfixConfig.MetadataAotData = aotPath.ToArray( );
-//                                }
-//                            }
-//                        }
-//                        EditorGUILayout.EndVertical( );
-//                    }
-//                    EditorGUILayout.EndScrollView( );
-//                }
-//            }
-//            EditorGUILayout.EndVertical( );
-//            EditorGUILayout.Space(2);
-
-//            EditorGUILayout.BeginVertical("box");
-//            {
-//                m_DrawHotfixFileList = EditorGUILayout.Foldout(m_DrawHotfixFileList , "热补丁文件列表:");
-//                if(m_DrawHotfixFileList)
-//                {
-//                    m_HotfixFileListScrollPos = EditorGUILayout.BeginScrollView(m_HotfixFileListScrollPos);
-//                    {
-//                        EditorGUILayout.BeginVertical( );
-//                        {
-
-//                        }
-//                        EditorGUILayout.EndVertical( );
-//                        EditorGUILayout.BeginHorizontal( );
-//                        {
-//                            if(GUILayout.Button("重新生成热补丁文件"))
-//                            {
-
-//                            }
-//                        }
-//                        EditorGUILayout.EndHorizontal( );
-//                    }
-//                    EditorGUILayout.EndScrollView( );
-//                }
-//            }
-//            EditorGUILayout.EndVertical( );
-//            EditorGUILayout.Space(2);
-
-//            EditorGUILayout.BeginHorizontal( );
-//            {
-//                if(GUILayout.Button("RefreshAll"))
-//                {
-
-//                }
-//                if(GUILayout.Button("SaveAll"))
-//                {
-
-//                }
-//            }
-//            EditorGUILayout.EndHorizontal( );
-//        }
-
-//        /// <summary>
-//        /// 刷新视图
-//        /// </summary>
-//        /// <param name="data"></param>
-//        private void ReloadScrollView(AppHotfixConfig data)
-//        {
-//            if(data == null)
-//            {
-//                return;
-//            }
-//            ReloadProcedures(data);
-//        }
-
-//        /// <summary>
-//        /// 刷新流程
-//        /// </summary>
-//        /// <param name="data"></param>
-//        private void ReloadProcedures(AppHotfixConfig data)
-//        {
-//            if(data == null)
-//            {
-//                return;
-//            }
-//        }
-//    }
-//}
+            EditorUtility.SetDirty(config);
+        }
+        private void SaveSelectedData(AppHotfixConfig config , string va , SelectAssetsData[] allData)
+        {
+            string[] selected = new string[0];
+            foreach(var item in allData)
+            {
+                if(item.IsEnable)
+                {
+                    ArrayUtility.Add(ref selected , item.AssetsName);
+                }
+            }
+            config.GetType( ).GetField(va , BindingFlags.Instance | BindingFlags.NonPublic).SetValue(config , selected);
+        }
+    }
+}

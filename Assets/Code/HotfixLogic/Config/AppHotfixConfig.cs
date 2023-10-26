@@ -1,21 +1,60 @@
+using UnityEngine;
+
 namespace UGHGame.HotfixLogic
 {
-    public class AppHotfixConfig
+    /// <summary>
+    /// hotfix配置
+    /// </summary>
+    [CreateAssetMenu(fileName = "AppHotfixConfig" , menuName = "ScriptableObject/AppConfig【热更配置】" , order = 1)]
+    public class AppHotfixConfig:ScriptableObject
     {
+        [SerializeField]
+        private string[] m_AotFileList;
+
         /// <summary>
-        /// Aot文件列表
+        /// aot文件列表
         /// </summary>
-        public static string[] AotFileList { get; } = new string[]
+        public string[] AotFileList
         {
-            "GameFramework",
-            "UnityGameFramework.Runtime"
-        };
+            get
+            {
+                string[] aot = new string[] { "GameFramework" , "UnityGameFramework.Runtime" };
+                if(m_AotFileList == null)
+                {
+                    return aot;
+                }
+                if(m_AotFileList.Length == 0)
+                {
+                    return aot;
+                }
+                return m_AotFileList;
+            }
+        }
+
         /// <summary>
-        /// 热更流程
+        /// 热更内游戏流程
         /// </summary>
-        public static string[] Procedures { get; } = new string[]
+        [SerializeField]
+        private string[] m_HotfixProcedures;
+
+        /// <summary>
+        /// 热更内的游戏流程
+        /// </summary>
+        public string[] HotfixProcedure
         {
-            "ProcedureHotfixEntry"
-        };
+            get
+            {
+                string[] hotfxi = new string[] { "ProcedureHotfixEntry" };
+                if(m_HotfixProcedures == null)
+                {
+                    return hotfxi;
+                }
+                if(m_HotfixProcedures.Length == 0)
+                {
+                    return hotfxi;
+                }
+                return m_HotfixProcedures;
+            }
+        }
     }
 }

@@ -8,7 +8,7 @@
         "UnityEngine.UI",
         "UnityEditor.TestRunner",
         "UnityEngine.TestRunner",
-        "AvPro Video"
+        "AVProVideo.Runtime"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

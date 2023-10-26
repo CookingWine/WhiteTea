@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 namespace UGHGame.GameEditor
@@ -22,6 +23,31 @@ namespace UGHGame.GameEditor
         {
             AssetsName = assetsName;
             IsEnable = isEnable;
+        }
+    }
+    internal class EidtorPathUtility
+    {
+        public static string[] GetAllFile(string path)
+        {
+            List<string> list = new List<string>( );
+            if(Directory.Exists(path))
+            {
+                DirectoryInfo info = new DirectoryInfo(path);
+                FileInfo[] files = info.GetFiles("*");
+                for(int i = 0; i < files.Length; i++)
+                {
+                    if(files[i].Name.EndsWith(".meta"))
+                    {
+                        continue;
+                    }
+                    list.Add(files[i].Name);
+                }
+            }
+            else
+            {
+                Debug.LogError($"不存在:【{path}】路径");
+            }
+            return list.ToArray( );
         }
     }
 
@@ -52,7 +78,7 @@ namespace UGHGame.GameEditor
         /// <summary>
         /// 设置所有选择资源
         /// </summary>
-        internal void SetSelectAll(bool enable )
+        internal void SetSelectAll(bool enable)
         {
             if(AssetsData == null)
             {

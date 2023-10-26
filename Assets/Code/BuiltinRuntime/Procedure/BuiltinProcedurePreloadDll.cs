@@ -13,7 +13,6 @@ namespace UGHGame.BuiltinRuntime
         {
             base.OnEnter(procedureOwner);
             Log.Info("Enter the hot patch process.");
-
             ReadyEnterHotfixEntry( );
         }
 

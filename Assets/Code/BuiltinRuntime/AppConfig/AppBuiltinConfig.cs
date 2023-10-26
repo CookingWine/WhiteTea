@@ -1,6 +1,9 @@
 namespace UGHGame.BuiltinRuntime
 {
-    public class AppBuiltinConfig
+    /// <summary>
+    /// app配置
+    /// </summary>
+    public partial class AppBuiltinConfig
     {
         /// <summary>
         /// 热更入口类
@@ -50,6 +53,17 @@ namespace UGHGame.BuiltinRuntime
             get
             {
                 return "UGHGame.HotfixLogic";
+            }
+        }
+
+        /// <summary>
+        /// 热更配置文件资产名
+        /// </summary>
+        public static string AppHotfixConfig
+        {
+            get
+            {
+                return "AppHotfixConfig";
             }
         }
     }

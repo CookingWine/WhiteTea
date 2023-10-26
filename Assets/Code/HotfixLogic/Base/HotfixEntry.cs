@@ -1,8 +1,5 @@
 using GameFramework.Resource;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
 using UGHGame.BuiltinRuntime;
 using UnityEngine;
 using UnityGameFramework.Runtime;
@@ -35,7 +32,7 @@ namespace UGHGame.HotfixLogic
         /// <summary>
         /// 应用热更配置
         /// </summary>
-        public AppHotfixConfig AppHotfixConfigs
+        public static AppHotfixConfig AppRuntimeConfig
         {
             get;
             private set;
@@ -54,8 +51,8 @@ namespace UGHGame.HotfixLogic
         /// </summary>
         public static void Start( )
         {
-            LoadMetadataForAOTData( );
-            LoadingHotSwappingComponents( );
+            m_LoadMetadataForAOTAssembliesFlage = false;
+            LoadAppHotfixConfig( );
         }
         /// <summary>
         /// 不可调用,供给HybridclrComponent使用【相当于Mono.Update】
@@ -78,25 +75,46 @@ namespace UGHGame.HotfixLogic
         {
 
         }
+        private static void LoadAppHotfixConfig( )
+        {
+            GameCollectionEntry.Resource.LoadAsset(AssetUtility.GetScriptableObjectAsset(AppBuiltinConfig.AppHotfixConfig) ,
+             new LoadAssetCallbacks((assetName , asset , duration , userData) =>
+            {
+                AppRuntimeConfig = asset as AppHotfixConfig;
+                if(AppRuntimeConfig == null)
+                {
+                    Log.Fatal("加载热更配置文件失败");
+                    GameCollectionEntry.ShutdownGameFramework(ShutdownType.Quit);
+                    return;
+                }
+                //补充AOT数据
+                LoadMetadataForAOTData( );
+                //初始化组件
+                LoadingHotSwappingComponents( );
+            } , (assetName , status , errorMessage , userData) =>
+            {
+                Debug.LogError($"Can not load aot dll '{assetName}' error message '{errorMessage}'.");
+            }) , AppBuiltinConfig.AppHotfixConfig);
+        }
+
         /// <summary>
         /// 加载AOT元数据
         /// </summary>
         private static void LoadMetadataForAOTData( )
         {
-            m_LoadMetadataForAOTAssembliesFlage = false;
             GameCollectionEntry.BuiltinData.GameMainInterface.SetProgressInfo(0 , "补充AOT数据");
-            for(int i = 0; i < AppHotfixConfig.AotFileList.Length; i++)
+            for(int i = 0; i < AppRuntimeConfig.AotFileList.Length; i++)
             {
-                GameCollectionEntry.Resource.LoadAsset(AssetUtility.GetAotMetadataAsset(AppHotfixConfig.AotFileList[i]) , new LoadAssetCallbacks((assetName , asset , duration , userData) =>
+                GameCollectionEntry.Resource.LoadAsset(AssetUtility.GetAotMetadataAsset(AppRuntimeConfig.AotFileList[i]) , new LoadAssetCallbacks((assetName , asset , duration , userData) =>
                 {
                     byte[] bytes = ( asset as TextAsset ).bytes;
                     bool state = GameCollectionEntry.Hybridclr.LoadMetadataForAOTAssembly(bytes);
                     Log.Info($"LoadMetadataForAOTAssembly:{userData}.加载状态:{state}");
-                    GameCollectionEntry.BuiltinData.GameMainInterface.SetGameUpdateProgress(++m_CurrentProcess * 1.0f / AppHotfixConfig.AotFileList.Length);
+                    GameCollectionEntry.BuiltinData.GameMainInterface.SetGameUpdateProgress(++m_CurrentProcess * 1.0f / AppRuntimeConfig.AotFileList.Length);
                 } , (assetName , status , errorMessage , userData) =>
                 {
                     Debug.LogError($"Can not load aot dll '{assetName}' error message '{errorMessage}'.");
-                }) , AppHotfixConfig.AotFileList[i]);
+                }) , AppRuntimeConfig.AotFileList[i]);
             }
         }
 
@@ -119,41 +137,18 @@ namespace UGHGame.HotfixLogic
         /// <returns></returns>
         private static ProcedureBase[] GetHotfixGameProduce( )
         {
-            List<ProcedureBase> procedures = new List<ProcedureBase>( );
-            Assembly[] assembly = AppDomain.CurrentDomain.GetAssemblies( ).Where(x => x.GetName( ).Name.Equals(AppBuiltinConfig.HotfixAssembliy)).ToArray( );
-            for(int i = 0; i < assembly.Length; i++)
+            ProcedureBase[] procedures = new ProcedureBase[AppRuntimeConfig.HotfixProcedure.Length];
+            for(int i = 0; i < AppRuntimeConfig.HotfixProcedure.Length; i++)
             {
-                Type[] types = assembly[i].GetTypes( );
-                for(int j = 0; j < types.Length; j++)
+                Type t = Type.GetType(AppRuntimeConfig.HotfixProcedure[i]);
+                if(t == null)
                 {
-                    if(types[j].BaseType.Equals(typeof(ProcedureBase)))
-                    {
-                        ProcedureBase _base = (ProcedureBase)Activator.CreateInstance(types[j]);
-                        if(_base == null)
-                        {
-                            Log.Error("Can not create procedure instance '{0}'." , types[j].Name);
-                            continue;
-                        }
-                        procedures.Add(_base);
-                    }
+                    Log.Error("无法获取{0}类型" , AppRuntimeConfig.HotfixProcedure[i]);
+                    continue;
                 }
+                procedures[i] = Activator.CreateInstance(t) as ProcedureBase;
             }
-            return procedures.ToArray( );
-
-            //ProcedureBase[] procedures = new ProcedureBase[AppHotfixConfig.Procedures.Length];
-            //for(int i = 0; i < AppHotfixConfig.Procedures.Length; i++)
-            //{
-            //    Type t = Type.GetType(AppHotfixConfig.Procedures[i]);
-            //    if(t == null)
-            //    {
-            //        Log.Error("无法获取{0}类型" , AppHotfixConfig.Procedures[i]);
-            //        continue;
-            //    }
-            //    procedures[i] = Activator.CreateInstance(t) as ProcedureBase;
-            //}
-            //Log.Info(procedures == null);
-            //return procedures;
-
+            return procedures;
         }
     }
 }
