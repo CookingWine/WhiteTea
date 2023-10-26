@@ -30,6 +30,15 @@ namespace UGHGame.HotfixLogic
         }
 
         /// <summary>
+        /// 计时器
+        /// </summary>
+        public static TimerManager Timer
+        {
+            get;
+            private set;
+        }
+
+        /// <summary>
         /// 应用热更配置
         /// </summary>
         public static AppHotfixConfig AppRuntimeConfig
@@ -66,6 +75,7 @@ namespace UGHGame.HotfixLogic
                 return;
             }
             Fsm.Update(elapseSeconds , realElapseSeconds);
+            Timer.UpdateTimer(elapseSeconds , realElapseSeconds);
         }
 
         /// <summary>
@@ -93,7 +103,7 @@ namespace UGHGame.HotfixLogic
                 LoadingHotSwappingComponents( );
             } , (assetName , status , errorMessage , userData) =>
             {
-                Debug.LogError($"Can not load aot dll '{assetName}' error message '{errorMessage}'.");
+                Log.Debug($"Can not load aot dll '{assetName}' error message '{errorMessage}'.");
             }) , AppBuiltinConfig.AppHotfixConfig);
         }
 
@@ -109,11 +119,11 @@ namespace UGHGame.HotfixLogic
                 {
                     byte[] bytes = ( asset as TextAsset ).bytes;
                     bool state = GameCollectionEntry.Hybridclr.LoadMetadataForAOTAssembly(bytes);
-                    Log.Info($"LoadMetadataForAOTAssembly:{userData}.加载状态:{state}");
+                    Log.Debug($"LoadMetadataForAOTAssembly:{userData}.Load state:{state}");
                     GameCollectionEntry.BuiltinData.GameMainInterface.SetGameUpdateProgress(++m_CurrentProcess * 1.0f / AppRuntimeConfig.AotFileList.Length);
                 } , (assetName , status , errorMessage , userData) =>
                 {
-                    Debug.LogError($"Can not load aot dll '{assetName}' error message '{errorMessage}'.");
+                    Log.Debug($"Can not load aot dll '{assetName}' error message '{errorMessage}'.");
                 }) , AppRuntimeConfig.AotFileList[i]);
             }
         }
@@ -124,11 +134,11 @@ namespace UGHGame.HotfixLogic
         private static void LoadingHotSwappingComponents( )
         {
             Fsm = new FsmManager( );
+            Timer = new TimerManager( );
             Procedure = new ProcedureManager( );
-
             Procedure.Initialize(Fsm , GetHotfixGameProduce( ));
-
             Procedure.StartProcedure<ProcedureHotfixEntry>( );
+            m_LoadMetadataForAOTAssembliesFlage = true;
         }
 
         /// <summary>
@@ -143,7 +153,7 @@ namespace UGHGame.HotfixLogic
                 Type t = Type.GetType(AppRuntimeConfig.HotfixProcedure[i]);
                 if(t == null)
                 {
-                    Log.Error("无法获取{0}类型" , AppRuntimeConfig.HotfixProcedure[i]);
+                    Log.Fatal("无法获取{0}类型" , AppRuntimeConfig.HotfixProcedure[i]);
                     continue;
                 }
                 procedures[i] = Activator.CreateInstance(t) as ProcedureBase;
