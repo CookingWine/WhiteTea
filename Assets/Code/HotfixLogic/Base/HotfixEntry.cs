@@ -99,8 +99,6 @@ namespace UGHGame.HotfixLogic
                 }
                 //补充AOT数据
                 LoadMetadataForAOTData( );
-                //初始化组件
-                LoadingHotSwappingComponents( );
             } , (assetName , status , errorMessage , userData) =>
             {
                 Log.Debug($"Can not load aot dll '{assetName}' error message '{errorMessage}'.");
@@ -112,7 +110,6 @@ namespace UGHGame.HotfixLogic
         /// </summary>
         private static void LoadMetadataForAOTData( )
         {
-            GameCollectionEntry.BuiltinData.GameMainInterface.SetProgressInfo(0 , "补充AOT数据");
             for(int i = 0; i < AppRuntimeConfig.AotFileList.Length; i++)
             {
                 GameCollectionEntry.Resource.LoadAsset(AssetUtility.GetAotMetadataAsset(AppRuntimeConfig.AotFileList[i]) , new LoadAssetCallbacks((assetName , asset , duration , userData) =>
@@ -120,11 +117,13 @@ namespace UGHGame.HotfixLogic
                     byte[] bytes = ( asset as TextAsset ).bytes;
                     bool state = GameCollectionEntry.Hybridclr.LoadMetadataForAOTAssembly(bytes);
                     Log.Debug($"LoadMetadataForAOTAssembly:{userData}.Load state:{state}");
-                    GameCollectionEntry.BuiltinData.GameMainInterface.SetGameUpdateProgress(++m_CurrentProcess * 1.0f / AppRuntimeConfig.AotFileList.Length);
-                } , (assetName , status , errorMessage , userData) =>
-                {
-                    Log.Debug($"Can not load aot dll '{assetName}' error message '{errorMessage}'.");
-                }) , AppRuntimeConfig.AotFileList[i]);
+                    //等待AOT数据加载完毕后，再去初始化组件数据
+                    if(m_CurrentProcess == AppRuntimeConfig.AotFileList.Length)
+                    {
+                        //初始化组件
+                        LoadingHotSwappingComponents( );
+                    }
+                } , (assetName , status , errorMessage , userData) => { Log.Fatal($"Can not load aot dll '{assetName}' error message '{errorMessage}'."); }) , AppRuntimeConfig.AotFileList[i]);
             }
         }
 
