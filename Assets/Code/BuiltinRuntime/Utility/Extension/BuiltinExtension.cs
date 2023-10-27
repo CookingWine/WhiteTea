@@ -9,6 +9,7 @@ using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
+using System.IO;
 
 namespace UGHGame.BuiltinRuntime
 {
