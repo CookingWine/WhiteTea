@@ -18,15 +18,6 @@ namespace UGHGame.HotfixLogic
         {
             get
             {
-                string[] aot = new string[] { "GameFramework" , "UnityGameFramework.Runtime" };
-                if(m_AotFileList == null)
-                {
-                    return aot;
-                }
-                if(m_AotFileList.Length == 0)
-                {
-                    return aot;
-                }
                 return m_AotFileList;
             }
         }
@@ -44,15 +35,6 @@ namespace UGHGame.HotfixLogic
         {
             get
             {
-                string[] hotfxi = new string[] { "ProcedureHotfixEntry" };
-                if(m_HotfixProcedures == null)
-                {
-                    return hotfxi;
-                }
-                if(m_HotfixProcedures.Length == 0)
-                {
-                    return hotfxi;
-                }
                 return m_HotfixProcedures;
             }
         }
