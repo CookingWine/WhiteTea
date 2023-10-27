@@ -110,14 +110,16 @@ namespace UGHGame.BuiltinRuntime
             m_CurrentProgress.text = info;
         }
         /// <summary>
-        /// 设置游戏更新进度
+        /// 设置进度条信息
         /// </summary>
-        /// <param name="_value">进度【取值范围0~1】</param>
-        public void SetGameUpdateProgress(float _value)
+        /// <param name="_current">当前进度</param>
+        /// <param name="_total">总进度</param>
+        /// <param name="info">显示信息</param>
+        public void SetProgressInfo(float _current , float _total , string info)
         {
-            SetProgressInfo(_value , $"游戏更新{(int)( _value * 100 )}%");
+            m_ProgressBar.fillAmount = _current / _total;
+            m_CurrentProgress.text = $"{info}{(int)(  _current / _total  * 100 )}%";
         }
-
         /// <summary>
         /// 打开弹窗
         /// </summary>
@@ -202,7 +204,6 @@ namespace UGHGame.BuiltinRuntime
         {
             IsValidateCompleted = false;
             IsPlayVideoOver = false;
-            SetProgressInfo(0 , "等待游戏加载....");
         }
         private void InitEvent( )
         {
