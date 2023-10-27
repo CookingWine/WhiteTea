@@ -213,17 +213,5 @@ namespace UGHGame.GameEditor
 
             EditorUtility.SetDirty(config);
         }
-        private void SaveSelectedData(AppHotfixConfig config , string va , SelectAssetsData[] allData)
-        {
-            string[] selected = new string[0];
-            foreach(var item in allData)
-            {
-                if(item.IsEnable)
-                {
-                    ArrayUtility.Add(ref selected , item.AssetsName);
-                }
-            }
-            config.GetType( ).GetField(va , BindingFlags.Instance | BindingFlags.NonPublic).SetValue(config , selected);
-        }
     }
 }
