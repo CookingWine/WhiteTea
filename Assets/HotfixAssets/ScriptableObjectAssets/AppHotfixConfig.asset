@@ -16,4 +16,5 @@ MonoBehaviour:
   - GameFramework
   - UnityGameFramework.Runtime
   m_HotfixProcedures:
+  - UGHGame.HotfixLogic.ProcedureChangeScene
   - UGHGame.HotfixLogic.ProcedureHotfixEntry
