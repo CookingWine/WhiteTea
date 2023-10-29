@@ -24,6 +24,26 @@ namespace UGHGame.BuiltinRuntime
         /// </summary>
         private VersionInfo m_VersionInfo = null;
 
+        /// <summary>
+        /// 版本列表的长度
+        /// </summary>
+        private const string s_VersionListLength = "VersionListLength";
+
+        /// <summary>
+        /// 版本列表的哈希值
+        /// </summary>
+        private const string s_VersionListHashCode = "VersionListHashCode";
+
+        /// <summary>
+        /// 版本列表压缩长度
+        /// </summary>
+        private const string s_VersionListCompressedLength = "VersionListCompressedLength";
+
+        /// <summary>
+        /// 版本列表压缩哈希值
+        /// </summary>
+        private const string s_VersionListCompressedHashCode = "VersionListCompressedHashCode";
+
         private void InitValue( )
         {
             m_CheckVersionComplete = false;
@@ -53,21 +73,23 @@ namespace UGHGame.BuiltinRuntime
             {
                 return;
             }
+
             if(m_NeedUpdateVersion)
             {
                 //进入更新版本流程
-
+                procedureOwner.SetData<VarInt32>(s_VersionListLength , m_VersionInfo.VersionListLength);
+                procedureOwner.SetData<VarInt32>(s_VersionListHashCode , m_VersionInfo.VersionListHashCode);
+                procedureOwner.SetData<VarInt32>(s_VersionListCompressedLength , m_VersionInfo.VersionListCompressedLength);
+                procedureOwner.SetData<VarInt32>(s_VersionListCompressedHashCode , m_VersionInfo.VersionListCompressedHashCode);
+                ChangeState(procedureOwner , typeof(BuiltinProcedureUpdateVersion));
             }
             else
             {
                 //进入检查资源流程
+                ChangeState(procedureOwner , typeof(BuiltinProcedureCheckResources));
             }
         }
-
-
-
-
-
+       
         /// <summary>
         /// web请求成功事件
         /// </summary>
@@ -91,6 +113,12 @@ namespace UGHGame.BuiltinRuntime
             }
 
         }
+
+        /// <summary>
+        /// web请求失败事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OnWebRequestFailure(object sender , GameEventArgs e)
         {
             WebRequestFailureEventArgs ea = (WebRequestFailureEventArgs)e;

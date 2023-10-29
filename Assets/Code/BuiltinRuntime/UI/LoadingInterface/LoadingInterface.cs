@@ -109,6 +109,7 @@ namespace UGHGame.BuiltinRuntime
             m_ProgressBar.fillAmount = _value;
             m_CurrentProgress.text = info;
         }
+
         /// <summary>
         /// 设置进度条信息
         /// </summary>
@@ -120,6 +121,7 @@ namespace UGHGame.BuiltinRuntime
             m_ProgressBar.fillAmount = _current / _total;
             m_CurrentProgress.text = $"{info}{(int)(  _current / _total  * 100 )}%";
         }
+
         /// <summary>
         /// 打开弹窗
         /// </summary>

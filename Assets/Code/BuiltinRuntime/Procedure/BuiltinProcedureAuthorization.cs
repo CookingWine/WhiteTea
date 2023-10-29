@@ -40,6 +40,7 @@ namespace UGHGame.BuiltinRuntime
             else
             {
                 //TODO:更新模式
+                ChangeState(procedureOwner , typeof(BuiltinProcedureCheckVersion));
             }
 
         }
