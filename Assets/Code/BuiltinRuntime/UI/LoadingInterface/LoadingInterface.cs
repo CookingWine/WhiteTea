@@ -77,15 +77,6 @@ namespace UGHGame.BuiltinRuntime
         #endregion
 
         /// <summary>
-        /// 网络是否可以连通
-        /// </summary>
-        public bool IsValidateCompleted
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
         /// 视频是否播放完毕
         /// </summary>
         public bool IsPlayVideoOver
@@ -204,7 +195,6 @@ namespace UGHGame.BuiltinRuntime
         }
         private void InitData( )
         {
-            IsValidateCompleted = false;
             IsPlayVideoOver = false;
         }
         private void InitEvent( )
@@ -243,7 +233,7 @@ namespace UGHGame.BuiltinRuntime
             });
             m_GameBG.DOFade(1 , 1).SetEase(Ease.Linear).OnComplete(( ) =>
             {
-                if(!IsValidateCompleted)
+                if(!(Application.internetReachability != NetworkReachability.NotReachable))
                 {
                     OpenPopUpNotification("无法连接网络.." , "退出游戏" , ( ) => { GameCollectionEntry.ShutdownGameFramework( ); });
                 }
