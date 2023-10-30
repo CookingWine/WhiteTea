@@ -66,5 +66,13 @@ namespace UGHGame.BuiltinRuntime
                 return "AppHotfixConfig";
             }
         }
+
+        /// <summary>
+        /// 设置
+        /// </summary>
+        public class Setting
+        {
+            public const string Language = "Setting.Language";
+        }
     }
 }
