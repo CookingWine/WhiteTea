@@ -1,3 +1,4 @@
+using GameFramework;
 using UnityEngine;
 using UnityGameFramework.Runtime;
 
@@ -9,6 +10,13 @@ namespace UGHGame.BuiltinRuntime
     public class BuiltinDataComponent:GameFrameworkComponent
     {
         /// <summary>
+        /// 构建信息文件
+        /// </summary>
+        [Header("构建信息文件")]
+        [SerializeField]
+        private TextAsset m_BuildInfoAsset;
+
+        /// <summary>
         /// 游戏加载界面【主界面】
         /// </summary>
         public LoadingInterface GameMainInterface
@@ -18,11 +26,48 @@ namespace UGHGame.BuiltinRuntime
         }
 
         /// <summary>
+        /// 构建信息
+        /// </summary>
+        private BuildInfo m_BuildInfoData = null;
+
+        /// <summary>
+        /// 构建信息
+        /// </summary>
+        public BuildInfo BuildInfoData
+        {
+            get
+            {
+                return m_BuildInfoData;
+            }
+        }
+
+        /// <summary>
         /// 初始化构建信息
         /// </summary>
         public void InitBuildInfo( )
         {
-           
+            if(m_BuildInfoAsset == null || m_BuildInfoAsset.text.IsNullOrEmpty( ))
+            {
+                Log.Error("Build info can not be found or empty.");
+                return;
+            }
+            m_BuildInfoData = Utility.Json.ToObject<BuildInfo>(m_BuildInfoAsset.text);
+            if(m_BuildInfoData == null)
+            {
+                Log.Error("Parse build info failure.");
+            }
+            else
+            {
+                Log.Debug("Load build info success");
+            }
+        }
+
+        /// <summary>
+        /// 初始化字典配置
+        /// </summary>
+        public void InitDefaultDictionary( )
+        {
+
         }
 
         /// <summary>
