@@ -27,6 +27,17 @@ namespace UGHGame.BuiltinRuntime
         }
 
         /// <summary>
+        /// 热更组件
+        /// </summary>
+        public static Transform HotfixModuleParentObject
+        {
+            get
+            {
+                return BuiltinData.HotfixModuleParentObject;
+            }
+        }
+
+        /// <summary>
         /// 初始化自定义组件
         /// </summary>
         private void InitCustomComponents( )

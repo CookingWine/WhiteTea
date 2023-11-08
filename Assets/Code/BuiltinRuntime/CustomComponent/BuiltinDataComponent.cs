@@ -9,6 +9,18 @@ namespace UGHGame.BuiltinRuntime
     /// </summary>
     public class BuiltinDataComponent:GameFrameworkComponent
     {
+        [Header("热更组件父物体")]
+        [SerializeField]
+        private Transform m_HotfixModuleParentObject;
+
+        /// <summary>
+        /// 热更组件父物体
+        /// </summary>
+        public Transform HotfixModuleParentObject
+        {
+            get { return m_HotfixModuleParentObject;}
+        }
+
         /// <summary>
         /// 构建信息文件
         /// </summary>
