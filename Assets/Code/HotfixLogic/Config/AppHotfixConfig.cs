@@ -9,6 +9,18 @@ namespace UGHGame.HotfixLogic
     public class AppHotfixConfig:ScriptableObject
     {
         [SerializeField]
+        private string[] m_DataTables;
+        /// <summary>
+        /// 预加载数据表
+        /// </summary>
+        public string[] DataTables
+        {
+            get
+            {
+                return m_DataTables;
+            }
+        }
+        [SerializeField]
         private string[] m_AotFileList;
 
         /// <summary>

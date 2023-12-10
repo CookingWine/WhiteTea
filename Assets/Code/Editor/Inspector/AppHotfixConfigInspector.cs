@@ -47,6 +47,9 @@ namespace UGHGame.GameEditor
         private bool m_DrawProcedures;
         private Vector2 m_ProceduresScrollPos;
 
+        private bool m_DrawDataTables;
+        private Vector2 m_DataTableScrollpos;
+
         private void OnEnable( )
         {
             m_AppHotfixConfig = target as AppHotfixConfig;
@@ -74,6 +77,14 @@ namespace UGHGame.GameEditor
 
             EditorGUILayout.Space(2);
 
+            EditorGUILayout.BeginVertical("box");
+            {
+                DrawDataTables( );
+            }
+            EditorGUILayout.EndVertical( );
+
+            EditorGUILayout.Space(2);
+
             //绘制流程界面
             EditorGUILayout.BeginVertical("box");
             {
@@ -86,7 +97,7 @@ namespace UGHGame.GameEditor
         /// </summary>
         private void DrawAotFileList( )
         {
-            m_DrawAotFile = EditorGUILayout.Foldout(m_DrawAotFile , "AOTData:");
+            m_DrawAotFile = EditorGUILayout.Foldout(m_DrawAotFile , "AOT数据:");
             if(m_DrawAotFile)
             {
                 m_AotFileScrollPos = GUILayout.BeginScrollView(m_AotFileScrollPos);
@@ -116,7 +127,7 @@ namespace UGHGame.GameEditor
         /// </summary>
         private void DrawProcedures( )
         {
-            m_DrawProcedures = EditorGUILayout.Foldout(m_DrawProcedures , "Procedures:");
+            m_DrawProcedures = EditorGUILayout.Foldout(m_DrawProcedures , "游戏流程:");
             if(m_DrawProcedures)
             {
                 m_ProceduresScrollPos = GUILayout.BeginScrollView(m_ProceduresScrollPos);
@@ -130,6 +141,30 @@ namespace UGHGame.GameEditor
                     {
                         SaveConfig(m_AppHotfixConfig);
                     }
+                }
+                GUILayout.EndScrollView( );
+            }
+        }
+
+        /// <summary>
+        /// 绘制数据表界面
+        /// </summary>
+        private void DrawDataTables( )
+        {
+            m_DrawDataTables = EditorGUILayout.Foldout(m_DrawDataTables , "数据表:");
+            if(m_DrawDataTables)
+            {
+                m_DataTableScrollpos = GUILayout.BeginScrollView(m_DataTableScrollpos);
+                {
+                    EditorGUI.BeginChangeCheck( );
+                    {
+
+                    }
+                    if(EditorGUI.EndChangeCheck( ))
+                    {
+                        SaveConfig(m_AppHotfixConfig);
+                    }
+
                 }
                 GUILayout.EndScrollView( );
             }
@@ -162,6 +197,10 @@ namespace UGHGame.GameEditor
             #endregion
         }
 
+        /// <summary>
+        /// 加载aot数据文件
+        /// </summary>
+        /// <param name="config"></param>
         private void LoadAotFile(AppHotfixConfig config)
         {
             m_AotFileList ??= new SelectAssetsData[0];
@@ -195,6 +234,10 @@ namespace UGHGame.GameEditor
                 }
             }
             config.GetType( ).GetField("m_AotFileList" , BindingFlags.Instance | BindingFlags.NonPublic).SetValue(config , aot);
+            #endregion
+
+            #region DataTables
+
             #endregion
 
             #region Procedures
