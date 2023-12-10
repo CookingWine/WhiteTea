@@ -4,10 +4,7 @@
     "references": [
         "UGHGame.BuiltinRuntime",
         "UnityGameFramework.Runtime",
-        "UnityEditor.UI",
         "UnityEngine.UI",
-        "UnityEditor.TestRunner",
-        "UnityEngine.TestRunner",
         "AVProVideo.Runtime"
     ],
     "includePlatforms": [],
