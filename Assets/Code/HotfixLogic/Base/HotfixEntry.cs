@@ -48,6 +48,15 @@ namespace UGHGame.HotfixLogic
         }
 
         /// <summary>
+        /// 游戏设置
+        /// </summary>
+        public static GameSettingsManager GameSettings
+        {
+            get;
+            private set;
+        }
+
+        /// <summary>
         /// 加载AOT进度
         /// </summary>
         private static int m_CurrentProcess;
@@ -135,6 +144,7 @@ namespace UGHGame.HotfixLogic
             Fsm = new FsmManager( );
             Timer = new TimerManager( );
             Procedure = new ProcedureManager( );
+            GameSettings = GameSettingsManager.LoadGameSettings( );
             Procedure.Initialize(Fsm , GetHotfixGameProduce( ));
             Procedure.StartProcedure<ProcedureHotfixEntry>( );
             m_LoadMetadataForAOTAssembliesFlage = true;
