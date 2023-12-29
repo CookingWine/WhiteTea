@@ -3,6 +3,7 @@
   <ResourceCollection>
     <Resources>
       <Resource Name="AotMetadata" LoadType="0" Packed="False" />
+      <Resource Name="DataTables" LoadType="0" Packed="False" />
       <Resource Name="Fonts" LoadType="0" Packed="False" />
       <Resource Name="HotfixDLL" LoadType="0" Packed="False" />
       <Resource Name="Music" LoadType="0" Packed="False" />
