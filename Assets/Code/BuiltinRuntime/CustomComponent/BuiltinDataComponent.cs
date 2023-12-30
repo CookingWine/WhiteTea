@@ -18,7 +18,7 @@ namespace UGHGame.BuiltinRuntime
         /// </summary>
         public Transform HotfixModuleParentObject
         {
-            get { return m_HotfixModuleParentObject;}
+            get { return m_HotfixModuleParentObject; }
         }
 
         /// <summary>
@@ -51,6 +51,29 @@ namespace UGHGame.BuiltinRuntime
             {
                 return m_BuildInfoData;
             }
+        }
+
+        /// <summary>
+        /// UI相机
+        /// </summary>
+        private Camera m_UICamera;
+
+        /// <summary>
+        /// UI相机
+        /// </summary>
+        public Camera UICamera
+        {
+            get
+            {
+                return m_UICamera;
+            }
+        }
+        /// <summary>
+        /// 初始化相机参数
+        /// </summary>
+        public void InitGameCamera( )
+        {
+            m_UICamera = GameObject.Find("UICamera").GetComponent<Camera>( );
         }
 
         /// <summary>
