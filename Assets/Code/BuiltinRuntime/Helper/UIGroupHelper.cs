@@ -59,8 +59,14 @@ namespace UGHGame.BuiltinRuntime
             if(m_Depth == 0)
             {
                 m_CachedCanvas.renderMode = RenderMode.ScreenSpaceCamera;
-                m_CachedCanvas.worldCamera = GameCollectionEntry.BuiltinData.UICamera;
-                //m_CachedCanvas.worldCamera = GameObject.Find("UICamera").GetComponent<Camera>( );
+                if(GameCollectionEntry.BuiltinData.UICamera == null)
+                {
+                    m_CachedCanvas.worldCamera = GameObject.Find("UICamera").GetComponent<Camera>( );
+                }
+                else
+                {
+                    m_CachedCanvas.worldCamera = GameCollectionEntry.BuiltinData.UICamera;
+                }
                 m_CachedCanvas.planeDistance = m_CachedCanvas.worldCamera.farClipPlane / 2;
                 m_CachedCanvas.sortingLayerName = name;
             }
