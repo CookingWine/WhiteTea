@@ -1,6 +1,5 @@
 {
     "name": "UGHGame.HotfixLogic",
-    "rootNamespace": "",
     "references": [
         "UGHGame.BuiltinRuntime",
         "UnityGameFramework.Runtime",
@@ -9,7 +8,7 @@
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
-    "allowUnsafeCode": false,
+    "allowUnsafeCode": true,
     "overrideReferences": false,
     "precompiledReferences": [],
     "autoReferenced": true,
