@@ -90,7 +90,7 @@ namespace UGHGame.HotfixLogic
         {
             string data = AssetUtility.GetDataTableAsset(dataTableName , true);
             m_LoadedFlag.Add(data , false);
-            
+
         }
 
         #region Event

@@ -87,7 +87,7 @@ TextureImporter:
       213: 4599690359545148574
     second: designation_27
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -108,6 +108,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -116,12 +117,12 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: -1
-    aniso: -1
-    mipBias: -100
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
-    wrapW: -1
+    wrapW: 0
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -139,11 +140,14 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -171,6 +175,18 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -782,6 +798,35 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      designation_19: 1951121382725381528
+      designation_9: 3933732986327051420
+      designation_2: -4412405332010610890
+      designation_23: 4194346699822389981
+      designation_3: -1937245675608483315
+      designation_10: 2126605119516637425
+      designation_26: -5513524144733559700
+      designation_6: -1827602805799611395
+      designation_4: 469590960516089532
+      designation_25: 3787512089722672779
+      designation_24: 894900655866056550
+      designation_21: 8363369497811070026
+      designation_12: 4288800080598610797
+      designation_14: 4730134862627704246
+      designation_7: -5138051744445523847
+      designation_17: 7735322538983978426
+      designation_20: -2618575414902208335
+      designation_13: 1708619656577866990
+      designation_16: -2166471727050785699
+      designation_18: -6044102440893821502
+      designation_22: 6813603714199158975
+      designation_11: -7227051622241161928
+      designation_8: 3886542342958346112
+      designation_5: -2204224985145304128
+      designation_1: -1145933173571658945
+      designation_15: -3375606626015018032
+      designation_27: 4599690359545148574
+      designation_0: -5050218498110345553
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

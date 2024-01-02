@@ -174,7 +174,7 @@ TextureImporter:
       213: 2755555731437466758
     second: chatBg_56
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -195,6 +195,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -203,12 +204,12 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: -1
-    aniso: -1
-    mipBias: -100
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
-    wrapW: -1
+    wrapW: 0
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -226,11 +227,14 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -258,6 +262,18 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -1478,6 +1494,64 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      chatBg_16: 2290106509883422086
+      chatBg_52: -6548998444594982944
+      chatBg_13: 2969253315065622432
+      chatBg_37: -7268530107314080030
+      chatBg_25: 7326916981299383777
+      chatBg_7: -8834445060318531112
+      chatBg_27: 4925901151180742368
+      chatBg_53: -5767360617120280630
+      chatBg_42: 7770210455644907588
+      chatBg_12: -3880032594756685586
+      chatBg_39: 9029138419015031777
+      chatBg_38: 6205592174994255757
+      chatBg_1: -558164344705093222
+      chatBg_11: -674671148015153879
+      chatBg_17: -6884123636836137499
+      chatBg_21: 318193085864654016
+      chatBg_26: -2081607319923662768
+      chatBg_41: -7399017701016588598
+      chatBg_4: 6676181308958057113
+      chatBg_2: -1714900070133806868
+      chatBg_14: -6641257597120527068
+      chatBg_29: -5239823842232267562
+      chatBg_23: 4180583314340412113
+      chatBg_35: -1734428599905576187
+      chatBg_15: 2431517683445848601
+      chatBg_43: 352229424416379268
+      chatBg_46: -7739852505857323550
+      chatBg_18: -6126571167783017749
+      chatBg_56: 2755555731437466758
+      chatBg_33: -3762509256592719406
+      chatBg_31: -599672699052806664
+      chatBg_9: 4341942387781381764
+      chatBg_49: -5432410762987922411
+      chatBg_48: -6706350909316502196
+      chatBg_28: -1873740307315383316
+      chatBg_40: -2349444321796096973
+      chatBg_54: -5309675247435231844
+      chatBg_6: 5318572026582663783
+      chatBg_50: 3204282712102442508
+      chatBg_55: -121937624529868639
+      chatBg_0: 30064239156146849
+      chatBg_44: -3525909905144792094
+      chatBg_10: -9042138636943964153
+      chatBg_34: 1390972995840593332
+      chatBg_19: -874853711643093032
+      chatBg_22: -6820235610193552762
+      chatBg_24: 6397442779430216856
+      chatBg_47: -181864226386208896
+      chatBg_30: 2990772277602375636
+      chatBg_45: 5217687733478627628
+      chatBg_51: 1230237568294094885
+      chatBg_3: -2216834076908942343
+      chatBg_5: 5425871440430274689
+      chatBg_36: -5164763196238064240
+      chatBg_8: 32760827522262206
+      chatBg_32: 4926291760339706879
+      chatBg_20: 2975968139532370464
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
