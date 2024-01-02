@@ -1,4 +1,5 @@
 using GameFramework;
+using GameFramework.Localization;
 using UnityEngine;
 using UnityGameFramework.Runtime;
 
@@ -102,7 +103,8 @@ namespace UGHGame.BuiltinRuntime
         /// </summary>
         public void InitDefaultDictionary( )
         {
-
+            string path = "Builtin/Language/" + GetDefalutDictionaryConfigPath(GameCollectionEntry.Localization.Language);
+            Log.Debug($"加载字典配置路径为{path}");
         }
 
         /// <summary>
@@ -122,6 +124,24 @@ namespace UGHGame.BuiltinRuntime
                 GameMainInterface = Instantiate(Resources.Load<GameObject>("Builtin/UIPrefabs/LoadingInterface") , group.transform).GetComponent<LoadingInterface>( );
                 GameMainInterface.transform.SetLocalPositionAndRotation(Vector3.one , Quaternion.identity);
                 GameMainInterface.transform.localScale = Vector3.one;
+            }
+        }
+
+        /// <summary>
+        /// 获取默认字典配置的路径
+        /// </summary>
+        /// <param name="language"></param>
+        /// <returns></returns>
+        private string GetDefalutDictionaryConfigPath(Language language)
+        {
+            switch(language)
+            {
+                case Language.English:
+                    return "language-english";
+                case Language.ChineseSimplified:
+                    return "language-chineseSimplified";
+                default:
+                    return "language-english";
             }
         }
     }
