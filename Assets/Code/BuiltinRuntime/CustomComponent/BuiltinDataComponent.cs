@@ -103,8 +103,18 @@ namespace UGHGame.BuiltinRuntime
         /// </summary>
         public void InitDefaultDictionary( )
         {
-            string path = "Builtin/Language/" + GetDefalutDictionaryConfigPath(GameCollectionEntry.Localization.Language);
-            Log.Debug($"加载字典配置路径为{path}");
+            string path = "Builtin/Language/" + GetDefalutDictionaryConfigPath(GameCollectionEntry.Localization.Language) + ".xml";
+            TextAsset languageAsset = Resources.Load<TextAsset>(path);
+            if(languageAsset == null)
+            {
+                Log.Error("Load language config file failure.");
+                return;
+            }
+            if(!GameCollectionEntry.Localization.ParseData(languageAsset.text))
+            {
+                Log.Warning("Parse language config failure.");
+                return;
+            }
         }
 
         /// <summary>

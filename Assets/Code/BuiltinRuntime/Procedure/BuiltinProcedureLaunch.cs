@@ -15,14 +15,14 @@ namespace UGHGame.BuiltinRuntime
             Log.Debug("Launch the framework and start loading the application's default configuration.");
             //初始化构建配置
             GameCollectionEntry.BuiltinData.InitBuildInfo( );
+            //初始化字典配置
+            GameCollectionEntry.BuiltinData.InitDefaultDictionary( );
             //初始化默认语言配置
             InitLanguageSettings( );
             //初始化变体配置
             InitCurrentVariant( );
             //初始化声音配置
             InitSoundSettings( );
-            //初始化字典配置
-            GameCollectionEntry.BuiltinData.InitDefaultDictionary( );
             //初始化加载界面配置
             GameCollectionEntry.BuiltinData.InitResourceUI( );
             //到这里应用基础配置加载完毕:300毫秒
