@@ -1,4 +1,3 @@
-using UnityEngine;
 using UnityGameFramework.Runtime;
 using ProcedureOwner = GameFramework.Fsm.IFsm<GameFramework.Procedure.IProcedureManager>;
 namespace UGHGame.BuiltinRuntime
@@ -12,7 +11,6 @@ namespace UGHGame.BuiltinRuntime
         {
             base.OnEnter(procedureOwner);
             Log.Debug("Enter the network verification process.");
-            IsEnterNextProduce = true;
         }
 
         protected override void OnUpdate(ProcedureOwner procedureOwner , float elapseSeconds , float realElapseSeconds)

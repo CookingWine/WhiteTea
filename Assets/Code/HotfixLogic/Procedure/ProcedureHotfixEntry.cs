@@ -59,7 +59,11 @@ namespace UGHGame.HotfixLogic
         /// </summary>
         private void StartLoadResources( )
         {
-
+            Log.Debug("开始加载数据表");
+            foreach(string data in HotfixEntry.AppRuntimeConfig.DataTables)
+            {
+                LoadHotfixDataTable(data);
+            }
         }
 
         /// <summary>
@@ -77,6 +81,16 @@ namespace UGHGame.HotfixLogic
                 }
             }
             return m_LoadSuccess;
+        }
+        /// <summary>
+        /// 加载热更数据表
+        /// </summary>
+        /// <param name="dataTableName"></param>
+        private void LoadHotfixDataTable(string dataTableName)
+        {
+            string data = AssetUtility.GetDataTableAsset(dataTableName , true);
+            m_LoadedFlag.Add(data , false);
+            
         }
 
         #region Event
