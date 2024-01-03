@@ -1,0 +1,19 @@
+{
+    "name": "WhiteTea.GameEditor",
+    "references": [
+        "GameFramework",
+        "WhiteTea.BuiltinRuntime",
+        "UnityGameFramework.Editor"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": true,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

@@ -1,4 +1,4 @@
-﻿//------------------------------------------------------------
+//------------------------------------------------------------
 // Game Framework
 // Copyright © 2013-2021 Jiang Yin. All rights reserved.
 // Homepage: https://gameframework.cn/
@@ -22,18 +22,18 @@ namespace UnityGameFramework.Editor
             "UnityGameFramework.Runtime",
 #endif
             "Assembly-CSharp",
+
+            "WhiteTea.BuiltinRuntime"
         };
 
         private static readonly string[] RuntimeOrEditorAssemblyNames =
         {
 #if UNITY_2017_3_OR_NEWER
-            "UnityGameFramework.Runtime",
-#endif
-            "Assembly-CSharp",
-#if UNITY_2017_3_OR_NEWER
             "UnityGameFramework.Editor",
 #endif
             "Assembly-CSharp-Editor",
+
+            "WhiteTea.GameEditor"
         };
 
         /// <summary>
@@ -41,28 +41,28 @@ namespace UnityGameFramework.Editor
         /// </summary>
         /// <typeparam name="T">配置类型。</typeparam>
         /// <returns>配置路径。</returns>
-        internal static string GetConfigurationPath<T>() where T : ConfigPathAttribute
+        internal static string GetConfigurationPath<T>( ) where T : ConfigPathAttribute
         {
-            foreach (System.Type type in Utility.Assembly.GetTypes())
+            foreach(System.Type type in Utility.Assembly.GetTypes( ))
             {
-                if (!type.IsAbstract || !type.IsSealed)
+                if(!type.IsAbstract || !type.IsSealed)
                 {
                     continue;
                 }
 
-                foreach (FieldInfo fieldInfo in type.GetFields(BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.DeclaredOnly))
+                foreach(FieldInfo fieldInfo in type.GetFields(BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.DeclaredOnly))
                 {
-                    if (fieldInfo.FieldType == typeof(string) && fieldInfo.IsDefined(typeof(T), false))
+                    if(fieldInfo.FieldType == typeof(string) && fieldInfo.IsDefined(typeof(T) , false))
                     {
                         return (string)fieldInfo.GetValue(null);
                     }
                 }
 
-                foreach (PropertyInfo propertyInfo in type.GetProperties(BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.DeclaredOnly))
+                foreach(PropertyInfo propertyInfo in type.GetProperties(BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.DeclaredOnly))
                 {
-                    if (propertyInfo.PropertyType == typeof(string) && propertyInfo.IsDefined(typeof(T), false))
+                    if(propertyInfo.PropertyType == typeof(string) && propertyInfo.IsDefined(typeof(T) , false))
                     {
-                        return (string)propertyInfo.GetValue(null, null);
+                        return (string)propertyInfo.GetValue(null , null);
                     }
                 }
             }
@@ -77,7 +77,7 @@ namespace UnityGameFramework.Editor
         /// <returns>指定基类的所有子类的名称。</returns>
         internal static string[] GetRuntimeTypeNames(System.Type typeBase)
         {
-            return GetTypeNames(typeBase, RuntimeAssemblyNames);
+            return GetTypeNames(typeBase , RuntimeAssemblyNames);
         }
 
         /// <summary>
@@ -87,13 +87,13 @@ namespace UnityGameFramework.Editor
         /// <returns>指定基类的所有子类的名称。</returns>
         internal static string[] GetRuntimeOrEditorTypeNames(System.Type typeBase)
         {
-            return GetTypeNames(typeBase, RuntimeOrEditorAssemblyNames);
+            return GetTypeNames(typeBase , RuntimeOrEditorAssemblyNames);
         }
 
-        private static string[] GetTypeNames(System.Type typeBase, string[] assemblyNames)
+        private static string[] GetTypeNames(System.Type typeBase , string[] assemblyNames)
         {
-            List<string> typeNames = new List<string>();
-            foreach (string assemblyName in assemblyNames)
+            List<string> typeNames = new List<string>( );
+            foreach(string assemblyName in assemblyNames)
             {
                 Assembly assembly = null;
                 try
@@ -105,23 +105,23 @@ namespace UnityGameFramework.Editor
                     continue;
                 }
 
-                if (assembly == null)
+                if(assembly == null)
                 {
                     continue;
                 }
 
-                System.Type[] types = assembly.GetTypes();
-                foreach (System.Type type in types)
+                System.Type[] types = assembly.GetTypes( );
+                foreach(System.Type type in types)
                 {
-                    if (type.IsClass && !type.IsAbstract && typeBase.IsAssignableFrom(type))
+                    if(type.IsClass && !type.IsAbstract && typeBase.IsAssignableFrom(type))
                     {
                         typeNames.Add(type.FullName);
                     }
                 }
             }
 
-            typeNames.Sort();
-            return typeNames.ToArray();
+            typeNames.Sort( );
+            return typeNames.ToArray( );
         }
     }
 }
