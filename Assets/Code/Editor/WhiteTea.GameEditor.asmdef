@@ -1,9 +1,11 @@
 {
     "name": "WhiteTea.GameEditor",
+    "rootNamespace": "",
     "references": [
         "GameFramework",
         "WhiteTea.BuiltinRuntime",
-        "UnityGameFramework.Editor"
+        "UnityGameFramework.Editor",
+        "UnityGameFramework.Runtime"
     ],
     "includePlatforms": [
         "Editor"

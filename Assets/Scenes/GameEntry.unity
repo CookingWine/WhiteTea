@@ -1451,7 +1451,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_EnableLoadDictionaryUpdateEvent: 0
   m_EnableLoadDictionaryDependencyAssetEvent: 0
-  m_LocalizationHelperTypeName: UnityGameFramework.Runtime.DefaultLocalizationHelper
+  m_LocalizationHelperTypeName: WhiteTea.BuiltinRuntime.XmlLocalizationHelper
   m_CustomLocalizationHelper: {fileID: 0}
   m_CachedBytesSize: 0
 --- !u!114 &4988577304424965664
@@ -1478,7 +1478,7 @@ MonoBehaviour:
   m_InstanceRoot: {fileID: 0}
   m_UIFormHelperTypeName: UnityGameFramework.Runtime.DefaultUIFormHelper
   m_CustomUIFormHelper: {fileID: 0}
-  m_UIGroupHelperTypeName: UnityGameFramework.Runtime.DefaultUIGroupHelper
+  m_UIGroupHelperTypeName: WhiteTea.BuiltinRuntime.UGuiGroupHelper
   m_CustomUIGroupHelper: {fileID: 0}
   m_UIGroups:
   - m_Name: BaseUI
