@@ -22,21 +22,38 @@ namespace WhiteTea.GameEditor.DataTableTools
         /// <summary>
         /// 代码生成路径
         /// </summary>
-        private const string CSharpCodePath = "";
+        private const string CSharpCodePath = "Assets/Code/HotfixLogic/Definition/DataTable";
         private static readonly Regex EndWithNumberRegex = new Regex(@"\d+$");
         private static readonly Regex NameRegex = new Regex(@"^[A-Z][A-Za-z0-9_]*$");
-
+        private readonly static string[] m_TempUIDataTable = new[]
+        {
+            "UIForm"
+        };
         /// <summary>
         /// 生成数据表
         /// </summary>
         [MenuItem("White Tea Game/Generate Data Table")]
         private static void GenerateDataTables( )
         {
-            Debug.Log("准备生成热更数据表");
+            foreach(string dataTableName in m_TempUIDataTable)
+            {
+                DataTableProcessor dataTableProcessor = CreateDataTableProcessor(dataTableName);
+                if(!CheckRawData(dataTableProcessor , dataTableName))
+                {
+                    Debug.LogError(Utility.Text.Format("Check raw data failure. DataTableName='{0}'" , dataTableName));
+                    break;
+                }
+
+                GenerateDataFile(dataTableProcessor , dataTableName);
+
+                GenerateCodeFile(dataTableProcessor , dataTableName);
+            }
+            //刷新资源
+            AssetDatabase.Refresh( );
         }
         public static DataTableProcessor CreateDataTableProcessor(string dataTableName)
         {
-            return new DataTableProcessor(Utility.Path.GetRegularPath(Path.Combine(DataTablePath , dataTableName + ".txt")) , Encoding.GetEncoding("GB2312") , 1 , 2 , null , 3 , 4 , 1);
+            return new DataTableProcessor(Utility.Path.GetRegularPath(Path.Combine(DataTablePath , dataTableName + ".txt")) , Encoding.GetEncoding("UTF-8") , 1 , 2 , null , 3 , 4 , 1);
         }
 
         public static bool CheckRawData(DataTableProcessor dataTableProcessor , string dataTableName)
@@ -61,7 +78,9 @@ namespace WhiteTea.GameEditor.DataTableTools
 
         public static void GenerateDataFile(DataTableProcessor dataTableProcessor , string dataTableName)
         {
-            string binaryDataFileName = Utility.Path.GetRegularPath(Path.Combine(DataTablePath , dataTableName + ".bytes"));
+            string dataGeneratePath = "Assets/HotfixAssets/DataTables";
+            string binaryDataFileName = Utility.Path.GetRegularPath(Path.Combine(dataGeneratePath , dataTableName + ".bytes"));
+            Debug.Log(binaryDataFileName);
             if(!dataTableProcessor.GenerateDataFile(binaryDataFileName) && File.Exists(binaryDataFileName))
             {
                 File.Delete(binaryDataFileName);
@@ -86,7 +105,7 @@ namespace WhiteTea.GameEditor.DataTableTools
             string dataTableName = (string)userData;
 
             codeContent.Replace("__DATA_TABLE_CREATE_TIME__" , DateTime.UtcNow.ToLocalTime( ).ToString("yyyy-MM-dd HH:mm:ss.fff"));
-            codeContent.Replace("__DATA_TABLE_NAME_SPACE__" , "");
+            codeContent.Replace("__DATA_TABLE_NAME_SPACE__" , "WhiteTea.HotfixLogic");
             codeContent.Replace("__DATA_TABLE_CLASS_NAME__" , "DR" + dataTableName);
             codeContent.Replace("__DATA_TABLE_COMMENT__" , dataTableProcessor.GetValue(0 , 1) + "。");
             codeContent.Replace("__DATA_TABLE_ID_COMMENT__" , "获取" + dataTableProcessor.GetComment(dataTableProcessor.IdColumn) + "。");
