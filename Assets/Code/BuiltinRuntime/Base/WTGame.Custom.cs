@@ -11,6 +11,11 @@ namespace WhiteTea.BuiltinRuntime
         private AppBuiltinSettings m_AppBuiltinSettings;
 
         /// <summary>
+        /// 自定义数据组件
+        /// </summary>
+        public static BuiltinDataComponent BuiltinData;
+
+        /// <summary>
         /// 初始化自定义组件
         /// </summary>
         private void InitCustomComponents( )
@@ -22,6 +27,8 @@ namespace WhiteTea.BuiltinRuntime
                 Shutdown(ShutdownType.Restart);
                 return;
             }
+
+            BuiltinData = GameEntry.GetComponent<BuiltinDataComponent>( );
         }
 
         /// <summary>
