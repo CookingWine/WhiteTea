@@ -1,0 +1,17 @@
+{
+    "name": "WhiteTea.HotfixLogic",
+    "rootNamespace": "",
+    "references": [
+        "GUID:6733a1c52c97e244e995bbf0c1328f7f",
+        "GUID:363c5eb08ff8e6a439b85e37b8c20d96"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": true,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

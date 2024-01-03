@@ -1,0 +1,10 @@
+#	界面配置表					
+#	Id		AssetName	UIGroupName	AllowMultiInstance	PauseCoveredUIForm
+#	int		string	string	bool	bool
+#	界面编号	策划备注	资源名称	界面组名称	是否允许多个界面实例	是否暂停被其覆盖的界面
+	100001	测试1	TestUIA	BaseUI	FALSE	FALSE
+	100002	测试2	TestUIB	BaseUI	FALSE	FALSE
+	100003	测试3	TestUIC	BaseUI	FALSE	FALSE
+	100004	测试4	TestUID	BaseUI	FALSE	FALSE
+	100005	测试5	TestUIE	BaseUI	FALSE	FALSE
+	100006	测试6	TestUIF	BaseUI	FALSE	FALSE
