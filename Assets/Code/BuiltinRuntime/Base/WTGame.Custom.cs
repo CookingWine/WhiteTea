@@ -1,4 +1,3 @@
-using UnityEngine;
 using UnityGameFramework.Runtime;
 
 namespace WhiteTea.BuiltinRuntime
@@ -8,26 +7,35 @@ namespace WhiteTea.BuiltinRuntime
         /// <summary>
         /// 应用设置
         /// </summary>
-        private AppBuiltinSettings m_AppBuiltinSettings;
+        internal static AppBuiltinSettings AppBuiltinConfigs
+        {
+            get;
+            private set;
+        }
 
         /// <summary>
         /// 自定义数据组件
         /// </summary>
-        public static BuiltinDataComponent BuiltinData;
+        public static BuiltinDataComponent BuiltinData
+        {
+            get;
+            private set;
+        }
+
 
         /// <summary>
         /// 初始化自定义组件
         /// </summary>
         private void InitCustomComponents( )
         {
-            m_AppBuiltinSettings = Resources.Load<AppBuiltinSettings>("AppSettings");
-            if(m_AppBuiltinSettings == null)
+            AppBuiltinConfigs = AppBuiltinSettings.Instance;
+            if(AppBuiltinConfigs == null)
             {
                 Log.Fatal("Load app builtin setting failure.");
                 Shutdown(ShutdownType.Restart);
                 return;
             }
-
+            Log.Debug("Load app config success.");
             BuiltinData = GameEntry.GetComponent<BuiltinDataComponent>( );
         }
 

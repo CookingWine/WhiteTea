@@ -20,6 +20,17 @@ namespace WhiteTea.BuiltinRuntime
         public const string AppHotfixSettingsName = "HotifxAppConfigs";
 
         /// <summary>
+        /// 设置
+        /// </summary>
+        public static class Settings
+        {
+            /// <summary>
+            /// 语言
+            /// </summary>
+            public const string Language = "WTGame.Settings.Language";
+        }
+
+        /// <summary>
         /// 资源工具
         /// </summary>
         public static class AssetsUtility
@@ -33,13 +44,26 @@ namespace WhiteTea.BuiltinRuntime
             {
                 return Utility.Path.GetRegularPath(Path.Combine(args));
             }
+
+            /// <summary>
+            /// 获取语言配置文件
+            /// </summary>
+            /// <param name="language">当前语言</param>
+            /// <param name="isHotfix">是否是热更资源</param>
+            /// <returns></returns>
+            public static string GetLanguageAssets(string language , bool isHotfix)
+            {
+                string path = isHotfix ? "Assets/HotfixAssets/Localization/Local_{0}.bytes" : "Language/Local_{0}";
+                UnityEngine.Debug.Log($"加载文件路径为{Utility.Text.Format(path , language)}");
+                return Utility.Text.Format(path , language);
+            }
         }
         /// <summary>
         /// json工具
         /// </summary>
         public static class JsonUtility
         {
-            
+
         }
 
         public static class ValuerUtility

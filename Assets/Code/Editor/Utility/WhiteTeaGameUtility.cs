@@ -1,3 +1,4 @@
+using UnityEditor;
 namespace WhiteTea.GameEditor
 {
     /// <summary>
@@ -12,9 +13,20 @@ namespace WhiteTea.GameEditor
         public static void AddScriptingDefineSymbolsForGroup(string macro)
         {
 #if UNITY_2021_1_OR_NEWER
-        
-#endif
 
+#endif
+            var target = GetCurrentBuildTarget( );
+            string[] defines = PlayerSettings.GetScriptingDefineSymbolsForGroup(target).Split(';');
+            if(!ArrayUtility.Contains(defines , macro))
+            {
+                ArrayUtility.Add<string>(ref defines , macro);
+            }
+            string temp = string.Empty;
+            for(int i = 0; i < defines.Length; i++)
+            {
+                temp = defines[i] + ";";
+            }
+            PlayerSettings.SetScriptingDefineSymbolsForGroup(target , temp);
         }
 
         /// <summary>
@@ -26,6 +38,25 @@ namespace WhiteTea.GameEditor
 #if UNITY_2021_1_OR_NEWER
         
 #endif
+            var target = GetCurrentBuildTarget( );
+            string[] defines = PlayerSettings.GetScriptingDefineSymbolsForGroup(target).Split(';');
+            if(ArrayUtility.Contains(defines , macro))
+            {
+                ArrayUtility.Remove<string>(ref defines , macro);
+            }
+            string temp = string.Empty;
+            for(int i = 0; i < defines.Length; i++)
+            {
+                temp = defines[i] + ";";
+            }
+            PlayerSettings.SetScriptingDefineSymbolsForGroup(target , temp);
+
+        }
+
+        public static void SetAppCompanyAndProductName(string name)
+        {
+            PlayerSettings.companyName = name;
+            PlayerSettings.productName = name;
         }
 
         /// <summary>

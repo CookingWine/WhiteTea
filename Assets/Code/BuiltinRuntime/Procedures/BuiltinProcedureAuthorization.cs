@@ -48,8 +48,5 @@ namespace WhiteTea.BuiltinRuntime
                 //更新模式,进入版本请求
             }
         }
-
-
-
     }
 }

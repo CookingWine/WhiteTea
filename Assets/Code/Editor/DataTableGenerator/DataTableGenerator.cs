@@ -14,18 +14,6 @@ namespace WhiteTea.GameEditor.DataTableTools
     /// </summary>
     internal sealed class DataTableGenerator
     {
-        /// <summary>
-        /// 数据表的路径
-        /// </summary>
-        private const string DataTablePath = "Assets/GameConfigAssets/DataTables";
-        /// <summary>
-        /// 生成配置表代码的模板文件
-        /// </summary>
-        private const string CSharpCodeTemplateFileName = "Assets/GameConfigAssets/GameFramework/DataTableCodeTemplate.txt";
-        /// <summary>
-        /// 代码生成路径
-        /// </summary>
-        private const string CSharpCodePath = "Assets/Code/HotfixLogic/Definition/DataTable";
         private static readonly Regex EndWithNumberRegex = new Regex(@"\d+$");
         private static readonly Regex NameRegex = new Regex(@"^[A-Z][A-Za-z0-9_]*$");
         private readonly static string[] m_TempUIDataTable = new[]
@@ -35,8 +23,7 @@ namespace WhiteTea.GameEditor.DataTableTools
         /// <summary>
         /// 生成数据表
         /// </summary>
-        [MenuItem("White Tea Game/Generate Data Table" , false , 10)]
-        private static void GenerateDataTables( )
+        public static void GeneratorDataTables( )
         {
             foreach(string dataTableName in m_TempUIDataTable)
             {
@@ -56,7 +43,7 @@ namespace WhiteTea.GameEditor.DataTableTools
         }
         private static DataTableProcessor CreateDataTableProcessor(string dataTableName)
         {
-            return new DataTableProcessor(Utility.Path.GetRegularPath(Path.Combine(DataTablePath , dataTableName + ".txt")) , Encoding.GetEncoding("UTF-8") , 1 , 2 , null , 3 , 4 , 1);
+            return new DataTableProcessor(Utility.Path.GetRegularPath(Path.Combine(WhiteTeaEditorConfigs.DataTablePath , dataTableName + ".txt")) , Encoding.GetEncoding("UTF-8") , 1 , 2 , null , 3 , 4 , 1);
         }
 
         private static bool CheckRawData(DataTableProcessor dataTableProcessor , string dataTableName)
@@ -81,8 +68,7 @@ namespace WhiteTea.GameEditor.DataTableTools
 
         private static void GenerateDataFile(DataTableProcessor dataTableProcessor , string dataTableName)
         {
-            string dataGeneratePath = "Assets/HotfixAssets/DataTables";
-            string binaryDataFileName = Utility.Path.GetRegularPath(Path.Combine(dataGeneratePath , dataTableName + ".bytes"));
+            string binaryDataFileName = Utility.Path.GetRegularPath(Path.Combine(WhiteTeaEditorConfigs.DataGeneratorPath , dataTableName + ".bytes"));
             Debug.Log(binaryDataFileName);
             if(!dataTableProcessor.GenerateDataFile(binaryDataFileName) && File.Exists(binaryDataFileName))
             {
@@ -93,10 +79,10 @@ namespace WhiteTea.GameEditor.DataTableTools
         private static void GenerateCodeFile(DataTableProcessor dataTableProcessor , string dataTableName)
         {
 
-            dataTableProcessor.SetCodeTemplate(CSharpCodeTemplateFileName , Encoding.UTF8);
+            dataTableProcessor.SetCodeTemplate(WhiteTeaEditorConfigs.CSharpCodeTemplateFileName , Encoding.UTF8);
             dataTableProcessor.SetCodeGenerator(DataTableCodeGenerator);
 
-            string csharpCodeFileName = Utility.Path.GetRegularPath(Path.Combine(CSharpCodePath , "DR" + dataTableName + ".cs"));
+            string csharpCodeFileName = Utility.Path.GetRegularPath(Path.Combine(WhiteTeaEditorConfigs.CSharpCodePath , "DR" + dataTableName + ".cs"));
             if(!dataTableProcessor.GenerateCodeFile(csharpCodeFileName , Encoding.UTF8 , dataTableName) && File.Exists(csharpCodeFileName))
             {
                 File.Delete(csharpCodeFileName);

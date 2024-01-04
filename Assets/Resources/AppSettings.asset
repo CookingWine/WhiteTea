@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 745dc50ce2fd69c4198af82b20fc14f4, type: 3}
   m_Name: AppSettings
   m_EditorClassIdentifier: 
+  m_CheckVersionUrl: www.baidu.com
