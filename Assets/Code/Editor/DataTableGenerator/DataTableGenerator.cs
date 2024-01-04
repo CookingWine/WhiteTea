@@ -18,6 +18,9 @@ namespace WhiteTea.GameEditor.DataTableTools
         /// 数据表的路径
         /// </summary>
         private const string DataTablePath = "Assets/GameConfigAssets/DataTables";
+        /// <summary>
+        /// 生成配置表代码的模板文件
+        /// </summary>
         private const string CSharpCodeTemplateFileName = "Assets/GameConfigAssets/GameFramework/DataTableCodeTemplate.txt";
         /// <summary>
         /// 代码生成路径
@@ -32,7 +35,7 @@ namespace WhiteTea.GameEditor.DataTableTools
         /// <summary>
         /// 生成数据表
         /// </summary>
-        [MenuItem("White Tea Game/Generate Data Table")]
+        [MenuItem("White Tea Game/Generate Data Table" , false , 10)]
         private static void GenerateDataTables( )
         {
             foreach(string dataTableName in m_TempUIDataTable)
@@ -51,12 +54,12 @@ namespace WhiteTea.GameEditor.DataTableTools
             //刷新资源
             AssetDatabase.Refresh( );
         }
-        public static DataTableProcessor CreateDataTableProcessor(string dataTableName)
+        private static DataTableProcessor CreateDataTableProcessor(string dataTableName)
         {
             return new DataTableProcessor(Utility.Path.GetRegularPath(Path.Combine(DataTablePath , dataTableName + ".txt")) , Encoding.GetEncoding("UTF-8") , 1 , 2 , null , 3 , 4 , 1);
         }
 
-        public static bool CheckRawData(DataTableProcessor dataTableProcessor , string dataTableName)
+        private static bool CheckRawData(DataTableProcessor dataTableProcessor , string dataTableName)
         {
             for(int i = 0; i < dataTableProcessor.RawColumnCount; i++)
             {
@@ -76,7 +79,7 @@ namespace WhiteTea.GameEditor.DataTableTools
             return true;
         }
 
-        public static void GenerateDataFile(DataTableProcessor dataTableProcessor , string dataTableName)
+        private static void GenerateDataFile(DataTableProcessor dataTableProcessor , string dataTableName)
         {
             string dataGeneratePath = "Assets/HotfixAssets/DataTables";
             string binaryDataFileName = Utility.Path.GetRegularPath(Path.Combine(dataGeneratePath , dataTableName + ".bytes"));
@@ -87,7 +90,7 @@ namespace WhiteTea.GameEditor.DataTableTools
             }
         }
 
-        public static void GenerateCodeFile(DataTableProcessor dataTableProcessor , string dataTableName)
+        private static void GenerateCodeFile(DataTableProcessor dataTableProcessor , string dataTableName)
         {
 
             dataTableProcessor.SetCodeTemplate(CSharpCodeTemplateFileName , Encoding.UTF8);
