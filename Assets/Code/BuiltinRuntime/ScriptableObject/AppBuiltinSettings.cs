@@ -24,39 +24,6 @@ namespace WhiteTea.BuiltinRuntime
 
         }
 
-#if WHITEAGAME_BETA
-        [Header("beta版检查版本url")]
-        [SerializeField]
-        private string m_CheckVersionUrl;
-
-        /// <summary>
-        /// beta版检查版本URL
-        /// </summary>
-        public string CheckVersionUrl
-        {
-            get
-            {
-                return m_CheckVersionUrl;
-            }
-        }
-#else
-        [Header("检查版本url")]
-        [SerializeField]
-        private string m_CheckVersionUrl;
-
-        /// <summary>
-        /// 检查版本URL
-        /// </summary>
-        public string CheckVersionUrl
-        {
-            get
-            {
-                return m_CheckVersionUrl;
-            }
-        }
-#endif
-
-
         /// <summary>
         /// 加载语言配置文件
         /// </summary>
