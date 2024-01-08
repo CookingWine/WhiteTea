@@ -1,6 +1,9 @@
 using System.Collections.Generic;
+using System.IO;
+using System.Xml;
 using UnityEditor;
 using UnityEngine;
+
 namespace WhiteTea.GameEditor
 {
     /// <summary>
@@ -11,7 +14,7 @@ namespace WhiteTea.GameEditor
         private static WhiteTeaReadLanguageData m_Instance;
         private WhiteTeaReadLanguageData( )
         {
-            m_LocalizationLanguageConfig = new Dictionary<string , LocalizationLanguageConfig>( );
+
         }
 
         /// <summary>
@@ -39,7 +42,8 @@ namespace WhiteTea.GameEditor
         /// <summary>
         /// 本地语言配置列表
         /// </summary>
-        private Dictionary<string , LocalizationLanguageConfig> m_LocalizationLanguageConfig;
+        private static readonly Dictionary<string , LocalizationLanguageConfig> m_LocalizationLanguageConfig = new Dictionary<string , LocalizationLanguageConfig>( );
+
         /// <summary>
         /// 加载本地语言配置
         /// </summary>
@@ -96,8 +100,10 @@ namespace WhiteTea.GameEditor
         /// </summary>
         private static void LoadLocalizationFile( )
         {
-
+           
         }
+
+      
 
         /// <summary>
         /// 绘制标题
@@ -122,6 +128,54 @@ namespace WhiteTea.GameEditor
         private void DrawLanguageHotfixContent( )
         {
 
+        }
+
+        /// <summary>
+        /// 保存文件
+        /// </summary>
+        private void Save( )
+        {
+            try
+            {
+                XmlDocument xmlDocument = new XmlDocument( );
+                xmlDocument.AppendChild(xmlDocument.CreateXmlDeclaration("1.0" , "UTF-8" , null));
+                XmlElement xmlRoot = xmlDocument.CreateElement("Dictionaries");
+                xmlDocument.AppendChild(xmlRoot);
+                XmlElement xmlLanguage = xmlDocument.CreateElement($"Dictionary Language=");
+
+
+            }
+            catch
+            {
+                if(File.Exists(""))
+                {
+                    File.Delete("");
+                }
+            }
+        }
+
+        /// <summary>
+        /// 获取路径下所以文件的信息
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
+        private static FileInfo[] GetFilesFullName(string path)
+        {
+            List<FileInfo> info = new List<FileInfo>( );
+            if(Directory.Exists(path))
+            {
+                DirectoryInfo directory = new DirectoryInfo(path);
+                FileInfo[] files = directory.GetFiles("*");
+                for(int i = 0; i < files.Length; i++)
+                {
+                    if(files[i].Name.EndsWith(".meta"))
+                    {
+                        continue;
+                    }
+                    info.Add(files[i]);
+                }
+            }
+            return info.ToArray( );
         }
 
         private Vector2 m_Scrollpos;
@@ -180,15 +234,14 @@ namespace WhiteTea.GameEditor
 
                 if(GUILayout.Button("添加"))
                 {
-                    if(m_LocalizationLanguageConfig.ContainsKey("中文"))
+                    if(!m_LocalizationLanguageConfig.ContainsKey("中文"))
                     {
-                        return;
+                        m_LocalizationLanguageConfig.Add("中文" , new LocalizationLanguageConfig("中文"));
                     }
-                    m_LocalizationLanguageConfig.Add("中文" , new LocalizationLanguageConfig("中文"));
                 }
                 if(GUILayout.Button("保存"))
                 {
-
+                    Save( );
                 }
             }
             EditorGUILayout.EndHorizontal( );
@@ -227,6 +280,11 @@ namespace WhiteTea.GameEditor
             public string Language { get; private set; }
 
             /// <summary>
+            /// 文件路径
+            /// </summary>
+            public string Path;
+
+            /// <summary>
             /// 语言key与value
             /// </summary>
             public Dictionary<string , string> LanguageKeyOrValue { get; private set; }
@@ -261,6 +319,7 @@ namespace WhiteTea.GameEditor
                 return values.ToArray( );
             }
         }
+
 
     }
 }

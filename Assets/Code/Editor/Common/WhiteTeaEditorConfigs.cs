@@ -39,7 +39,7 @@ namespace WhiteTea.GameEditor
         /// <summary>
         /// 语言配置表位置
         /// </summary>
-        public const string LanguageBuiltinPath = "Assets/GameConfigAssets/Language";
+        public const string LanguageBuiltinPath = "Assets/Resources/Language";
         /// <summary>
         /// 内置语言表的生成位置【该表通过Resource.Load进行加载】
         /// </summary>
