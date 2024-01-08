@@ -1,3 +1,4 @@
+using GameFramework.DataTable;
 using UnityEditor;
 using WhiteTea.GameEditor.DataTableTools;
 namespace WhiteTea.GameEditor
@@ -6,6 +7,9 @@ namespace WhiteTea.GameEditor
     {
         #region Game Generator
 
+        /// <summary>
+        /// 生成app配置
+        /// </summary>
         [MenuItem("White Tea Game/App Setting/Builting Config" , false , 11)]
         private static void GeneratorAppBuiltinSettings( )
         {
@@ -20,6 +24,14 @@ namespace WhiteTea.GameEditor
         {
 
         }
+        /// <summary>
+        /// 本地化语言编辑器
+        /// </summary>
+        [MenuItem("White Tea Game/App Setting/Localization Languages Editor" , false , 13)]
+        private static void LocalizationLanguageSetting( )
+        {
+            WhiteTeaReadLanguageData.LoadLocalizationLanguage( );
+        }
 
         /// <summary>
         /// 生成数据表
@@ -28,19 +40,6 @@ namespace WhiteTea.GameEditor
         private static void GeneratorDataTables( )
         {
             DataTableGenerator.GeneratorDataTables( );
-        }
-
-        /// <summary>
-        /// 生成app配置
-        /// </summary>
-
-        /// <summary>
-        /// 生成本地语言配置
-        /// </summary>
-        [MenuItem("White Tea Game/Generator/Language Config" , false , 122)]
-        private static void GeneratorLanguageConfig( )
-        {
-
         }
 
         /// <summary>
@@ -67,7 +66,6 @@ namespace WhiteTea.GameEditor
         private static void GeneratorAllGameFile( )
         {
             GeneratorDataTables( );
-            GeneratorLanguageConfig( );
             GeneratorHotfixDLL( );
             GeneratorAotData( );
         }

@@ -84,7 +84,7 @@ namespace UnityGameFramework.Editor.ResourceTools
                     Save();
                 }
 
-                if (GUILayout.Button("Refresh ResourceCollection.xml", EditorStyles.toolbarButton))
+                if (GUILayout.Button("刷新 ResourceCollection.xml", EditorStyles.toolbarButton))
                 {
                     RefreshResourceCollection();
                 }
@@ -301,44 +301,44 @@ namespace UnityGameFramework.Editor.ResourceTools
             Rect r = new Rect(0, 20, rect.width, rect.height);
             r.width = 45;
             r.height = 18;
-            EditorGUI.TextField(r, "Active");
+            EditorGUI.TextField(r, "激活");
 
             r.xMin = r.xMax + GAP;
             r.xMax = r.xMax + 415;
             float assetBundleNameLength = r.width;
-            EditorGUI.TextField(r, "Name");
+            EditorGUI.TextField(r, "名称");
 
             r.xMin = r.xMax + GAP;
             r.xMax = r.xMin + 100;
-            EditorGUI.TextField(r, "Load Type");
+            EditorGUI.TextField(r, "加载类型");
 
             r.xMin = r.xMax + GAP;
             r.xMax = r.xMin + 50;
-            EditorGUI.TextField(r, "Packed");
+            EditorGUI.TextField(r, "包");
             
             r.xMin = r.xMax + GAP;
             r.xMax = r.xMin + 85;
-            EditorGUI.TextField(r, "File System");
+            EditorGUI.TextField(r, "文件系统");
 
             r.xMin = r.xMax + GAP;
             r.xMax = r.xMin + 85;
-            EditorGUI.TextField(r, "Groups");
+            EditorGUI.TextField(r, "组");
 
             r.xMin = r.xMax + GAP;
             r.xMax = r.xMin + 85;
-            EditorGUI.TextField(r, "Variant");
+            EditorGUI.TextField(r, "变体");
 
             r.xMin = r.xMax + GAP;
             r.width = assetBundleNameLength + 50;
-            EditorGUI.TextField(r, "AssetDirectory");
+            EditorGUI.TextField(r, "资产目录");
 
             r.xMin = r.xMax + GAP;
             r.xMax = r.xMin + 85;
-            EditorGUI.TextField(r, "Filter Type");
+            EditorGUI.TextField(r, "过滤器类型");
 
             r.xMin = r.xMax + GAP;
             r.xMax = r.xMin + 250;
-            EditorGUI.TextField(r, "Patterns");
+            EditorGUI.TextField(r, "模式");
             GUI.enabled = true;
         }
 

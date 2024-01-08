@@ -12,4 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99b93107d7bc31740838a156d99e161c, type: 3}
   m_Name: ResourceRuleEditor
   m_EditorClassIdentifier: 
-  rules: []
+  rules:
+  - valid: 1
+    name: DataTables
+    variant: 
+    fileSystem: 
+    groups: BuiltinRuntimes
+    assetsDirectoryPath: Assets/HotfixAssets/DataTables
+    loadType: 0
+    packed: 1
+    filterType: 0
+    searchPatterns: '*.*'

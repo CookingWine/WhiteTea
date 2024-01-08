@@ -1,7 +1,0 @@
-#		语言配置表							
-#	Hotfix	Key	Value	Value	Value	Value	Value	Value	Value
-#	bool	string	string	string	string	string	string	string	string
-#			中文简体	中文繁体	英语	韩语	日语	德语	俄语
-#	是否热更资源	语言key	ChineseSimplified	ChineseTraditional	English	Korean	Japanese	German	Russian
-	FALSE								
-	FALSE								

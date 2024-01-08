@@ -1,18 +1,23 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <UnityGameFramework>
-  <ResourceEditor>
-    <Settings>
-      <SourceAssetRootPath>Assets</SourceAssetRootPath>
-      <SourceAssetSearchPaths />
-      <SourceAssetUnionTypeFilter>
-      </SourceAssetUnionTypeFilter>
-      <SourceAssetUnionLabelFilter>
-      </SourceAssetUnionLabelFilter>
-      <SourceAssetExceptTypeFilter>
-      </SourceAssetExceptTypeFilter>
-      <SourceAssetExceptLabelFilter>
-      </SourceAssetExceptLabelFilter>
-      <AssetSorter>Path</AssetSorter>
-    </Settings>
-  </ResourceEditor>
+    <ResourceEditor>
+        <Settings>
+            <!--配置资源搜索的根目录，可以从Assets根部全部查找，可以配置成子目录-->
+            <SourceAssetRootPath>Assets/HotfixAssets</SourceAssetRootPath>
+            <!--配置资源搜索的子目录，相对于根目录的路径，支持配置多个子目录，如果为空，则搜索所有子目录-->
+            <SourceAssetSearchPaths>
+                <SourceAssetSearchPath RelativePath="" />
+            </SourceAssetSearchPaths>
+            <!--筛选并包含的资源类型-->
+            <SourceAssetUnionTypeFilter>t:Scene t:Prefab t:Shader t:Model t:Material t:Texture t:AudioClip t:AnimationClip t:AnimatorController t:Font t:TextAsset t:ScriptableObject</SourceAssetUnionTypeFilter>
+            <!--筛选并包含的标签类型-->
+            <SourceAssetUnionLabelFilter>l:ResourceInclusive</SourceAssetUnionLabelFilter>
+            <!--筛选并排除的资源类型-->
+            <SourceAssetExceptTypeFilter>t:Script</SourceAssetExceptTypeFilter>
+            <!--筛选并排除的标签类型-->
+            <SourceAssetExceptLabelFilter>l:ResourceExclusive</SourceAssetExceptLabelFilter>
+            <!--编辑器中资源列表的排序，可以是Name(资源文件名），Path（资源全路径），Guid（资源Guid）-->
+            <AssetSorter>Path</AssetSorter>
+        </Settings>
+    </ResourceEditor>
 </UnityGameFramework>

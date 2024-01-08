@@ -42,7 +42,7 @@ namespace WhiteTea.BuiltinRuntime
             WTGame.Event.Subscribe(WebRequestSuccessEventArgs.EventId , OnWebRequestSuccess);
             WTGame.Event.Subscribe(WebRequestFailureEventArgs.EventId , OnWebRequestFailure);
             //请求检查版本
-            WTGame.WebRequest.AddWebRequest(WTGame.AppBuiltinConfigs.CheckVersionUrl);
+            WTGame.WebRequest.AddWebRequest("");
 
             Log.Info("信息为{0}" , BuiltinRuntimeUtility.LocalizationLanguage.GameVersion);
         }

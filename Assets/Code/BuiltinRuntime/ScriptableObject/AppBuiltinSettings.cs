@@ -45,7 +45,6 @@ namespace WhiteTea.BuiltinRuntime
                 Log.Error("解析语言配置文件失败");
                 return;
             }
-
         }
     }
 }

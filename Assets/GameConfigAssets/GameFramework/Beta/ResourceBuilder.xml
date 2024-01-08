@@ -1,21 +1,29 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <UnityGameFramework>
-  <ResourceBuilder>
-    <Settings>
-      <InternalResourceVersion>0</InternalResourceVersion>
-      <Platforms>0</Platforms>
-      <AssetBundleCompression>1</AssetBundleCompression>
-      <CompressionHelperTypeName>
-      </CompressionHelperTypeName>
-      <AdditionalCompressionSelected>False</AdditionalCompressionSelected>
-      <ForceRebuildAssetBundleSelected>False</ForceRebuildAssetBundleSelected>
-      <BuildEventHandlerTypeName>
-      </BuildEventHandlerTypeName>
-      <OutputDirectory>
-      </OutputDirectory>
-      <OutputPackageSelected>True</OutputPackageSelected>
-      <OutputFullSelected>True</OutputFullSelected>
-      <OutputPackedSelected>True</OutputPackedSelected>
-    </Settings>
-  </ResourceBuilder>
+    <ResourceBuilder>
+        <Settings>
+            <!--内部资源版本号（Internal Resource Version）建议每次自增 1 即可，Game Framework 判定资源包是否需要更新，是使用此编号作为判定依据的。-->
+            <InternalResourceVersion>1</InternalResourceVersion>
+            <!--打包平台-->
+            <Platforms>1</Platforms>
+            <!--压缩方式 0 无压缩 1 LZ4 2 LZMA-->
+            <AssetBundleCompression>1</AssetBundleCompression>
+            <!--Compression Helper 默认压缩解压缩辅助器-->
+            <CompressionHelperTypeName>UnityGameFramework.Runtime.DefaultCompressionHelper</CompressionHelperTypeName>
+            <!--压缩助手对输出完整资源进行额外压缩 True表示勾选即使用，False表示不勾选即不使用 -->
+            <AdditionalCompressionSelected>True</AdditionalCompressionSelected>
+            <!--强制重建资产绑定 True表示勾选即使用，False表示不勾选即不使用 -->
+            <ForceRebuildAssetBundleSelected>False</ForceRebuildAssetBundleSelected>
+            <!--Build Event Handler类型名称-->
+            <BuildEventHandlerTypeName></BuildEventHandlerTypeName>
+            <!--AB输出路径-->
+            <OutputDirectory>D:/UnityProject/MyProject/WhiteTeaTest</OutputDirectory>
+            <!--Package输出路径是否勾选，True表示勾选即输出，False表示不勾选即不输出-->
+            <OutputPackageSelected>True</OutputPackageSelected>
+            <!--Full输出路径是否勾选，True表示勾选即输出，False表示不勾选即不输出-->
+            <OutputFullSelected>True</OutputFullSelected>
+            <!--Packed输出路径是否勾选，True表示勾选即输出，False表示不勾选即不输出-->
+            <OutputPackedSelected>False</OutputPackedSelected>
+        </Settings>
+    </ResourceBuilder>
 </UnityGameFramework>

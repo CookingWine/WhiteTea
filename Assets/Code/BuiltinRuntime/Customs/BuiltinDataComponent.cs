@@ -8,5 +8,12 @@ namespace WhiteTea.BuiltinRuntime
     public class BuiltinDataComponent:GameFrameworkComponent
     {
 
+        /// <summary>
+        /// 加载默认界面UI
+        /// </summary>
+        public void InitDefalutResourceUI( )
+        {
+
+        }
     }
 }

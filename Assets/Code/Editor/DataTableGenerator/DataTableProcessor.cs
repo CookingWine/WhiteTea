@@ -31,6 +31,18 @@ namespace WhiteTea.GameEditor.DataTableTools
         private string m_CodeTemplate;
         private DataTableCodeGenerator m_CodeGenerator;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="dataTableFileName">数据表文件名称</param>
+        /// <param name="encoding">编码</param>
+        /// <param name="nameRow">名称行</param>
+        /// <param name="typeRow">类型行</param>
+        /// <param name="defaultValueRow">默认值行</param>
+        /// <param name="commentRow">注释行</param>
+        /// <param name="contentStartRow">内容起始行</param>
+        /// <param name="idColumn">Id列</param>
+        /// <exception cref="GameFrameworkException"></exception>
         public DataTableProcessor(string dataTableFileName , Encoding encoding , int nameRow , int typeRow , int? defaultValueRow , int? commentRow , int contentStartRow , int idColumn)
         {
             if(string.IsNullOrEmpty(dataTableFileName))
