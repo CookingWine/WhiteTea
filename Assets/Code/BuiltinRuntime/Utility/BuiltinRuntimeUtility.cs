@@ -7,7 +7,7 @@ namespace WhiteTea.BuiltinRuntime
     /// <summary>
     /// 内置运行工具
     /// </summary>
-    public static class BuiltinRuntimeUtility
+    public partial class BuiltinRuntimeUtility
     {
         /// <summary>
         /// app设置的名称
@@ -54,7 +54,6 @@ namespace WhiteTea.BuiltinRuntime
             public static string GetLanguageAssets(string language , bool isHotfix)
             {
                 string path = isHotfix ? "Assets/HotfixAssets/Localization/Local_{0}.bytes" : "Language/Local_{0}";
-                UnityEngine.Debug.Log($"加载文件路径为{Utility.Text.Format(path , language)}");
                 return Utility.Text.Format(path , language);
             }
         }

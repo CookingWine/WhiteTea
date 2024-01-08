@@ -1327,7 +1327,7 @@ MonoBehaviour:
   m_ResourceMode: 2
   m_ReadWritePathType: 0
   m_MinUnloadUnusedAssetsInterval: 60
-  m_MaxUnloadUnusedAssetsInterval: 300
+  m_MaxUnloadUnusedAssetsInterval: 180
   m_AssetAutoReleaseInterval: 60
   m_AssetCapacity: 64
   m_AssetExpireTime: 60
@@ -1526,7 +1526,7 @@ MonoBehaviour:
   m_EnablePlaySoundUpdateEvent: 0
   m_EnablePlaySoundDependencyAssetEvent: 0
   m_InstanceRoot: {fileID: 0}
-  m_AudioMixer: {fileID: 24100000, guid: 4b2f77465e0058d4daf6d4c4f81d54db, type: 2}
+  m_AudioMixer: {fileID: 0}
   m_SoundHelperTypeName: UnityGameFramework.Runtime.DefaultSoundHelper
   m_CustomSoundHelper: {fileID: 0}
   m_SoundGroupHelperTypeName: UnityGameFramework.Runtime.DefaultSoundGroupHelper
@@ -1576,7 +1576,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_AvailableProcedureTypeNames:
   - WhiteTea.BuiltinRuntime.BuiltinProcedureAuthorization
+  - WhiteTea.BuiltinRuntime.BuiltinProcedureCheckResources
+  - WhiteTea.BuiltinRuntime.BuiltinProcedureCheckVersion
+  - WhiteTea.BuiltinRuntime.BuiltinProcedureInitResources
+  - WhiteTea.BuiltinRuntime.BuiltinProcedurePreloadDll
   - WhiteTea.BuiltinRuntime.BuiltinProcedureProcedureLaunch
+  - WhiteTea.BuiltinRuntime.BuiltinProcedureUpdateVersion
   m_EntranceProcedureTypeName: WhiteTea.BuiltinRuntime.BuiltinProcedureProcedureLaunch
 --- !u!114 &4988577304424989204
 MonoBehaviour:
