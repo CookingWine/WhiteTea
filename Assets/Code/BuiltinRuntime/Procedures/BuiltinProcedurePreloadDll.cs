@@ -1,3 +1,4 @@
+using GameFramework.Procedure;
 using ProcedureOwner = GameFramework.Fsm.IFsm<GameFramework.Procedure.IProcedureManager>;
 namespace WhiteTea.BuiltinRuntime
 {
@@ -17,12 +18,17 @@ namespace WhiteTea.BuiltinRuntime
         protected override void OnEnter(ProcedureOwner procedureOwner)
         {
             base.OnEnter(procedureOwner);
-
+            ReadyEnterHotfixEntry( );
         }
-        protected override void OnUpdate(ProcedureOwner procedureOwner , float elapseSeconds , float realElapseSeconds)
+        /// <summary>
+        /// 准备进入热更入口
+        /// </summary>
+        private void ReadyEnterHotfixEntry( )
         {
-            base.OnUpdate(procedureOwner , elapseSeconds , realElapseSeconds);
+            WTGame.Hybridclr.HotfixEntry(( ) =>
+            {
+                WTGame.Fsm.DestroyFsm<IProcedureManager>( );
+            });
         }
-
     }
 }

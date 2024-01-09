@@ -33,7 +33,7 @@ namespace WhiteTea.BuiltinRuntime
             {
                 return;
             }
-
+            ChangeState<BuiltinProcedurePreloadDll>(procedureOwner);
         }
         /// <summary>
         /// 初始化资源完成回调

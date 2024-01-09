@@ -65,6 +65,11 @@ namespace WhiteTea.BuiltinRuntime
             }
             if(m_NeedUpdateVersion)
             {
+                procedureOwner.SetData<VarInt32>("VersionListLength" , m_VersionInfo.VersionListLength);
+                procedureOwner.SetData<VarInt32>("VersionListHashCode" , m_VersionInfo.VersionListHashCode);
+                procedureOwner.SetData<VarInt32>("VersionListCompressedLength" , m_VersionInfo.VersionListCompressedLength);
+                procedureOwner.SetData<VarInt32>("VersionListCompressedHashCode" , m_VersionInfo.VersionListCompressedHashCode);
+                WTGame.Setting.SetBool("VersionBulletinboard" , m_NeedUpdateVersion);
                 //进入更新版本流程
                 ChangeState<BuiltinProcedureUpdateVersion>(procedureOwner);
             }
