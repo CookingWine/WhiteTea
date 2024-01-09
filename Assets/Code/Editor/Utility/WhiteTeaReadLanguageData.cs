@@ -1,18 +1,20 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Xml;
 using UnityEditor;
 using UnityEngine;
+using UnityGameFramework.Runtime;
 
 namespace WhiteTea.GameEditor
 {
     /// <summary>
-    /// 本地化语言编辑器
+    /// 本地化配置器
     /// </summary>
-    internal class WhiteTeaReadLanguageData:EditorWindow
+    internal partial class WhiteTeaLocalizationConfigs:EditorWindow
     {
-        private static WhiteTeaReadLanguageData m_Instance;
-        private WhiteTeaReadLanguageData( )
+        private static WhiteTeaLocalizationConfigs m_Instance;
+        private WhiteTeaLocalizationConfigs( )
         {
 
         }
@@ -39,11 +41,10 @@ namespace WhiteTea.GameEditor
         /// </summary>
         private bool m_DrawBuilitionLanguage;
 
-        /// <summary>
-        /// 本地语言配置列表
-        /// </summary>
-        private static readonly Dictionary<string , LocalizationLanguageConfig> m_LocalizationLanguageConfig = new Dictionary<string , LocalizationLanguageConfig>( );
+        private LocalizationType m_CurrentLoadType;
 
+        private static readonly List<string> m_Language = new List<string>( );
+        private static readonly Dictionary<string , List<string>> m_LoacalizationLanguageConten = new Dictionary<string , List<string>>( );
         /// <summary>
         /// 加载本地语言配置
         /// </summary>
@@ -51,11 +52,29 @@ namespace WhiteTea.GameEditor
         {
             if(m_Instance == null)
             {
-                m_Instance = GetWindow<WhiteTeaReadLanguageData>("本地化语言配置器" , true);
+                m_Instance = (WhiteTeaLocalizationConfigs)GetWindow(typeof(WhiteTeaLocalizationConfigs) , true , "本地化配置器" , true);
                 m_Instance.minSize = m_WindowSize;
                 LoadLocalizationFile( );
             }
             m_Instance.Show( );
+        }
+
+        /// <summary>
+        /// 绘制工具栏
+        /// </summary>
+        private void DrawLocalizationToolbar( )
+        {
+            DrawSearchBox( );
+            
+
+            if(GUILayout.Button("生成数据文件"))
+            {
+
+            }
+            if(GUILayout.Button("重新加载数据文件"))
+            {
+                LoadLocalizationFile( );
+            }
         }
 
         /// <summary>
@@ -67,9 +86,9 @@ namespace WhiteTea.GameEditor
             {
                 EditorGUILayout.BeginHorizontal("box" , GUILayout.MaxHeight(m_TitleMaxHeight));
                 {
-                    EditorGUILayout.LabelField("编号" , GUILayout.MinWidth(60));
-                    EditorGUILayout.LabelField("资源类型" , GUILayout.MinWidth(100));
-                    EditorGUILayout.LabelField("语言Key值" , GUILayout.MinWidth(100));
+                    EditorGUILayout.LabelField("编号" , GUILayout.Width(60f));
+                    EditorGUILayout.LabelField("资源类型" , GUILayout.Width(100f));
+                    EditorGUILayout.LabelField("语言Key值" , GUILayout.Width(300f));
                     DrawLanguageInterfaceTitle( );
                 }
                 EditorGUILayout.EndHorizontal( );
@@ -78,7 +97,11 @@ namespace WhiteTea.GameEditor
                 {
                     if(m_DrawBuilitionLanguage)
                     {
-                        DrawLanguageBuiltinContent( );
+                        EditorGUILayout.BeginVertical("box" , GUILayout.MaxHeight(m_TitleMaxHeight));
+                        {
+                            DrawLanguageBuiltinContent( );
+                        }
+                        EditorGUILayout.EndVertical( );
                     }
                 }
                 EditorGUILayout.EndFoldoutHeaderGroup( );
@@ -100,19 +123,74 @@ namespace WhiteTea.GameEditor
         /// </summary>
         private static void LoadLocalizationFile( )
         {
-           
-        }
+            m_Language.Clear( );
+            m_LoacalizationLanguageConten.Clear( );
+            TextAsset[] textAsset = Resources.LoadAll<TextAsset>("Language");
+            for(int i = 0; i < textAsset.Length; i++)
+            {
+                ParseData(textAsset[i].text);
+            }
 
-      
+        }
+        private static bool ParseData(string dictionaryString)
+        {
+            try
+            {
+                XmlDocument xmlDocument = new XmlDocument( );
+                xmlDocument.LoadXml(dictionaryString);
+                XmlNode xmlRoot = xmlDocument.SelectSingleNode("Dictionaries");
+                XmlNodeList xmlNodeDictionaryList = xmlRoot.ChildNodes;
+                for(int i = 0; i < xmlNodeDictionaryList.Count; i++)
+                {
+                    XmlNode xmlNodeDictionary = xmlNodeDictionaryList.Item(i);
+                    if(xmlNodeDictionary.Name != "Dictionary")
+                    {
+                        continue;
+                    }
+                    string language = xmlNodeDictionary.Attributes.GetNamedItem("Language").Value;
+                    m_Language.Add(language);
+                    XmlNodeList xmlNodeStringList = xmlNodeDictionary.ChildNodes;
+                    for(int j = 0; j < xmlNodeStringList.Count; j++)
+                    {
+                        XmlNode xmlNodeString = xmlNodeStringList.Item(j);
+                        if(xmlNodeString.Name != "String")
+                        {
+                            continue;
+                        }
+
+                        string key = xmlNodeString.Attributes.GetNamedItem("Key").Value;
+                        string value = xmlNodeString.Attributes.GetNamedItem("Value").Value;
+                        if(m_LoacalizationLanguageConten.ContainsKey(key))
+                        {
+                            m_LoacalizationLanguageConten.TryGetValue(key , out List<string> values);
+                            values.Add(value);
+                        }
+                        else
+                        {
+                            List<string> temp = new List<string>( );
+                            temp.Add(value);
+                            m_LoacalizationLanguageConten.Add(key , temp);
+                        }
+                    }
+                    string languages = GetLanguage(language);
+                }
+                return true;
+            }
+            catch(Exception exception)
+            {
+                Log.Warning("Can not parse dictionary data with exception '{0}'." , exception.ToString( ));
+                return false;
+            }
+        }
 
         /// <summary>
         /// 绘制标题
         /// </summary>
         private void DrawLanguageInterfaceTitle( )
         {
-            foreach(var item in m_LocalizationLanguageConfig)
+            for(int i = 0; i < m_Language.Count; i++)
             {
-                EditorGUILayout.LabelField(item.Key , GUILayout.MinWidth(100));
+                EditorGUILayout.LabelField(GetLanguage(m_Language[i]) , GUILayout.Width(200));
             }
         }
         /// <summary>
@@ -120,7 +198,22 @@ namespace WhiteTea.GameEditor
         /// </summary>
         private void DrawLanguageBuiltinContent( )
         {
-
+            int index = 0;
+            foreach(var item in m_LoacalizationLanguageConten)
+            {
+                EditorGUILayout.BeginHorizontal("box");
+                {
+                    EditorGUILayout.LabelField($"{index}" , GUILayout.Width(60f));
+                    EditorGUILayout.LabelField("Language" , GUILayout.Width(100f));
+                    EditorGUILayout.TextField($"{item.Key}" , GUILayout.Width(300f));
+                    for(int i = 0; i < item.Value.Count; i++)
+                    {
+                        item.Value[i] = EditorGUILayout.TextField(item.Value[i] , GUILayout.Width(200f));
+                    }
+                    index++;
+                }
+                EditorGUILayout.EndHorizontal( );
+            }
         }
         /// <summary>
         /// 绘制热更语言配置界面
@@ -153,6 +246,20 @@ namespace WhiteTea.GameEditor
                 }
             }
         }
+        private static string GetLanguage(string language)
+        {
+            switch(language)
+            {
+                case "English":
+                    return "英语";
+                case "ChineseSimplified":
+                    return "简体中文";
+                case "ChineseTraditional":
+                    return "繁体中文";
+                default:
+                    return "简体中文";
+            }
+        }
 
         /// <summary>
         /// 获取路径下所以文件的信息
@@ -177,76 +284,42 @@ namespace WhiteTea.GameEditor
             }
             return info.ToArray( );
         }
-
-        private Vector2 m_Scrollpos;
         private void OnGUI( )
         {
-            //m_Scrollpos = EditorGUILayout.BeginScrollView(m_Scrollpos);
-            //{
-            //    EditorGUILayout.BeginHorizontal("box" , GUILayout.MaxHeight(30f));
-            //    {
-            //        EditorGUILayout.LabelField("索引" , GUILayout.Width(60f));
-            //        EditorGUILayout.LabelField(" " , GUILayout.Width(100));
-            //        EditorGUILayout.LabelField("语言Key" , GUILayout.Width(100));
-            //        for(int i = 0; i < 50; i++)
-            //        {
-            //            EditorGUILayout.LabelField($"语言类型{i + 1}" , GUILayout.Width(150));
-            //        }
-            //    }
-            //    EditorGUILayout.EndHorizontal( );
-            //    m_DrawBuilitionLanguage = EditorGUILayout.BeginFoldoutHeaderGroup(m_DrawBuilitionLanguage , "内置语言配置");
-            //    {
-            //        if(m_DrawBuilitionLanguage)
-            //        {
-            //            for(int i = 0; i < 50; i++)
-            //            {
-            //                EditorGUILayout.BeginHorizontal( );
-            //                {
-            //                    DrawLanguage(i , 50 , "移动热更内");
-            //                }
-            //                EditorGUILayout.EndHorizontal( );
-            //            }
-            //        }
-            //    }
-            //    EditorGUILayout.EndFoldoutHeaderGroup( );
-
-            //    m_DrawHofixLanguage = EditorGUILayout.BeginFoldoutHeaderGroup(m_DrawHofixLanguage , "热更语言配置");
-            //    {
-            //        if(m_DrawHofixLanguage)
-            //        {
-            //            for(int i = 0; i < 50; i++)
-            //            {
-            //                EditorGUILayout.BeginHorizontal( );
-            //                {
-            //                    DrawLanguage(i , 50 , "移动非热更中");
-            //                }
-            //                EditorGUILayout.EndHorizontal( );
-            //            }
-            //        }
-            //    }
-            //    EditorGUILayout.EndFoldoutHeaderGroup( );
-            //}
-            //EditorGUILayout.EndScrollView( );
-
-
-            EditorGUILayout.BeginHorizontal( );
+            EditorGUILayout.BeginHorizontal(GUILayout.Width(position.width) , GUILayout.Height(position.height));
             {
-
-                if(GUILayout.Button("添加"))
+                GUILayout.Space(2f);
+                EditorGUILayout.BeginVertical(GUILayout.Width(150f));
                 {
-                    if(!m_LocalizationLanguageConfig.ContainsKey("中文"))
-                    {
-                        m_LocalizationLanguageConfig.Add("中文" , new LocalizationLanguageConfig("中文"));
-                    }
+                    DrawLocalizationToolbar( );
                 }
-                if(GUILayout.Button("保存"))
+                EditorGUILayout.EndVertical( );
+                GUILayout.Space(20f);
+                EditorGUILayout.BeginVertical(GUILayout.Width(position.width - 170f));
                 {
-                    Save( );
+                    DrawLocalizationLanguageInterface( );
                 }
+                EditorGUILayout.EndVertical( );
             }
+
             EditorGUILayout.EndHorizontal( );
 
-            DrawLocalizationLanguageInterface( );
+
+            //EditorGUILayout.BeginHorizontal( );
+            //{
+
+            //    if(GUILayout.Button("添加"))
+            //    {
+
+            //    }
+            //    if(GUILayout.Button("重新加载"))
+            //    {
+            //        LoadLocalizationFile( );
+            //    }
+            //}
+            //EditorGUILayout.EndHorizontal( );
+
+
         }
         private void DrawLanguage(int index , int counts , string buttonName)
         {
@@ -268,58 +341,5 @@ namespace WhiteTea.GameEditor
             }
             EditorGUILayout.EndHorizontal( );
         }
-
-        /// <summary>
-        /// 语言配置
-        /// </summary>
-        private class LocalizationLanguageConfig
-        {
-            /// <summary>
-            /// 语言
-            /// </summary>
-            public string Language { get; private set; }
-
-            /// <summary>
-            /// 文件路径
-            /// </summary>
-            public string Path;
-
-            /// <summary>
-            /// 语言key与value
-            /// </summary>
-            public Dictionary<string , string> LanguageKeyOrValue { get; private set; }
-
-            public LocalizationLanguageConfig(string language)
-            {
-                Language = language;
-                LanguageKeyOrValue = new Dictionary<string , string>( );
-            }
-            public LocalizationLanguageConfig(string language , Dictionary<string , string> config)
-            {
-                Language = language;
-                LanguageKeyOrValue = config;
-            }
-
-            public string[] GetKey( )
-            {
-                List<string> key = new List<string>( );
-                foreach(var item in LanguageKeyOrValue)
-                {
-                    key.Add(item.Key);
-                }
-                return key.ToArray( );
-            }
-            public string[] GetValue( )
-            {
-                List<string> values = new List<string>( );
-                foreach(var item in LanguageKeyOrValue)
-                {
-                    values.Add(item.Value);
-                }
-                return values.ToArray( );
-            }
-        }
-
-
     }
 }

@@ -30,7 +30,7 @@ namespace WhiteTea.GameEditor
         [MenuItem("White Tea Game/App Setting/Localization Languages Editor" , false , 13)]
         private static void LocalizationLanguageSetting( )
         {
-            WhiteTeaReadLanguageData.LoadLocalizationLanguage( );
+            WhiteTeaLocalizationConfigs.LoadLocalizationLanguage( );
         }
 
         /// <summary>
