@@ -73,27 +73,6 @@ namespace WhiteTea.GameEditor
         #endregion
 
         #region Game Macro
-
-#if DISABLE_HYBRIDCLR
-        /// <summary>
-        /// 启用hybrldclr热更
-        /// </summary>
-        [MenuItem("White Tea Game/Game Macro/Enable Hybrldclr" , false , 51)]
-        private static void EnableHybrldCLRMacro( )
-        {
-            WhiteTeaGameUtility.RemoveScriptingDefineSymbolsForGroup(DISABLE_HYBRIDCLR);
-        }
-#endif
-#if !DISABLE_HYBRIDCLR
-        /// <summary>
-        /// 禁用hybrldclr热更
-        /// </summary>
-        [MenuItem("White Tea Game/Game Macro/Disable Hybrldclr" , false , 51)]
-        private static void DisableHybrldCLRMacro( )
-        {
-            WhiteTeaGameUtility.AddScriptingDefineSymbolsForGroup(DISABLE_HYBRIDCLR);
-        }
-#endif
 #if WHITEAGAME_BETA
         /// <summary>
         /// 切换为正式版本

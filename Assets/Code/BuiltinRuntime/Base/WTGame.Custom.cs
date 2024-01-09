@@ -21,7 +21,14 @@ namespace WhiteTea.BuiltinRuntime
             get;
             private set;
         }
-
+        /// <summary>
+        /// Hybridclr热更组件
+        /// </summary>
+        public static HybridclrComponent Hybridclr
+        {
+            get;
+            private set;
+        }
 
         /// <summary>
         /// 初始化自定义组件
@@ -37,6 +44,7 @@ namespace WhiteTea.BuiltinRuntime
             }
             Log.Debug("Load app config success.");
             BuiltinData = GameEntry.GetComponent<BuiltinDataComponent>( );
+            Hybridclr = GameEntry.GetComponent<HybridclrComponent>( );
         }
 
         /// <summary>

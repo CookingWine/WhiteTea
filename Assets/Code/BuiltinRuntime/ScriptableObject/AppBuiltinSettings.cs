@@ -24,6 +24,72 @@ namespace WhiteTea.BuiltinRuntime
 
         }
 
+        [Header("必须更新的资源组")]
+        [SerializeField]
+        private string[] m_MustResourceGroup;
+
+        /// <summary>
+        /// 必须的资源组
+        /// </summary>
+        public string[] MustResourceGroup
+        {
+            get
+            {
+                return m_MustResourceGroup;
+            }
+        }
+
+        /// <summary>
+        /// 热更程序集
+        /// </summary>
+        public string HotfixAssembliy
+        {
+            get
+            {
+                return "WhiteTea.HotfixLogic";
+            }
+        }
+        /// <summary>
+        /// 热更入口类
+        /// </summary>
+        public string HotfixEntryClass
+        {
+            get
+            {
+                return "WhiteTea.HotfixLogic.HotfixEntry";
+            }
+        }
+        /// <summary>
+        /// 热更start方法
+        /// </summary>
+        public string HotfixStartFuntion
+        {
+            get
+            {
+                return "Start";
+            }
+        }
+        /// <summary>
+        /// 热更update方法
+        /// </summary>
+        public string HotfixUpdate
+        {
+            get
+            {
+                return "Update";
+            }
+        }
+        /// <summary>
+        /// 热更Shutdown方法
+        /// </summary>
+        public string HotfixShutdown
+        {
+            get
+            {
+                return "Shutdown";
+            }
+        }
+
         /// <summary>
         /// 加载语言配置文件
         /// </summary>

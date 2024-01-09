@@ -6,11 +6,6 @@ namespace WhiteTea.GameEditor
     internal sealed partial class WhiteTeaEditorConfigs
     {
         #region 宏定义
-
-        /// <summary>
-        /// 禁用hybrldclr热更
-        /// </summary>
-        public const string DISABLE_HYBRIDCLR = "DISABLE_HYBRIDCLR";
         /// <summary>
         /// beta版本
         /// </summary>

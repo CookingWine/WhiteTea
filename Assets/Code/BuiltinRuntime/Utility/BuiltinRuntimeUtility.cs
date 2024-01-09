@@ -44,7 +44,15 @@ namespace WhiteTea.BuiltinRuntime
             {
                 return Utility.Path.GetRegularPath(Path.Combine(args));
             }
-
+            /// <summary>
+            /// 获取热更dll资源
+            /// </summary>
+            /// <param name="path"></param>
+            /// <returns></returns>
+            public static string GetHotfixDllAsset(string path)
+            {
+                return "";
+            }
             /// <summary>
             /// 获取语言配置文件
             /// </summary>
