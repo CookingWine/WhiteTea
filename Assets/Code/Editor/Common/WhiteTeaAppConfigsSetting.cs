@@ -32,6 +32,14 @@ namespace WhiteTea.GameEditor
         {
             WhiteTeaLocalizationConfigs.LoadLocalizationLanguage( );
         }
+        /// <summary>
+        /// 游戏配置器
+        /// </summary>
+        [MenuItem("White Tea Game/Game Config" , false , 1)]
+        private static void WhiteTeaGameConfigs( )
+        {
+            GameConfigs.WhiteTeaGameConfigs.Instance.LoadWhiteTeaGameConfigsWindow( );
+        }
 
         /// <summary>
         /// 生成数据表

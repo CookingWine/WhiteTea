@@ -11,6 +11,10 @@ namespace WhiteTea.GameEditor
         public enum LocalizationType
         {
             /// <summary>
+            /// 所有
+            /// </summary>
+            All,
+            /// <summary>
             /// 语言
             /// </summary>
             Language,

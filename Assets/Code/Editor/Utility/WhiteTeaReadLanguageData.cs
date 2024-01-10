@@ -31,17 +31,8 @@ namespace WhiteTea.GameEditor
         /// 标题栏最大高度
         /// </summary>
         private const float m_TitleMaxHeight = 30f;
-        /// <summary>
-        /// 是否绘制热更语言配置
-        /// </summary>
-        private bool m_DrawHofixLanguage;
 
-        /// <summary>
-        /// 是否绘制内置语言配置
-        /// </summary>
-        private bool m_DrawBuilitionLanguage;
-
-        private LocalizationType m_CurrentLoadType;
+        private LocalizationType m_CurrentLoadType = LocalizationType.All;
 
         private static readonly List<string> m_Language = new List<string>( );
         private static readonly Dictionary<string , List<string>> m_LoacalizationLanguageConten = new Dictionary<string , List<string>>( );
@@ -65,7 +56,7 @@ namespace WhiteTea.GameEditor
         private void DrawLocalizationToolbar( )
         {
             DrawSearchBox( );
-            
+
 
             if(GUILayout.Button("生成数据文件"))
             {
@@ -86,34 +77,18 @@ namespace WhiteTea.GameEditor
             {
                 EditorGUILayout.BeginHorizontal("box" , GUILayout.MaxHeight(m_TitleMaxHeight));
                 {
-                    EditorGUILayout.LabelField("编号" , GUILayout.Width(60f));
-                    EditorGUILayout.LabelField("资源类型" , GUILayout.Width(100f));
-                    EditorGUILayout.LabelField("语言Key值" , GUILayout.Width(300f));
+                    EditorGUILayout.LabelField("资源类型" , GUILayout.Width(50f));
+                    m_CurrentLoadType = (LocalizationType)EditorGUILayout.EnumPopup(m_CurrentLoadType , GUILayout.Width(100f));
+                    EditorGUILayout.LabelField("Key值" , GUILayout.Width(300f));
                     DrawLanguageInterfaceTitle( );
                 }
                 EditorGUILayout.EndHorizontal( );
 
-                m_DrawBuilitionLanguage = EditorGUILayout.BeginFoldoutHeaderGroup(m_DrawBuilitionLanguage , "内置语言配置");
+                EditorGUILayout.BeginVertical("box" , GUILayout.MaxHeight(m_TitleMaxHeight));
                 {
-                    if(m_DrawBuilitionLanguage)
-                    {
-                        EditorGUILayout.BeginVertical("box" , GUILayout.MaxHeight(m_TitleMaxHeight));
-                        {
-                            DrawLanguageBuiltinContent( );
-                        }
-                        EditorGUILayout.EndVertical( );
-                    }
+                    DrawLanguageBuiltinContent( );
                 }
-                EditorGUILayout.EndFoldoutHeaderGroup( );
-
-                m_DrawHofixLanguage = EditorGUILayout.BeginFoldoutHeaderGroup(m_DrawHofixLanguage , "热更语言配置");
-                {
-                    if(m_DrawHofixLanguage)
-                    {
-                        DrawLanguageHotfixContent( );
-                    }
-                }
-                EditorGUILayout.EndFoldoutHeaderGroup( );
+                EditorGUILayout.EndVertical( );
             }
             EditorGUILayout.EndScrollView( );
         }
@@ -198,19 +173,17 @@ namespace WhiteTea.GameEditor
         /// </summary>
         private void DrawLanguageBuiltinContent( )
         {
-            int index = 0;
             foreach(var item in m_LoacalizationLanguageConten)
             {
                 EditorGUILayout.BeginHorizontal("box");
                 {
-                    EditorGUILayout.LabelField($"{index}" , GUILayout.Width(60f));
+                    EditorGUILayout.LabelField("非热更" , GUILayout.Width(50f));
                     EditorGUILayout.LabelField("Language" , GUILayout.Width(100f));
                     EditorGUILayout.TextField($"{item.Key}" , GUILayout.Width(300f));
                     for(int i = 0; i < item.Value.Count; i++)
                     {
                         item.Value[i] = EditorGUILayout.TextField(item.Value[i] , GUILayout.Width(200f));
                     }
-                    index++;
                 }
                 EditorGUILayout.EndHorizontal( );
             }
@@ -303,23 +276,6 @@ namespace WhiteTea.GameEditor
             }
 
             EditorGUILayout.EndHorizontal( );
-
-
-            //EditorGUILayout.BeginHorizontal( );
-            //{
-
-            //    if(GUILayout.Button("添加"))
-            //    {
-
-            //    }
-            //    if(GUILayout.Button("重新加载"))
-            //    {
-            //        LoadLocalizationFile( );
-            //    }
-            //}
-            //EditorGUILayout.EndHorizontal( );
-
-
         }
         private void DrawLanguage(int index , int counts , string buttonName)
         {
