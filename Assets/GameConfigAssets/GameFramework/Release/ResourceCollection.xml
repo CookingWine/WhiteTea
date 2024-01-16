@@ -1,7 +1,11 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <UnityGameFramework>
   <ResourceCollection>
-    <Resources />
-    <Assets />
+    <Resources>
+      <Resource Name="DataTables" LoadType="0" Packed="True" ResourceGroups="BuiltinRuntimes" />
+    </Resources>
+    <Assets>
+      <Asset Guid="8ec13b0fb77c7af429033dbe6281bec0" ResourceName="DataTables" />
+    </Assets>
   </ResourceCollection>
 </UnityGameFramework>

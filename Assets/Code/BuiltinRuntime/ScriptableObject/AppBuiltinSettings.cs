@@ -24,6 +24,28 @@ namespace WhiteTea.BuiltinRuntime
 
         }
 
+#if !WHITEAGAME_BETA
+        [Header("检查版本url")]
+        [SerializeField]
+        private string m_CheckVersionUrl;
+#else
+        [Header("检查版本url")]
+        [SerializeField]
+        private string m_CheckBateVersionUrl;
+#endif
+        public string CheckVersionUrl
+        {
+            get
+            {
+#if !WHITEGAME_BETA
+                return m_CheckVersionUrl;
+#else
+                return m_CheckBateVersionUrl;
+#endif
+            }
+        }
+
+
         [Header("必须更新的资源组")]
         [SerializeField]
         private string[] m_MustResourceGroup;

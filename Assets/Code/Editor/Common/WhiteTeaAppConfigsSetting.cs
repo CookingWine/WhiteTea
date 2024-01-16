@@ -1,4 +1,3 @@
-using GameFramework.DataTable;
 using UnityEditor;
 using WhiteTea.GameEditor.DataTableTools;
 namespace WhiteTea.GameEditor
@@ -80,6 +79,12 @@ namespace WhiteTea.GameEditor
 
         #endregion
 
+        [MenuItem("White Tea Game/Scenes/Update This List" , false , 140)]
+        private static void UpdateSceneList( )
+        {
+            WhiteTeaScenesMenuBuild.UpdateList( );
+        }
+
         #region Game Macro
 #if WHITEAGAME_BETA
         /// <summary>
@@ -91,8 +96,7 @@ namespace WhiteTea.GameEditor
             WhiteTeaGameUtility.SetAppCompanyAndProductName("WhiteTea");
             WhiteTeaGameUtility.RemoveScriptingDefineSymbolsForGroup(WHITEAGAME_BETA);
         }
-#endif
-#if !WHITEAGAME_BETA
+#else
         /// <summary>
         /// 切换Beta版本
         /// </summary>

@@ -5,6 +5,7 @@ using System.Xml;
 using UnityEditor;
 using UnityEngine;
 using UnityGameFramework.Runtime;
+using static WhiteTea.GameEditor.WhiteTeaLocalizationConfigs;
 
 namespace WhiteTea.GameEditor
 {
@@ -296,6 +297,45 @@ namespace WhiteTea.GameEditor
                 }
             }
             EditorGUILayout.EndHorizontal( );
+        }
+    }
+
+    /// <summary>
+    /// 本地资源配置
+    /// </summary>
+    internal class LocalizationAssetsConfis
+    {
+        /// <summary>
+        /// 是否热更
+        /// </summary>
+        public bool IsHotfix { get; set; }
+
+        /// <summary>
+        /// 资源类型
+        /// </summary>
+        public LocalizationType AssetsTypes { get; set; }
+
+        /// <summary>
+        /// key值
+        /// </summary>
+        public string LocalizationKey { get; set; }
+
+        /// <summary>
+        /// 国家
+        /// </summary>
+        public string Nation { get; set; }
+        /// <summary>
+        /// 值
+        /// </summary>
+        public string Values { get; set; }
+        public Dictionary<string , string> Binding { get; set; }
+        public LocalizationAssetsConfis(bool hotfix , LocalizationType types , string key , string nation , string values)
+        {
+            IsHotfix = hotfix;
+            AssetsTypes = types;
+            LocalizationKey = key;
+            Nation = nation;
+            Values = values;
         }
     }
 }
