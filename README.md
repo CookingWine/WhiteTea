@@ -8,4 +8,4 @@
 该项目使用了**GameFramework**框架以及**HybridCRL**框架,搭建而成。
 
 # 内容
-剩下内容还在编辑中
+目前还是开发中，如果查看得话请使用subpackage分支
