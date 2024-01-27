@@ -1,4 +1,5 @@
 using GameFramework.Procedure;
+using UnityGameFramework.Runtime;
 using ProcedureOwner = GameFramework.Fsm.IFsm<GameFramework.Procedure.IProcedureManager>;
 namespace WhiteTea.BuiltinRuntime
 {
@@ -18,6 +19,7 @@ namespace WhiteTea.BuiltinRuntime
         protected override void OnEnter(ProcedureOwner procedureOwner)
         {
             base.OnEnter(procedureOwner);
+            Log.Info("<color=lime>进入【热更】流程</color>");
             ReadyEnterHotfixEntry( );
         }
         /// <summary>

@@ -21,10 +21,9 @@ namespace WhiteTea.BuiltinRuntime
         protected override void OnEnter(ProcedureOwner procedureOwner)
         {
             base.OnEnter(procedureOwner);
+            Log.Info("<color=lime>进入【网络验证】流程</color>");
             m_UserNativeDialog = true;
             IsEnterNextProduce = Application.internetReachability != NetworkReachability.NotReachable;
-            Log.Debug($"网络验证是否成功:{IsEnterNextProduce}");
-
         }
         protected override void OnUpdate(ProcedureOwner procedureOwner , float elapseSeconds , float realElapseSeconds)
         {

@@ -1,8 +1,10 @@
 {
     "name": "WhiteTea.BuiltinRuntime",
+    "rootNamespace": "",
     "references": [
         "UnityGameFramework.Runtime",
-        "GameFramework"
+        "GameFramework",
+        "HybridCLR.Runtime"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

@@ -7,7 +7,7 @@ namespace WhiteTea.BuiltinRuntime
         /// <summary>
         /// 应用设置
         /// </summary>
-        internal static AppBuiltinSettings AppBuiltinConfigs
+        public static AppBuiltinSettings AppBuiltinConfigs
         {
             get;
             private set;

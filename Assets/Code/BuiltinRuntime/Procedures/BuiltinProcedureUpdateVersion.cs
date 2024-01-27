@@ -33,6 +33,7 @@ namespace WhiteTea.BuiltinRuntime
         protected override void OnEnter(ProcedureOwner procedureOwner)
         {
             base.OnEnter(procedureOwner);
+            Log.Info("<color=lime>进入【更新版本】流程</color>");
             m_UpdateVersionComplete = false;
             WTGame.Resource.UpdateVersionList(procedureOwner.GetData<VarInt32>("VersionListLength") , procedureOwner.GetData<VarInt32>("VersionListHashCode") , procedureOwner.GetData<VarInt32>("VersionListCompressedLength") , procedureOwner.GetData<VarInt32>("VersionListCompressedHashCode") , m_UpdateVersionListCallbacks);
             procedureOwner.RemoveData("VersionListLength");
@@ -57,6 +58,7 @@ namespace WhiteTea.BuiltinRuntime
         private void OnUpdateVersionListSuccess(string downloadPath , string downloadUrl)
         {
             m_UpdateVersionComplete = true;
+            Log.Info("Update version list from '{0}' success.Assets path from '{1}'." , downloadUrl , downloadPath);
         }
         private void OnUpdateVersionListFailure(string downloadUrl , string errorMessage)
         {

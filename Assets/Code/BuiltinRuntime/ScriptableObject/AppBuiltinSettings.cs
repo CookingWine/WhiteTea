@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityGameFramework.Runtime;
 namespace WhiteTea.BuiltinRuntime
 {
-    internal class AppBuiltinSettings:ScriptableObject
+    public class AppBuiltinSettings:ScriptableObject
     {
         private static AppBuiltinSettings m_Instance;
         public static AppBuiltinSettings Instance
@@ -44,7 +44,16 @@ namespace WhiteTea.BuiltinRuntime
 #endif
             }
         }
-
+        /// <summary>
+        /// 热更配置文件资产名
+        /// </summary>
+        public string AppHotfixConfig
+        {
+            get
+            {
+                return "AppHotfixConfig";
+            }
+        }
 
         [Header("必须更新的资源组")]
         [SerializeField]

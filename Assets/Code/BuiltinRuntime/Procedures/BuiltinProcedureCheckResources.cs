@@ -36,6 +36,7 @@ namespace WhiteTea.BuiltinRuntime
         protected override void OnEnter(ProcedureOwner procedureOwner)
         {
             base.OnEnter(procedureOwner);
+            Log.Info("<color=lime>进入【检查资源】流程</color>");
             m_CheckReourcesComplete = false;
             m_NeedUpdateResources = false;
             m_UpdateResourceCount = 0;

@@ -37,6 +37,7 @@ namespace WhiteTea.BuiltinRuntime
         protected override void OnEnter(ProcedureOwner procedureOwner)
         {
             base.OnEnter(procedureOwner);
+            Log.Info("<color=lime>进入【更新资源】流程</color>");
             m_UpdateResourcesComplete = false;
             m_UpdateCount = procedureOwner.GetData<VarInt32>("UpdateResourceCount");
             procedureOwner.RemoveData("UpdateResourceCount");

@@ -2,10 +2,17 @@
 <UnityGameFramework>
   <ResourceCollection>
     <Resources>
+      <Resource Name="AotMetadata" LoadType="0" Packed="True" />
       <Resource Name="DataTables" LoadType="0" Packed="True" ResourceGroups="BuiltinRuntimes" />
+      <Resource Name="HotfixDLL" LoadType="0" Packed="True" />
+      <Resource Name="ScriptableObjectAssets" LoadType="0" Packed="True" />
     </Resources>
     <Assets>
       <Asset Guid="8ec13b0fb77c7af429033dbe6281bec0" ResourceName="DataTables" />
+      <Asset Guid="afef011c29a672044b8e226e7551a4b5" ResourceName="AotMetadata" />
+      <Asset Guid="c5374311260dda040829148569659f11" ResourceName="ScriptableObjectAssets" />
+      <Asset Guid="cd543c1a94c9a114aa34abf49788ea12" ResourceName="HotfixDLL" />
+      <Asset Guid="e5094272e111f5644bd1c9f450ba1049" ResourceName="AotMetadata" />
     </Assets>
   </ResourceCollection>
 </UnityGameFramework>

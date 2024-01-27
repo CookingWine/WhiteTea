@@ -5,7 +5,8 @@
         "GameFramework",
         "WhiteTea.BuiltinRuntime",
         "UnityGameFramework.Editor",
-        "UnityGameFramework.Runtime"
+        "UnityGameFramework.Runtime",
+        "HybridCLR.Editor"
     ],
     "includePlatforms": [
         "Editor"

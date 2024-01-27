@@ -2,19 +2,18 @@
 <UnityGameFramework>
   <ResourceBuilder>
     <Settings>
-      <InternalResourceVersion>0</InternalResourceVersion>
-      <Platforms>1</Platforms>
+      <InternalResourceVersion>4</InternalResourceVersion>
+      <Platforms>35</Platforms>
       <AssetBundleCompression>1</AssetBundleCompression>
-      <CompressionHelperTypeName>
-      </CompressionHelperTypeName>
+      <CompressionHelperTypeName>UnityGameFramework.Runtime.DefaultCompressionHelper</CompressionHelperTypeName>
       <AdditionalCompressionSelected>False</AdditionalCompressionSelected>
       <ForceRebuildAssetBundleSelected>False</ForceRebuildAssetBundleSelected>
       <BuildEventHandlerTypeName>
       </BuildEventHandlerTypeName>
-      <OutputDirectory>D:/UnityProject/MyProject/WhiteTeaTest</OutputDirectory>
+      <OutputDirectory>E:/ProjectData/UnityPorjectOutput/Assets/WhiteTea</OutputDirectory>
       <OutputPackageSelected>True</OutputPackageSelected>
       <OutputFullSelected>True</OutputFullSelected>
-      <OutputPackedSelected>False</OutputPackedSelected>
+      <OutputPackedSelected>True</OutputPackedSelected>
     </Settings>
   </ResourceBuilder>
 </UnityGameFramework>

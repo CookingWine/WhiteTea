@@ -20,7 +20,7 @@ namespace WhiteTea.BuiltinRuntime
         protected override void OnEnter(ProcedureOwner procedureOwner)
         {
             base.OnEnter(procedureOwner);
-            Log.Info($"<color=lime>进入<主入口>流程.</color>");
+            Log.Info("<color=lime>进入【主入口】流程</color>");
             WTGame.AppBuiltinConfigs.InitLoadLanguageConfigData( );
             // 语言配置：设置当前使用的语言，如果不设置，则默认使用操作系统语言。
             InitLanguageSettings( );
@@ -55,9 +55,12 @@ namespace WhiteTea.BuiltinRuntime
                 try
                 {
                     language = (Language)Enum.Parse(typeof(Language) , languageString);
+                    WTGame.Setting.SetString(BuiltinRuntimeUtility.Settings.Language , language.ToString( ));
+                    WTGame.Setting.Save( );
                 }
-                catch
+                catch(Exception e)
                 {
+                    Log.Error(e.Message);
                 }
             }
             else

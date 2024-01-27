@@ -22,6 +22,7 @@ namespace WhiteTea.BuiltinRuntime
         protected override void OnEnter(ProcedureOwner procedureOwner)
         {
             base.OnEnter(procedureOwner);
+            Log.Info("<color=lime>进入【单机模式】</color>");
             m_InitResourceComplete = false;
             WTGame.Resource.InitResources(OnInitResourceComplete);
         }

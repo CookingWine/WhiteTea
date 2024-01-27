@@ -51,7 +51,17 @@ namespace WhiteTea.BuiltinRuntime
             /// <returns></returns>
             public static string GetHotfixDllAsset(string path)
             {
-                return "";
+                return Utility.Text.Format("Assets/HotfixAssets/HotfixDLL/{0}.dll.bytes" , path);
+            }
+
+            /// <summary>
+            /// 获取元数据资源路径
+            /// </summary>
+            /// <param name="assetName">dll文件名</param>
+            /// <returns>补充元数据的路径</returns>
+            public static string GetAotMetadataAsset(string assetName)
+            {
+                return Utility.Text.Format("Assets/HotfixAssets/AotMetadata/{0}.dll.bytes" , assetName);
             }
             /// <summary>
             /// 获取语言配置文件
@@ -64,13 +74,34 @@ namespace WhiteTea.BuiltinRuntime
                 string path = isHotfix ? "Assets/HotfixAssets/Localization/Local_{0}.bytes" : "Language/Local_{0}";
                 return Utility.Text.Format(path , language);
             }
+            /// <summary>
+            /// 获取ScriptableObject资源路径
+            /// </summary>
+            /// <param name="assetName">资源名</param>
+            /// <returns>ScriptableObject资源路径</returns>
+            public static string GetScriptableObjectAsset(string assetName)
+            {
+                return Utility.Text.Format("Assets/HotfixAssets/ScriptableObjectAssets/{0}.asset" , assetName);
+            }
         }
         /// <summary>
         /// json工具
         /// </summary>
         public static class JsonUtility
         {
+            public static string ToJson(object obj)
+            {
+                return Newtonsoft.Json.JsonConvert.SerializeObject(obj);
+            }
 
+            public static T ToObject<T>(string json)
+            {
+                return Newtonsoft.Json.JsonConvert.DeserializeObject<T>(json);
+            }
+            public static object ToObject(string json)
+            {
+                return Newtonsoft.Json.JsonConvert.DeserializeObject(json);
+            }
         }
 
         public static class ValuerUtility

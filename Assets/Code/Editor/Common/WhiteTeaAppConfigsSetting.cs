@@ -1,4 +1,6 @@
 using UnityEditor;
+using UnityEngine;
+using WhiteTea.BuiltinRuntime;
 using WhiteTea.GameEditor.DataTableTools;
 namespace WhiteTea.GameEditor
 {
@@ -12,7 +14,10 @@ namespace WhiteTea.GameEditor
         [MenuItem("White Tea Game/App Setting/Builting Config" , false , 11)]
         private static void GeneratorAppBuiltinSettings( )
         {
-
+            if(AppBuiltinSettings.Instance == null)
+            {
+                AssetDatabase.CreateAsset(ScriptableObject.CreateInstance<AppBuiltinSettings>( ) , $"Assets/Resources/{BuiltinRuntimeUtility.AppBuiltinSettingsName}.asset");
+            }
         }
 
         /// <summary>
@@ -55,7 +60,7 @@ namespace WhiteTea.GameEditor
         [MenuItem("White Tea Game/Generator/Hotfix Dll" , false , 123)]
         private static void GeneratorHotfixDLL( )
         {
-
+            WhiteTeaHybridCLRConfigs.CopyHotUpdateAssemblies( );
         }
 
         /// <summary>
@@ -64,7 +69,7 @@ namespace WhiteTea.GameEditor
         [MenuItem("White Tea Game/Generator/Aot Data" , false , 124)]
         private static void GeneratorAotData( )
         {
-
+            WhiteTeaHybridCLRConfigs.CopyAOTAssemblies( );
         }
         /// <summary>
         /// 生成所有的数据
@@ -73,8 +78,7 @@ namespace WhiteTea.GameEditor
         private static void GeneratorAllGameFile( )
         {
             GeneratorDataTables( );
-            GeneratorHotfixDLL( );
-            GeneratorAotData( );
+            WhiteTeaHybridCLRConfigs.BuildHotfixDll( );
         }
 
         #endregion

@@ -35,16 +35,20 @@ namespace WhiteTea.BuiltinRuntime
         protected override void OnEnter(ProcedureOwner procedureOwner)
         {
             base.OnEnter(procedureOwner);
-            Log.Info("<color=lime>进入版本检查流程</color>");
+            Log.Info("<color=lime>进入【检查版本】流程</color>");
             m_CheckVersionComplete = false;
             m_NeedUpdateVersion = false;
             m_VersionInfo = null;
             WTGame.Event.Subscribe(WebRequestSuccessEventArgs.EventId , OnWebRequestSuccess);
             WTGame.Event.Subscribe(WebRequestFailureEventArgs.EventId , OnWebRequestFailure);
+            if(string.IsNullOrEmpty(WTGame.AppBuiltinConfigs.CheckVersionUrl))
+            {
+                Log.Error("检查版本url丢失.");
+                WTGame.Shutdown(ShutdownType.Quit);
+                return;
+            }
             //请求检查版本
-            WTGame.WebRequest.AddWebRequest(WTGame.AppBuiltinConfigs.CheckVersionUrl);
-
-            Log.Info("信息为{0}" , BuiltinRuntimeUtility.LocalizationLanguage.GameVersion);
+            WTGame.WebRequest.AddWebRequest(WTGame.AppBuiltinConfigs.CheckVersionUrl , this);
         }
 
         protected override void OnLeave(ProcedureOwner procedureOwner , bool isShutdown)
@@ -94,21 +98,29 @@ namespace WhiteTea.BuiltinRuntime
             }
             byte[] versionInofBytes = args.GetWebResponseBytes( );
             string versionInfoString = Utility.Converter.GetString(versionInofBytes);
-            m_VersionInfo = Utility.Json.ToObject<VersionInfo>(versionInfoString);
+            m_VersionInfo = LitJson.JsonMapper.ToObject<VersionInfo>(versionInfoString);
             if(m_VersionInfo == null)
             {
                 Log.Error("解析版本文件失败");
                 return;
             }
-            if(m_VersionInfo.ForceUpdateGame)
-            {
-                Log.Info("打开强制更新弹窗");
-                return;
-            }
+            string info = $"<color=lime>" +
+                $"是否需要强制更新:{m_VersionInfo.ForceUpdateGame}\n" +
+                $"最新得游戏版本:{m_VersionInfo.LatestGameVersion}\n" +
+                $"最新的游戏内部版本号:{m_VersionInfo.InternalGameVersion}\n" +
+                $"最新的资源内部版本号:{m_VersionInfo.InternalResourceVersion}\n" +
+                $"资源更新下载地址:{m_VersionInfo.UpdatePrefixUri} \n" +
+                $"资源版本列表长度:{m_VersionInfo.VersionListLength} \n" +
+                $"资源版本列表哈希值:{m_VersionInfo.VersionListHashCode} \n" +
+                $"资源版本列表压缩后长度:{m_VersionInfo.VersionListCompressedLength}\n" +
+                $"资源版本列表压缩后哈希值:{m_VersionInfo.VersionListCompressedHashCode}" +
+                $"</color>";
 
-
-            m_CheckVersionComplete = true;
+            Log.Info(info);
+            WTGame.Resource.UpdatePrefixUri = m_VersionInfo.UpdatePrefixUri;
+            Log.Debug("当前获取得版本号为{0}更新地址为{1}" , m_VersionInfo.InternalGameVersion , m_VersionInfo.UpdatePrefixUri);
             m_NeedUpdateVersion = WTGame.Resource.CheckVersionList(m_VersionInfo.InternalResourceVersion) == CheckVersionListResult.NeedUpdate;
+            m_CheckVersionComplete = true;
         }
         /// <summary>
         /// web请求失败事件
