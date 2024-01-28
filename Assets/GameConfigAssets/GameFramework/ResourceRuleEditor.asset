@@ -14,11 +14,41 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rules:
   - valid: 1
+    name: AotMetadata
+    variant: 
+    fileSystem: 
+    groups: BuiltinRuntimes
+    assetsDirectoryPath: Assets/HotfixAssets/AotMetadata
+    loadType: 0
+    packed: 1
+    filterType: 0
+    searchPatterns: '*.*'
+  - valid: 1
     name: DataTables
     variant: 
     fileSystem: 
     groups: BuiltinRuntimes
     assetsDirectoryPath: Assets/HotfixAssets/DataTables
+    loadType: 0
+    packed: 1
+    filterType: 0
+    searchPatterns: '*.*'
+  - valid: 1
+    name: HotfixDLL
+    variant: 
+    fileSystem: 
+    groups: BuiltinRuntimes
+    assetsDirectoryPath: Assets/HotfixAssets/HotfixDLL
+    loadType: 0
+    packed: 1
+    filterType: 0
+    searchPatterns: '*.*'
+  - valid: 1
+    name: ScriptableObjectAssets
+    variant: 
+    fileSystem: 
+    groups: BuiltinRuntimes
+    assetsDirectoryPath: Assets/HotfixAssets/ScriptableObjectAssets
     loadType: 0
     packed: 1
     filterType: 0

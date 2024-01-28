@@ -4,7 +4,7 @@ namespace WhiteTea.GameEditor
     /// <summary>
     /// 编辑器工具
     /// </summary>
-    public static class WhiteTeaGameUtility
+    internal static class WhiteTeaGameUtility
     {
         /// <summary>
         /// 添加宏定义
@@ -94,4 +94,27 @@ namespace WhiteTea.GameEditor
         }
 #endif
     }
+
+    /// <summary>
+    /// 选择资源
+    /// </summary>
+    internal class SelectAssetsData
+    {
+        /// <summary>
+        /// 是否启用
+        /// </summary>
+        public bool IsEnable;
+
+        /// <summary>
+        /// 资源名
+        /// </summary>
+        public string AssetsName { get; private set; }
+
+        public SelectAssetsData(string assetsName , bool isEnable)
+        {
+            AssetsName = assetsName;
+            IsEnable = isEnable;
+        }
+    }
+
 }

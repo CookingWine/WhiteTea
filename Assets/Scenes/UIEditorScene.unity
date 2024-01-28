@@ -389,7 +389,7 @@ GameObject:
   - component: {fileID: 1941750432}
   - component: {fileID: 1941750431}
   m_Layer: 5
-  m_Name: BuiltinGame
+  m_Name: BuiltinRuntimeMainGame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

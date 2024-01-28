@@ -1315,7 +1315,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f98acd7d3bd2bf54dadf9644f60e5cb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_EditorResourceMode: 0
+  m_EditorResourceMode: 1
   m_EditorLanguage: 8
   m_TextHelperTypeName: UnityGameFramework.Runtime.DefaultTextHelper
   m_VersionHelperTypeName: UnityGameFramework.Runtime.DefaultVersionHelper
@@ -1404,7 +1404,7 @@ MonoBehaviour:
   m_WebRequestAgentHelperTypeName: UnityGameFramework.Runtime.UnityWebRequestAgentHelper
   m_CustomWebRequestAgentHelper: {fileID: 0}
   m_WebRequestAgentHelperCount: 1
-  m_Timeout: 30
+  m_Timeout: 10
 --- !u!114 &4988577304424943734
 MonoBehaviour:
   m_ObjectHideFlags: 0

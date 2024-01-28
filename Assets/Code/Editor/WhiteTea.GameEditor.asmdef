@@ -6,7 +6,8 @@
         "WhiteTea.BuiltinRuntime",
         "UnityGameFramework.Editor",
         "UnityGameFramework.Runtime",
-        "HybridCLR.Editor"
+        "HybridCLR.Editor",
+        "WhiteTea.HotfixLogic"
     ],
     "includePlatforms": [
         "Editor"

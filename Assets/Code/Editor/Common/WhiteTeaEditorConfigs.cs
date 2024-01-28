@@ -1,3 +1,7 @@
+using System.Collections.Generic;
+using System.IO;
+using UnityEngine;
+
 namespace WhiteTea.GameEditor
 {
     /// <summary>
@@ -44,6 +48,38 @@ namespace WhiteTea.GameEditor
         /// </summary>
         public const string LanguageHotfixGeneratorPath = "Assets/HotfixAssets/Localization/{0}/";
 
+        /// <summary>
+        /// Aot数据文件
+        /// </summary>
+        public const string AotFilePath = "/HotfixAssets/AotMetadata";
+
         #endregion
+        /// <summary>
+        /// 获取路径下的全部文件
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
+        public static string[] GetAllFile(string path)
+        {
+            List<string> list = new List<string>( );
+            if(Directory.Exists(path))
+            {
+                DirectoryInfo info = new DirectoryInfo(path);
+                FileInfo[] files = info.GetFiles("*");
+                for(int i = 0; i < files.Length; i++)
+                {
+                    if(files[i].Name.EndsWith(".meta"))
+                    {
+                        continue;
+                    }
+                    list.Add(files[i].Name);
+                }
+            }
+            else
+            {
+                Debug.LogError($"不存在:【{path}】路径");
+            }
+            return list.ToArray( );
+        }
     }
 }

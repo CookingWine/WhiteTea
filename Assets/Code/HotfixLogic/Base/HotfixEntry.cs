@@ -85,7 +85,6 @@ namespace WhiteTea.HotfixLogic
         /// </summary>
         private static void LoadMetadataForAOTData( )
         {
-            Log.Debug("开始补充AOT数据");
             for(int i = 0; i < AppRuntimeConfig.AotFileList.Length; i++)
             {
                 WTGame.Resource.LoadAsset(BuiltinRuntimeUtility.AssetsUtility.GetAotMetadataAsset(AppRuntimeConfig.AotFileList[i]) , new LoadAssetCallbacks((assetName , asset , duration , userData) =>
@@ -100,6 +99,7 @@ namespace WhiteTea.HotfixLogic
                     //等待AOT数据加载完毕后，再去初始化组件数据
                     if(m_CurrentProcess == AppRuntimeConfig.AotFileList.Length)
                     {
+                        Log.Debug("Load aot assembly success!");
                         //初始化组件
                         LoadingHotSwappingComponents( );
                     }

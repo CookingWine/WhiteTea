@@ -38,9 +38,9 @@ namespace WhiteTea.BuiltinRuntime
             get
             {
 #if !WHITEGAME_BETA
-                return m_CheckVersionUrl;
+                return m_CheckVersionUrl+ "version.txt";
 #else
-                return m_CheckBateVersionUrl;
+                return m_CheckBateVersionUrl+ "version.txt";
 #endif
             }
         }
