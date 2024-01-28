@@ -79,6 +79,12 @@ namespace WhiteTea.GameEditor
                 DrawProcedures( );
             }
             EditorGUILayout.EndVertical( );
+
+            EditorGUILayout.Space(2);
+            if(GUILayout.Button("save"))
+            {
+                SaveConfigs(m_AppHotfixConfig);
+            }
         }
 
         /// <summary>
