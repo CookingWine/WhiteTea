@@ -1,3 +1,4 @@
+using GameFramework;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,6 +37,13 @@ namespace WhiteTea.GameEditor
         private bool m_DrawAotFile;
         private Vector2 m_AotFileScrollPos;
 
+        /// <summary>
+        /// 游戏流程
+        /// </summary>
+        private SelectAssetsData[] m_Procedures;
+        private bool m_DrawProcedures;
+        private Vector2 m_ProceduresScrollPos;
+
         private void OnEnable( )
         {
             m_AppHotfixConfig = (AppHotfixConfig)target;
@@ -47,6 +55,8 @@ namespace WhiteTea.GameEditor
             m_NormalStyle.normal.textColor = Color.white;
             m_SelectedStyle = new GUIStyle( );
             m_SelectedStyle.normal.textColor = Color.green;
+            m_DrawProcedures = true;
+            m_DrawAotFile = true;
             if(m_AppHotfixConfig != null)
             {
                 LoadAppHotfixConfigData(m_AppHotfixConfig);
@@ -58,6 +68,15 @@ namespace WhiteTea.GameEditor
             EditorGUILayout.BeginVertical("box");
             {
                 DrawAotFileList( );
+            }
+            EditorGUILayout.EndVertical( );
+
+            EditorGUILayout.Space(2);
+
+            //绘制流程界面
+            EditorGUILayout.BeginVertical("box");
+            {
+                DrawProcedures( );
             }
             EditorGUILayout.EndVertical( );
         }
@@ -91,6 +110,31 @@ namespace WhiteTea.GameEditor
                 GUILayout.EndScrollView( );
             }
         }
+
+        /// <summary>
+        /// 绘制Procedures界面
+        /// </summary>
+        private void DrawProcedures( )
+        {
+            m_DrawProcedures = EditorGUILayout.Foldout(m_DrawProcedures , "游戏流程:");
+            if(m_DrawProcedures)
+            {
+                m_ProceduresScrollPos = GUILayout.BeginScrollView(m_ProceduresScrollPos);
+                {
+                    EditorGUI.BeginChangeCheck( );
+                    foreach(var item in m_Procedures)
+                    {
+                        item.IsEnable = EditorGUILayout.ToggleLeft(item.AssetsName , item.IsEnable , item.IsEnable ? m_SelectedStyle : m_NormalStyle);
+                    }
+                    if(EditorGUI.EndChangeCheck( ))
+                    {
+                        SaveConfigs(m_AppHotfixConfig);
+                    }
+                }
+                GUILayout.EndScrollView( );
+            }
+        }
+
         /// <summary>
         /// 加载游戏热更配置数据
         /// </summary>
@@ -98,10 +142,12 @@ namespace WhiteTea.GameEditor
         private void LoadAppHotfixConfigData(AppHotfixConfig config)
         {
             LoadAotFile(config);
+            LoadHotfixProcedure(config);
         }
 
         private void SaveConfigs(AppHotfixConfig config)
         {
+            #region AOT
             string[] aot = new string[0];
             foreach(var item in m_AotFileList)
             {
@@ -111,6 +157,20 @@ namespace WhiteTea.GameEditor
                 }
             }
             config.GetType( ).GetField("m_AotFileList" , BindingFlags.Instance | BindingFlags.NonPublic).SetValue(config , aot);
+            #endregion
+
+            #region Procedures
+
+            string[] procedures = new string[0];
+            foreach(var item in m_Procedures)
+            {
+                if(item.IsEnable)
+                {
+                    ArrayUtility.Add(ref procedures , item.AssetsName);
+                }
+            }
+            config.GetType( ).GetField("m_HotfixProcedures" , BindingFlags.Instance | BindingFlags.NonPublic).SetValue(config , procedures);
+            #endregion
         }
 
         /// <summary>
@@ -131,6 +191,26 @@ namespace WhiteTea.GameEditor
             {
 
                 ArrayUtility.Add(ref m_AotFileList , new SelectAssetsData(item , config.AotFileList.Contains(item)));
+            }
+        }
+        /// <summary>
+        /// 加载热更流程
+        /// </summary>
+        /// <param name="config"></param>
+        private void LoadHotfixProcedure(AppHotfixConfig config)
+        {
+            m_Procedures ??= new SelectAssetsData[0];
+            ArrayUtility.Clear(ref m_Procedures);
+            var hotfixDlls = Utility.Assembly.GetAssemblies( ).Where(dll => HybridCLR.Editor.SettingsUtil.HotUpdateAssemblyNamesIncludePreserved.Contains(dll.GetName( ).Name)).ToArray( );
+
+            foreach(var item in hotfixDlls)
+            {
+                var proceClassArr = item.GetTypes( ).Where(tp => tp.BaseType == typeof(ProcedureBase)).ToArray( );
+                foreach(var proceClass in proceClassArr)
+                {
+                    var proceName = proceClass.FullName;
+                    ArrayUtility.Add(ref m_Procedures , new SelectAssetsData(proceName , config.HotfixProcedure.Contains(proceName)));
+                }
             }
         }
     }

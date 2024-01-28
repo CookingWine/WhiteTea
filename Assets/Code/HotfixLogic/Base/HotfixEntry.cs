@@ -1,5 +1,7 @@
 using GameFramework.Resource;
+using System;
 using UnityEngine;
+using UnityEngine.Rendering.VirtualTexturing;
 using UnityGameFramework.Runtime;
 using WhiteTea.BuiltinRuntime;
 
@@ -10,15 +12,6 @@ namespace WhiteTea.HotfixLogic
     /// </summary>
     public class HotfixEntry
     {
-        /// <summary>
-        /// 加载AOT进度
-        /// </summary>
-        private static int m_CurrentProcess;
-        /// <summary>
-        /// 加载元数据完成
-        /// </summary>
-        private static bool m_LoadMetadataForAOTAssembliesFlage = false;
-
         /// <summary>
         /// 应用热更配置
         /// </summary>
@@ -35,7 +28,23 @@ namespace WhiteTea.HotfixLogic
             get;
             private set;
         }
+        ///<summary>
+        ///流程管理器
+        ///</summary>
+        public static ProcedureManager Procedure
+        {
+            get;
+            private set;
+        }
 
+        /// <summary>
+        /// 加载AOT进度
+        /// </summary>
+        private static int m_CurrentProcess;
+        /// <summary>
+        /// 加载元数据完成
+        /// </summary>
+        private static bool m_LoadMetadataForAOTAssembliesFlage = false;
         /// <summary>
         /// 不可调用,供给HybridclrComponent使用【相当于Mono.Start】
         /// </summary>
@@ -123,8 +132,28 @@ namespace WhiteTea.HotfixLogic
         private static void LoadingHotSwappingComponents( )
         {
             Fsm = new FsmManager( );
+            Procedure = new ProcedureManager( );
+
+            Procedure.Initialize(Fsm , GetHotfixProduce( ));
+            Procedure.StartProcedure<ProcedureHotfixEntry>( );
 
             m_LoadMetadataForAOTAssembliesFlage = true;
+        }
+
+        private static ProcedureBase[] GetHotfixProduce( )
+        {
+            ProcedureBase[] procedures = new ProcedureBase[AppRuntimeConfig.HotfixProcedure.Length];
+            for(int i = 0; i < AppRuntimeConfig.HotfixProcedure.Length; i++)
+            {
+                Type t = Type.GetType(AppRuntimeConfig.HotfixProcedure[i]);
+                if(t == null)
+                {
+                    Log.Fatal("无法获取{0}类型" , AppRuntimeConfig.HotfixProcedure[i]);
+                    continue;
+                }
+                procedures[i] = Activator.CreateInstance(t) as ProcedureBase;
+            }
+            return procedures;
         }
     }
 }
