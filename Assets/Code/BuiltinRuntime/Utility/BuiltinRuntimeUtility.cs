@@ -45,6 +45,17 @@ namespace WhiteTea.BuiltinRuntime
                 return Utility.Path.GetRegularPath(Path.Combine(args));
             }
             /// <summary>
+            /// 加载数据表资源
+            /// </summary>
+            /// <param name="assetName"></param>
+            /// <param name="fromBytes"></param>
+            /// <returns></returns>
+            public static string GetDataTableAsset(string assetName , bool fromBytes)
+            {
+                return Utility.Text.Format("Assets/HotfixAssets/DataTables/{0}.{1}" , assetName , fromBytes ? "bytes" : "txt");
+            }
+
+            /// <summary>
             /// 获取热更dll资源
             /// </summary>
             /// <param name="path"></param>

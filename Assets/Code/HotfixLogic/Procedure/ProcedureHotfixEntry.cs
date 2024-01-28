@@ -2,6 +2,7 @@ using ProcedureOwner = WhiteTea.HotfixLogic.IFsm;
 using UnityGameFramework.Runtime;
 using WhiteTea.BuiltinRuntime;
 using GameFramework.Event;
+using System.Collections.Generic;
 namespace WhiteTea.HotfixLogic
 {
     /// <summary>
@@ -9,6 +10,16 @@ namespace WhiteTea.HotfixLogic
     /// </summary>
     public class ProcedureHotfixEntry:ProcedureBase
     {
+
+        /// <summary>
+        /// 加载标识
+        /// </summary>
+        private readonly Dictionary<string , bool> m_LoadedFlag = new Dictionary<string , bool>( );
+
+        /// <summary>
+        /// 加载成功个数
+        /// </summary>
+        private int m_LoadSuccess;
         protected internal override void OnEnter(ProcedureOwner procedureOwner)
         {
             base.OnEnter(procedureOwner);
@@ -19,6 +30,9 @@ namespace WhiteTea.HotfixLogic
             WTGame.Event.Subscribe(LoadDataTableFailureEventArgs.EventId , OnLoadDataTableFailure);
             WTGame.Event.Subscribe(LoadDictionarySuccessEventArgs.EventId , OnLoadDictionarySuccess);
             WTGame.Event.Subscribe(LoadDictionaryFailureEventArgs.EventId , OnLoadDictionaryFailure);
+            m_LoadedFlag.Clear( );
+            m_LoadSuccess = 0;
+            StartLoadResources( );
         }
         protected internal override void OnUpdate(ProcedureOwner procedureOwner , float elapseSeconds , float realElapseSeconds)
         {
@@ -33,9 +47,26 @@ namespace WhiteTea.HotfixLogic
             WTGame.Event.Unsubscribe(LoadDataTableFailureEventArgs.EventId , OnLoadDataTableFailure);
             WTGame.Event.Unsubscribe(LoadDictionarySuccessEventArgs.EventId , OnLoadDictionarySuccess);
             WTGame.Event.Unsubscribe(LoadDictionaryFailureEventArgs.EventId , OnLoadDictionaryFailure);
+
             base.OnLeave(procedureOwner , isShutdown);
         }
+        /// <summary>
+        /// 加载资源
+        /// </summary>
+        private void StartLoadResources( )
+        {
+            foreach(var item in HotfixEntry.AppRuntimeConfig.DataTables)
+            {
+                LoadDataTable(item);
+            }
+        }
 
+        private void LoadDataTable(string dataTableName)
+        {
+            string dataAssetsName = BuiltinRuntimeUtility.AssetsUtility.GetDataTableAsset(dataTableName , true);
+            m_LoadedFlag.Add(dataAssetsName , false);
+            WTGame.DataTable.LoadDataTable(dataTableName , dataAssetsName , this);
+        }
 
         #region Event
         /// <summary>
