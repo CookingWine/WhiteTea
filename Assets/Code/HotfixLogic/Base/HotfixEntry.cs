@@ -1,7 +1,6 @@
 using GameFramework.Resource;
 using System;
 using UnityEngine;
-using UnityEngine.Rendering.VirtualTexturing;
 using UnityGameFramework.Runtime;
 using WhiteTea.BuiltinRuntime;
 
@@ -38,6 +37,24 @@ namespace WhiteTea.HotfixLogic
         }
 
         /// <summary>
+        /// 事件管理器
+        /// </summary>
+        public static EventManager Event
+        {
+            get;
+            private set;
+        }
+
+        /// <summary>
+        /// 计时器
+        /// </summary>
+        public static TimerManager Timer
+        {
+            get;
+            private set;
+        }
+
+        /// <summary>
         /// 加载AOT进度
         /// </summary>
         private static int m_CurrentProcess;
@@ -50,6 +67,7 @@ namespace WhiteTea.HotfixLogic
         /// </summary>
         public static void Start( )
         {
+            Log.Info("<color=lime>热更新启动.</color>");
             m_CurrentProcess = 0;
             m_LoadMetadataForAOTAssembliesFlage = false;
             LoadAppHotfixConfig( );
@@ -66,7 +84,8 @@ namespace WhiteTea.HotfixLogic
                 return;
             }
             Fsm.Update(elapseSeconds , realElapseSeconds);
-
+            Timer.UpdateTimer(elapseSeconds , realElapseSeconds);
+            Event.Update(elapseSeconds , realElapseSeconds);
         }
 
         /// <summary>
@@ -75,6 +94,9 @@ namespace WhiteTea.HotfixLogic
         public static void Shutdown( )
         {
             Fsm.Shutdown( );
+            Event.Shutdown( );
+            Timer.Shotdown( );
+
         }
         /// <summary>
         /// 加载热更配置
@@ -132,8 +154,9 @@ namespace WhiteTea.HotfixLogic
         private static void LoadingHotSwappingComponents( )
         {
             Fsm = new FsmManager( );
+            Timer = new TimerManager( );
+            Event = new EventManager( );
             Procedure = new ProcedureManager( );
-
             Procedure.Initialize(Fsm , GetHotfixProduce( ));
             Procedure.StartProcedure<ProcedureHotfixEntry>( );
 
