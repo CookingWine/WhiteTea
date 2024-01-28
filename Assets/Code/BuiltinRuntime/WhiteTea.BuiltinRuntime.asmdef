@@ -4,7 +4,8 @@
     "references": [
         "UnityGameFramework.Runtime",
         "GameFramework",
-        "HybridCLR.Runtime"
+        "HybridCLR.Runtime",
+        "AVProVideo.Runtime"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

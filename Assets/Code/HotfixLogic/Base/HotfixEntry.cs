@@ -27,6 +27,14 @@ namespace WhiteTea.HotfixLogic
             get;
             private set;
         }
+        /// <summary>
+        /// 有限状态机
+        /// </summary>
+        public static FsmManager Fsm
+        {
+            get;
+            private set;
+        }
 
         /// <summary>
         /// 不可调用,供给HybridclrComponent使用【相当于Mono.Start】
@@ -48,6 +56,8 @@ namespace WhiteTea.HotfixLogic
             {
                 return;
             }
+            Fsm.Update(elapseSeconds , realElapseSeconds);
+
         }
 
         /// <summary>
@@ -55,7 +65,7 @@ namespace WhiteTea.HotfixLogic
         /// </summary>
         public static void Shutdown( )
         {
-           
+            Fsm.Shutdown( );
         }
         /// <summary>
         /// 加载热更配置
@@ -112,7 +122,7 @@ namespace WhiteTea.HotfixLogic
         /// </summary>
         private static void LoadingHotSwappingComponents( )
         {
-
+            Fsm = new FsmManager( );
 
             m_LoadMetadataForAOTAssembliesFlage = true;
         }

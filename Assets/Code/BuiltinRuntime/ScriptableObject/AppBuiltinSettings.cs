@@ -38,7 +38,7 @@ namespace WhiteTea.BuiltinRuntime
             get
             {
 #if !WHITEGAME_BETA
-                return m_CheckVersionUrl+ "version.txt";
+                return m_CheckVersionUrl + "version.txt";
 #else
                 return m_CheckBateVersionUrl+ "version.txt";
 #endif
@@ -52,6 +52,21 @@ namespace WhiteTea.BuiltinRuntime
             get
             {
                 return "AppHotfixConfig";
+            }
+        }
+        [Header("主界面")]
+        [SerializeField]
+        private string m_LoadingInterfacePath;
+
+        public string LoadingInterfacePath
+        {
+            get
+            {
+                if(string.IsNullOrEmpty(m_LoadingInterfacePath))
+                {
+                    return "UIRes/UIPrefabs/LoadingInterface";
+                }
+                return m_LoadingInterfacePath;
             }
         }
 

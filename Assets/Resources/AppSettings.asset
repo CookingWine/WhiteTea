@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: AppSettings
   m_EditorClassIdentifier: 
   m_CheckVersionUrl: 
+  m_LoadingInterfacePath: UIRes/UIPrefabs/LoadingInterface
   m_MustResourceGroup:
   - BuiltinRuntimes

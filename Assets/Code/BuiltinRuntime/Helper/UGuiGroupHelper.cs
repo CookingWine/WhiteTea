@@ -16,7 +16,7 @@ namespace WhiteTea.BuiltinRuntime
         {
             get
             {
-                return 1080;
+                return 2400;
             }
         }
         /// <summary>
@@ -26,7 +26,7 @@ namespace WhiteTea.BuiltinRuntime
         {
             get
             {
-                return 2400;
+                return 1080;
             }
         }
 
