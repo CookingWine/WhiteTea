@@ -37,6 +37,7 @@ namespace WhiteTea.GameEditor.DataTableTools
                 GenerateDataFile(dataTableProcessor , dataTableName);
 
                 GenerateCodeFile(dataTableProcessor , dataTableName);
+                WhiteTeaEnumIdGenerator.GeneratorEnumIdFile(dataTableName , dataTableProcessor);
             }
             //刷新资源
             AssetDatabase.Refresh( );
@@ -93,7 +94,7 @@ namespace WhiteTea.GameEditor.DataTableTools
         {
             string dataTableName = (string)userData;
 
-            codeContent.Replace("__DATA_TABLE_CREATE_TIME__" , DateTime.UtcNow.ToLocalTime( ).ToString("yyyy-MM-dd HH:mm:ss.fff"));
+            codeContent.Replace("__DATA_TABLE_CREATE_TIME__" , DateTime.UtcNow.ToLocalTime( ).ToString("yyyy-MM-dd"));
             codeContent.Replace("__DATA_TABLE_NAME_SPACE__" , "WhiteTea.HotfixLogic");
             codeContent.Replace("__DATA_TABLE_CLASS_NAME__" , "DR" + dataTableName);
             codeContent.Replace("__DATA_TABLE_COMMENT__" , dataTableProcessor.GetValue(0 , 1) + "。");

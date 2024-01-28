@@ -112,6 +112,13 @@ namespace WhiteTea.GameEditor
                     {
                         SaveConfigs(m_AppHotfixConfig);
                     }
+                    if(GUILayout.Button("all select"))
+                    {
+                        foreach(var item in m_AotFileList)
+                        {
+                            item.IsEnable = true;
+                        }
+                    }
                 }
                 GUILayout.EndScrollView( );
             }
@@ -135,6 +142,13 @@ namespace WhiteTea.GameEditor
                     if(EditorGUI.EndChangeCheck( ))
                     {
                         SaveConfigs(m_AppHotfixConfig);
+                    }
+                    if(GUILayout.Button("all select"))
+                    {
+                        foreach(var item in m_Procedures)
+                        {
+                            item.IsEnable = true;
+                        }
                     }
                 }
                 GUILayout.EndScrollView( );

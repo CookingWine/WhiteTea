@@ -16,9 +16,14 @@ namespace WhiteTea.GameEditor
         public const string WHITEAGAME_BETA = "WHITEAGAME_BETA";
 
         #endregion
-
-        #region Path
-
+        /// <summary>
+        /// 热更的程序集
+        /// </summary>
+        public const string HotfixAssemblyMainReadOnly = "WhiteTea.HotfixLogic";
+        /// <summary>
+        /// 枚举得生成路径
+        /// </summary>
+        public const string CSharpResourceCodePath = "Assets/Code/HotfixLogic/Definition/Enum";
         /// <summary>
         /// 数据表的路径
         /// </summary>
@@ -52,8 +57,6 @@ namespace WhiteTea.GameEditor
         /// Aot数据文件
         /// </summary>
         public const string AotFilePath = "/HotfixAssets/AotMetadata";
-
-        #endregion
         /// <summary>
         /// 获取路径下的全部文件
         /// </summary>

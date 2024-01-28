@@ -32,11 +32,20 @@ namespace WhiteTea.HotfixLogic
             WTGame.Event.Subscribe(LoadDictionaryFailureEventArgs.EventId , OnLoadDictionaryFailure);
             m_LoadedFlag.Clear( );
             m_LoadSuccess = 0;
+            m_current = 0;
             StartLoadResources( );
         }
+        private float m_current;
         protected internal override void OnUpdate(ProcedureOwner procedureOwner , float elapseSeconds , float realElapseSeconds)
         {
             base.OnUpdate(procedureOwner , elapseSeconds , realElapseSeconds);
+            GetLoadSuccessCount( );
+            m_current += elapseSeconds;
+            if(m_current > 2.0f&&m_LoadSuccess>=m_LoadedFlag.Count)
+            {
+                ChangeState<ProcedureLogin>(procedureOwner);
+            }
+
         }
         protected internal override void OnLeave(ProcedureOwner procedureOwner , bool isShutdown)
         {
@@ -55,10 +64,28 @@ namespace WhiteTea.HotfixLogic
         /// </summary>
         private void StartLoadResources( )
         {
-            foreach(var item in HotfixEntry.AppRuntimeConfig.DataTables)
+            //foreach(var item in HotfixEntry.AppRuntimeConfig.DataTables)
+            //{
+            //    LoadDataTable(item);
+            //}
+            LoadDataTable("UIForm");
+        }
+        /// <summary>
+        /// 获取加载成功得个数
+        /// </summary>
+        /// <returns></returns>
+        private int GetLoadSuccessCount( )
+        {
+            m_LoadSuccess = 0;
+            IEnumerator<bool> item = m_LoadedFlag.Values.GetEnumerator( );
+            while(item.MoveNext( ))
             {
-                LoadDataTable(item);
+                if(item.Current)
+                {
+                    m_LoadSuccess++;
+                }
             }
+            return m_LoadSuccess;
         }
 
         private void LoadDataTable(string dataTableName)
@@ -110,6 +137,7 @@ namespace WhiteTea.HotfixLogic
             {
                 return;
             }
+            m_LoadedFlag[ne.DataTableAssetName] = true;
             Log.Debug("Load data table '{0}' OK." , ne.DataTableAssetName);
         }
         /// <summary>

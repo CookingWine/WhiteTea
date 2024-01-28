@@ -38,5 +38,13 @@ namespace WhiteTea.BuiltinRuntime
                 GameMainInterface.transform.localScale = Vector3.one;
             }
         }
+
+        public void EnableResourceUI( )
+        {
+            if(GameMainInterface.gameObject.activeSelf)
+            {
+                GameMainInterface.gameObject.SetActive(false);
+            }
+        }
     }
 }

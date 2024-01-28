@@ -83,9 +83,9 @@ namespace WhiteTea.HotfixLogic
             {
                 return;
             }
-            Fsm.Update(elapseSeconds , realElapseSeconds);
-            Timer.UpdateTimer(elapseSeconds , realElapseSeconds);
-            Event.Update(elapseSeconds , realElapseSeconds);
+            Fsm?.Update(elapseSeconds , realElapseSeconds);
+            Timer?.UpdateTimer(elapseSeconds , realElapseSeconds);
+            Event?.Update(elapseSeconds , realElapseSeconds);
         }
 
         /// <summary>
@@ -93,9 +93,9 @@ namespace WhiteTea.HotfixLogic
         /// </summary>
         public static void Shutdown( )
         {
-            Fsm.Shutdown( );
-            Event.Shutdown( );
-            Timer.Shotdown( );
+            Fsm?.Shutdown( );
+            Event?.Shutdown( );
+            Timer?.Shotdown( );
 
         }
         /// <summary>

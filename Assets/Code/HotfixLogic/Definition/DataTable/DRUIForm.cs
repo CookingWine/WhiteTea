@@ -1,6 +1,6 @@
 ﻿//------------------------------------------------------------
 // 此文件由工具自动生成，请勿直接修改。
-// 生成时间：2024-01-04 09:49:27.578
+// 生成时间：2024-01-28
 //------------------------------------------------------------
 
 using GameFramework;
@@ -67,6 +67,15 @@ namespace WhiteTea.HotfixLogic
             private set;
         }
 
+        /// <summary>
+        /// 获取预制体路径基于HotfixAssets下UI内。
+        /// </summary>
+        public string AssetPath
+        {
+            get;
+            private set;
+        }
+
         public override bool ParseDataRow(string dataRowString, object userData)
         {
             string[] columnStrings = dataRowString.Split(DataTableExtension.DataSplitSeparators);
@@ -83,6 +92,7 @@ namespace WhiteTea.HotfixLogic
             UIGroupName = columnStrings[index++];
             AllowMultiInstance = bool.Parse(columnStrings[index++]);
             PauseCoveredUIForm = bool.Parse(columnStrings[index++]);
+            AssetPath = columnStrings[index++];
 
             GeneratePropertyArray();
             return true;
@@ -99,6 +109,7 @@ namespace WhiteTea.HotfixLogic
                     UIGroupName = binaryReader.ReadString();
                     AllowMultiInstance = binaryReader.ReadBoolean();
                     PauseCoveredUIForm = binaryReader.ReadBoolean();
+                    AssetPath = binaryReader.ReadString();
                 }
             }
 
