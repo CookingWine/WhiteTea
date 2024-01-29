@@ -21,13 +21,25 @@ namespace WhiteTea.GameEditor
         /// </summary>
         public const string HotfixAssemblyMainReadOnly = "WhiteTea.HotfixLogic";
         /// <summary>
-        /// 枚举得生成路径
+        /// UI枚举得生成路径
         /// </summary>
         public const string CSharpResourceCodePath = "Assets/Code/HotfixLogic/Definition/Enum";
         /// <summary>
         /// 数据表的路径
         /// </summary>
         public const string DataTablePath = "Assets/GameConfigAssets/DataTables";
+        /// <summary>
+        /// 数据表代码生成路径
+        /// </summary>
+        public const string CSharpCodePath = "Assets/Code/HotfixLogic/Definition/DataTable";
+        /// <summary>
+        /// UI预制体代码生成路径
+        /// </summary>
+        public const string UIFormCodePath = "Assets/Code/HotfixLogic/UI";
+        /// <summary>
+        /// 实体代码生成路径
+        /// </summary>
+        public const string EntityCodePath = "Assets/Code/HotfixLogic/Entity";
         /// <summary>
         /// 数据表生成的bytes文件存放位置
         /// </summary>
@@ -36,10 +48,6 @@ namespace WhiteTea.GameEditor
         /// 生成配置表代码的模板文件
         /// </summary>
         public const string CSharpCodeTemplateFileName = "Assets/GameConfigAssets/GameFramework/DataTableCodeTemplate.txt";
-        /// <summary>
-        /// 代码生成路径
-        /// </summary>
-        public const string CSharpCodePath = "Assets/Code/HotfixLogic/Definition/DataTable";
         /// <summary>
         /// 语言配置表位置
         /// </summary>

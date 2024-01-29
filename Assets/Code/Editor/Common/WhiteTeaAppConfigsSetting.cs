@@ -53,7 +53,11 @@ namespace WhiteTea.GameEditor
         {
             DataTableGenerator.GeneratorDataTables( );
         }
-
+        [MenuItem("White Tea Game/Generator/Entity And UIForm Code")]
+        private static void OpenCodeGeneratorWindow( )
+        {
+            WhiteTeaEntityAndUIFormGenerator.OpenCodeGeneratorWindow( );
+        }
         /// <summary>
         /// 生成热更dll
         /// </summary>
