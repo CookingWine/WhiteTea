@@ -5,7 +5,8 @@
         "UnityGameFramework.Runtime",
         "GameFramework",
         "HybridCLR.Runtime",
-        "AVProVideo.Runtime"
+        "AVProVideo.Runtime",
+        "Unity.TextMeshPro"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
