@@ -13,7 +13,7 @@ namespace WhiteTea.HotfixLogic
         {
             base.OnEnter(procedureOwner);
             Log.Debug("进入登录流程");
-            m_LoginInterfaceId = (int)WTGame.UI.OpenUIForm(UIFormId.HotfixGameLoginInterface , this);
+            m_LoginInterfaceId = (int)WTGame.UI.OpenUIForm(UIFormId.HotfixGameLoginInterface);
         }
         protected internal override void OnUpdate(IFsm procedureOwner , float elapseSeconds , float realElapseSeconds)
         {
