@@ -22,6 +22,11 @@ namespace WhiteTea.BuiltinRuntime
         }
         private CanvasGroup m_CanvasGroup = null;
 
+        public BuiltinComponentAutoBindTool ComponentTool
+        {
+            get;
+            private set;
+        }
         public int OriginalDepth
         {
             get;
@@ -81,14 +86,14 @@ namespace WhiteTea.BuiltinRuntime
             m_CachedCanvas = gameObject.GetOrAddComponent<Canvas>( );
             m_CachedCanvas.overrideSorting = true;
             OriginalDepth = m_CachedCanvas.sortingOrder;
-
+            ComponentTool = gameObject.GetOrAddComponent<BuiltinComponentAutoBindTool>( );
             m_CanvasGroup = gameObject.GetOrAddComponent<CanvasGroup>( );
             RectTransform transform = GetComponent<RectTransform>( );
             transform.anchorMin = Vector2.zero;
             transform.anchorMax = Vector2.one;
             transform.anchoredPosition = Vector2.zero;
             transform.sizeDelta = Vector2.zero;
-
+            this.transform.SetLocalPositionAndRotation(Vector3.zero , Quaternion.identity);
             gameObject.GetOrAddComponent<GraphicRaycaster>( );
 
             SetFormFont( );
@@ -105,9 +110,17 @@ namespace WhiteTea.BuiltinRuntime
             for(int i = 0; i < texts.Length; i++)
             {
                 texts[i].font = font;
-                if(!string.IsNullOrEmpty(texts[i].text))
+                BuiltinLocalizationKey item = texts[i].gameObject.GetComponent<BuiltinLocalizationKey>( );
+                if(item != null)
                 {
-                    texts[i].text = WTGame.Localization.GetString(texts[i].text);
+                    if(!string.IsNullOrEmpty(item.LocalizationKey))
+                    {
+                        texts[i].text = WTGame.Localization.GetString(item.LocalizationKey);
+                    }
+                    else
+                    {
+                        texts[i].text = item.Values;
+                    }
                 }
             }
         }
@@ -206,6 +219,18 @@ namespace WhiteTea.BuiltinRuntime
             {
                 canvases[i].sortingOrder += deltaDepth;
             }
+        }
+
+        private void OnDestroy( )
+        {
+            OnDestroyObject( );
+        }
+        /// <summary>
+        /// 界面销毁
+        /// </summary>
+        protected virtual void OnDestroyObject( )
+        {
+
         }
 
         private IEnumerator CloseCo(float duration)

@@ -53,6 +53,14 @@ namespace WhiteTea.HotfixLogic
             get;
             private set;
         }
+        /// <summary>
+        /// 字体管理器
+        /// </summary>
+        public static FontManager FontManagers
+        {
+            get;
+            private set;
+        }
 
         /// <summary>
         /// 加载AOT进度
@@ -156,6 +164,7 @@ namespace WhiteTea.HotfixLogic
             Fsm = new FsmManager( );
             Timer = new TimerManager( );
             Event = new EventManager( );
+            FontManagers = FontManager.Instance;
             Procedure = new ProcedureManager( );
             Procedure.Initialize(Fsm , GetHotfixProduce( ));
             Procedure.StartProcedure<ProcedureHotfixEntry>( );

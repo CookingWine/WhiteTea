@@ -1,6 +1,6 @@
 //------------------------------------------------------------
 // 此文件由工具自动生成，请勿直接修改。
-// 生成时间：2024-01-28
+// 生成时间：2024-01-29
 //------------------------------------------------------------
 namespace WhiteTea.HotfixLogic
 {
@@ -10,13 +10,13 @@ namespace WhiteTea.HotfixLogic
 	public enum UIFormId
 	{
 		/// <summary>
+		///弹窗
+		/// <summary>
+		PopUpWindows = 1001,
+		/// <summary>
 		///热更登录界面
 		/// <summary>
 		HotfixGameLoginInterface = 100001,
-		/// <summary>
-		///测试2
-		/// <summary>
-		TestUIB = 100002,
 		/// <summary>
 		///测试3
 		/// <summary>

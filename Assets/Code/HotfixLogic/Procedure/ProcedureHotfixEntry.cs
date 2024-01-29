@@ -3,6 +3,8 @@ using UnityGameFramework.Runtime;
 using WhiteTea.BuiltinRuntime;
 using GameFramework.Event;
 using System.Collections.Generic;
+using GameFramework.Resource;
+using UnityEngine;
 namespace WhiteTea.HotfixLogic
 {
     /// <summary>
@@ -41,7 +43,7 @@ namespace WhiteTea.HotfixLogic
             base.OnUpdate(procedureOwner , elapseSeconds , realElapseSeconds);
             GetLoadSuccessCount( );
             m_current += elapseSeconds;
-            if(m_current > 2.0f&&m_LoadSuccess>=m_LoadedFlag.Count)
+            if(m_current > 2.0f && m_LoadSuccess >= m_LoadedFlag.Count)
             {
                 ChangeState<ProcedureLogin>(procedureOwner);
             }
@@ -64,11 +66,11 @@ namespace WhiteTea.HotfixLogic
         /// </summary>
         private void StartLoadResources( )
         {
-            //foreach(var item in HotfixEntry.AppRuntimeConfig.DataTables)
-            //{
-            //    LoadDataTable(item);
-            //}
             LoadDataTable("UIForm");
+            for(int i = 0; i < HotfixEntry.FontManagers.FontAssets.Length; i++)
+            {
+                LoadFont(HotfixEntry.FontManagers.FontAssets[i]);
+            }
         }
         /// <summary>
         /// 获取加载成功得个数
@@ -88,11 +90,35 @@ namespace WhiteTea.HotfixLogic
             return m_LoadSuccess;
         }
 
+        /// <summary>
+        /// 加载数据表
+        /// </summary>
+        /// <param name="dataTableName"></param>
         private void LoadDataTable(string dataTableName)
         {
-            string dataAssetsName = BuiltinRuntimeUtility.AssetsUtility.GetDataTableAsset(dataTableName , true);
+            string dataAssetsName = BuiltinRuntimeUtility.AssetsUtility.GetDataTableAsset(dataTableName);
             m_LoadedFlag.Add(dataAssetsName , false);
             WTGame.DataTable.LoadDataTable(dataTableName , dataAssetsName , this);
+        }
+        /// <summary>
+        /// 加载字典
+        /// </summary>
+        /// <param name="dictionaryName"></param>
+        private void LoadDictionary(string dictionaryName)
+        {
+            string dictionaryAsset = BuiltinRuntimeUtility.AssetsUtility.GetDictionaryAsset(dictionaryName , false);
+            m_LoadedFlag.Add(dictionaryAsset , false);
+
+        }
+        /// <summary>
+        /// 加载字体
+        /// </summary>
+        /// <param name="fontName"></param>
+        private void LoadFont(string fontName)
+        {
+            string fontAssetName = BuiltinRuntimeUtility.AssetsUtility.GetFontAsset(fontName);
+            m_LoadedFlag.Add(fontAssetName , false);
+            WTGame.Resource.LoadAsset(fontAssetName , new LoadAssetCallbacks(LoadFontSuccess , LoadFontFailed));
         }
 
         #region Event
@@ -183,6 +209,32 @@ namespace WhiteTea.HotfixLogic
             }
 
             Log.Error("Can not load dictionary '{0}' from '{1}' with error message '{2}'." , ne.DictionaryAssetName , ne.DictionaryAssetName , ne.ErrorMessage);
+        }
+        /// <summary>
+        /// 加载字体成功回调
+        /// </summary>
+        /// <param name="assetName"></param>
+        /// <param name="asset"></param>
+        /// <param name="duration"></param>
+        /// <param name="userData"></param>
+        private void LoadFontSuccess(string assetName , object asset , float duration , object userData)
+        {
+            m_LoadedFlag[assetName] = true;
+            Font fontAsset = asset as Font;
+            HotfixEntry.FontManagers.AddHotfixFontToCache(assetName , fontAsset);
+            BuiltinUGuiForm.SetMainFont(fontAsset);
+
+        }
+        /// <summary>
+        /// 加载字体资源失败回调
+        /// </summary>
+        /// <param name="assetName"></param>
+        /// <param name="status"></param>
+        /// <param name="errorMessage"></param>
+        /// <param name="userData"></param>
+        private void LoadFontFailed(string assetName , LoadResourceStatus status , string errorMessage , object userData)
+        {
+            Log.Error("Can not load font '{0}' from '{1}' with error message '{2}'." , assetName , assetName , errorMessage);
         }
         #endregion
     }

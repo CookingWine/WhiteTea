@@ -1,6 +1,4 @@
 using GameFramework;
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using UnityEditor;
@@ -110,7 +108,7 @@ namespace WhiteTea.GameEditor
                     }
                     if(EditorGUI.EndChangeCheck( ))
                     {
-                        SaveConfigs(m_AppHotfixConfig);
+                        
                     }
                     if(GUILayout.Button("all select"))
                     {
@@ -141,7 +139,7 @@ namespace WhiteTea.GameEditor
                     }
                     if(EditorGUI.EndChangeCheck( ))
                     {
-                        SaveConfigs(m_AppHotfixConfig);
+                       
                     }
                     if(GUILayout.Button("all select"))
                     {

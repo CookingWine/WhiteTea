@@ -4,6 +4,7 @@
     <Resources>
       <Resource Name="AotMetadata" LoadType="0" Packed="True" ResourceGroups="BuiltinRuntimes" />
       <Resource Name="DataTables" LoadType="0" Packed="True" ResourceGroups="BuiltinRuntimes" />
+      <Resource Name="Fonst" LoadType="0" Packed="False" />
       <Resource Name="HotfixDLL" LoadType="0" Packed="True" ResourceGroups="BuiltinRuntimes" />
       <Resource Name="ScriptableObjectAssets" LoadType="0" Packed="True" ResourceGroups="BuiltinRuntimes" />
       <Resource Name="UI/UIForms/HotfixGameLoginInterface" LoadType="0" Packed="True" />
@@ -14,6 +15,7 @@
       <Asset Guid="323620e462a9cb8408c87b3df2f117d4" ResourceName="UI/UISprites/GameLogInterface" />
       <Asset Guid="54efa25681d48944390d8c70a75e0562" ResourceName="UI/UISprites/GameLogInterface" />
       <Asset Guid="8ec13b0fb77c7af429033dbe6281bec0" ResourceName="DataTables" />
+      <Asset Guid="907eb70d0b383b04d9dad9936e236095" ResourceName="Fonst" />
       <Asset Guid="af3dfd67c15d37145939a8d0e4bec965" ResourceName="UI/UISprites/GameLogInterface" />
       <Asset Guid="afef011c29a672044b8e226e7551a4b5" ResourceName="AotMetadata" />
       <Asset Guid="b945c458a5ca7ae41be36dcf168435bb" ResourceName="UI/UISprites/GameLogInterface" />
