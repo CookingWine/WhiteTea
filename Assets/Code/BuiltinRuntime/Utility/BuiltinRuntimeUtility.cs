@@ -50,10 +50,29 @@ namespace WhiteTea.BuiltinRuntime
             /// <param name="assetName"></param>
             /// <param name="fromBytes"></param>
             /// <returns></returns>
-            public static string GetDataTableAsset(string assetName , bool fromBytes)
+            public static string GetDataTableAsset(string assetName)
             {
-                return Utility.Text.Format("Assets/HotfixAssets/DataTables/{0}.{1}" , assetName , fromBytes ? "bytes" : "txt");
+                return Utility.Text.Format("Assets/HotfixAssets/DataTables/{0}.bytes" , assetName);
             }
+            /// <summary>
+            /// 加载字典
+            /// </summary>
+            /// <param name="assetName"></param>
+            /// <returns></returns>
+            public static string GetDictionaryAsset(string assetName , bool formBytes)
+            {
+                return Utility.Text.Format("Assets/HotfixAssets/Localization/{0}/Dictionaries/{1}.{2}" , WTGame.Localization.Language.ToString( ) , assetName , formBytes ? "bytes" : "xml");
+            }
+            /// <summary>
+            /// 获取字体资源
+            /// </summary>
+            /// <param name="assetName"></param>
+            /// <returns></returns>
+            public static string GetFontAsset(string assetName)
+            {
+                return Utility.Text.Format("Assets/HotfixAssets/Fonst/{0}.ttf" , assetName);
+            }
+
             /// <summary>
             /// 获取UIForm资源
             /// </summary>
