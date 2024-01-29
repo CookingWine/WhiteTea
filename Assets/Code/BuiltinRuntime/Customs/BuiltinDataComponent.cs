@@ -41,10 +41,7 @@ namespace WhiteTea.BuiltinRuntime
 
         public void EnableResourceUI( )
         {
-            if(GameMainInterface.gameObject.activeSelf)
-            {
-                GameMainInterface.gameObject.SetActive(false);
-            }
+            GameMainInterface.Close( );
         }
     }
 }
