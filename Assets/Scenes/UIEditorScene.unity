@@ -496,6 +496,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PopUpWindows
       objectReference: {fileID: 0}
+    - target: {fileID: 7376018312243124048, guid: 4587e6e081d5b424c8e63e4b20afeab6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7376018312243124049, guid: 4587e6e081d5b424c8e63e4b20afeab6, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -580,5 +584,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7376018312243124052, guid: 4587e6e081d5b424c8e63e4b20afeab6, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 4587e6e081d5b424c8e63e4b20afeab6, type: 3}

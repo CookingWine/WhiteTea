@@ -53,3 +53,53 @@ MonoBehaviour:
     packed: 1
     filterType: 0
     searchPatterns: '*.*'
+  - valid: 1
+    name: Fonst
+    variant: 
+    fileSystem: 
+    groups: BuiltinRuntimes
+    assetsDirectoryPath: Assets/HotfixAssets/Fonst
+    loadType: 0
+    packed: 1
+    filterType: 0
+    searchPatterns: '*.*'
+  - valid: 1
+    name: Localization
+    variant: 
+    fileSystem: 
+    groups: BuiltinRuntimes
+    assetsDirectoryPath: Assets/HotfixAssets/Localization
+    loadType: 0
+    packed: 1
+    filterType: 0
+    searchPatterns: '*.*'
+  - valid: 1
+    name: UIFormBuiltinRuntimes
+    variant: 
+    fileSystem: 
+    groups: BuiltinRuntimes
+    assetsDirectoryPath: Assets/HotfixAssets/UI/UIForms/BuiltinRuntimesPrefab
+    loadType: 0
+    packed: 1
+    filterType: 0
+    searchPatterns: '*.*'
+  - valid: 1
+    name: UISpritesBuiltinRuntimes
+    variant: 
+    fileSystem: 
+    groups: BuiltinRuntimes
+    assetsDirectoryPath: Assets/HotfixAssets/UI/UISprites/BuiltinRuntimes
+    loadType: 0
+    packed: 1
+    filterType: 0
+    searchPatterns: '*.*'
+  - valid: 1
+    name: UISpritesCommon
+    variant: 
+    fileSystem: 
+    groups: BuiltinRuntimes
+    assetsDirectoryPath: Assets/HotfixAssets/UI/UISprites/Common
+    loadType: 0
+    packed: 1
+    filterType: 0
+    searchPatterns: '*.*'

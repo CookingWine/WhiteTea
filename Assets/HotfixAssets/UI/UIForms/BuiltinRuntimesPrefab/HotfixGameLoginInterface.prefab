@@ -1152,7 +1152,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u963F\u5B85\u60F3\u8981\u517B\u53EA\u732B"
+  m_Text: "\u767D\u8336"
 --- !u!114 &4253473492990624499
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1166,7 +1166,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_LocalizationKey: 
-  Values: "\u963F\u5B85\u60F3\u8981\u517B\u53EA\u732B"
+  Values: "\u767D\u8336"
 --- !u!1 &8438938869496482394
 GameObject:
   m_ObjectHideFlags: 0

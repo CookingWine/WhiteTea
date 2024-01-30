@@ -4,28 +4,28 @@
     <Resources>
       <Resource Name="AotMetadata" LoadType="0" Packed="True" ResourceGroups="BuiltinRuntimes" />
       <Resource Name="DataTables" LoadType="0" Packed="True" ResourceGroups="BuiltinRuntimes" />
-      <Resource Name="Fonst" LoadType="0" Packed="True" />
+      <Resource Name="Fonst" LoadType="0" Packed="True" ResourceGroups="BuiltinRuntimes" />
       <Resource Name="HotfixDLL" LoadType="0" Packed="True" ResourceGroups="BuiltinRuntimes" />
       <Resource Name="ScriptableObjectAssets" LoadType="0" Packed="True" ResourceGroups="BuiltinRuntimes" />
-      <Resource Name="UI/UIForm/BuiltinRuntimesPrefab" LoadType="0" Packed="True" />
-      <Resource Name="UI/UISprite/BuiltinRuntimes" LoadType="0" Packed="True" />
-      <Resource Name="UI/UISprites/Common" LoadType="0" Packed="True" />
+      <Resource Name="UIFormBuiltinRuntimes" LoadType="0" Packed="True" ResourceGroups="BuiltinRuntimes" />
+      <Resource Name="UISpritesBuiltinRuntimes" LoadType="0" Packed="True" ResourceGroups="BuiltinRuntimes" />
+      <Resource Name="UISpritesCommon" LoadType="0" Packed="True" ResourceGroups="BuiltinRuntimes" />
     </Resources>
     <Assets>
-      <Asset Guid="323620e462a9cb8408c87b3df2f117d4" ResourceName="UI/UISprites/Common" />
-      <Asset Guid="4587e6e081d5b424c8e63e4b20afeab6" ResourceName="UI/UIForm/BuiltinRuntimesPrefab" />
-      <Asset Guid="54efa25681d48944390d8c70a75e0562" ResourceName="UI/UISprite/BuiltinRuntimes" />
+      <Asset Guid="323620e462a9cb8408c87b3df2f117d4" ResourceName="UISpritesCommon" />
+      <Asset Guid="4587e6e081d5b424c8e63e4b20afeab6" ResourceName="UIFormBuiltinRuntimes" />
+      <Asset Guid="54efa25681d48944390d8c70a75e0562" ResourceName="UISpritesBuiltinRuntimes" />
       <Asset Guid="8ec13b0fb77c7af429033dbe6281bec0" ResourceName="DataTables" />
       <Asset Guid="907eb70d0b383b04d9dad9936e236095" ResourceName="Fonst" />
-      <Asset Guid="af3dfd67c15d37145939a8d0e4bec965" ResourceName="UI/UISprites/Common" />
+      <Asset Guid="af3dfd67c15d37145939a8d0e4bec965" ResourceName="UISpritesCommon" />
       <Asset Guid="afef011c29a672044b8e226e7551a4b5" ResourceName="AotMetadata" />
-      <Asset Guid="b945c458a5ca7ae41be36dcf168435bb" ResourceName="UI/UISprites/Common" />
-      <Asset Guid="c2297153409ba7e44959c53739616143" ResourceName="UI/UISprite/BuiltinRuntimes" />
+      <Asset Guid="b945c458a5ca7ae41be36dcf168435bb" ResourceName="UISpritesCommon" />
+      <Asset Guid="c2297153409ba7e44959c53739616143" ResourceName="UISpritesBuiltinRuntimes" />
       <Asset Guid="c5374311260dda040829148569659f11" ResourceName="ScriptableObjectAssets" />
       <Asset Guid="cd543c1a94c9a114aa34abf49788ea12" ResourceName="HotfixDLL" />
-      <Asset Guid="d9f5c1cd794a73c48a61abbd5e93485d" ResourceName="UI/UIForm/BuiltinRuntimesPrefab" />
+      <Asset Guid="d9f5c1cd794a73c48a61abbd5e93485d" ResourceName="UIFormBuiltinRuntimes" />
       <Asset Guid="e5094272e111f5644bd1c9f450ba1049" ResourceName="AotMetadata" />
-      <Asset Guid="f20095d0670c6044e8a5a67086b7f6bd" ResourceName="UI/UISprites/Common" />
+      <Asset Guid="f20095d0670c6044e8a5a67086b7f6bd" ResourceName="UISpritesCommon" />
     </Assets>
   </ResourceCollection>
 </UnityGameFramework>

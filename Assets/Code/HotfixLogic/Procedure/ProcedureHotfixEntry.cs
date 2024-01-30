@@ -234,7 +234,7 @@ namespace WhiteTea.HotfixLogic
         /// <param name="userData"></param>
         private void LoadFontFailed(string assetName , LoadResourceStatus status , string errorMessage , object userData)
         {
-            Log.Error("Can not load font '{0}' from '{1}' with error message '{2}'." , assetName , assetName , errorMessage);
+            Log.Error("Can not load font '{0}' from '{1}' with error message '{2}'" , assetName , assetName , errorMessage);
         }
         #endregion
     }

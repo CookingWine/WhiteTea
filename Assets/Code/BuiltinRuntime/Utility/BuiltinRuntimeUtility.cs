@@ -70,7 +70,7 @@ namespace WhiteTea.BuiltinRuntime
             /// <returns></returns>
             public static string GetFontAsset(string assetName)
             {
-                return Utility.Text.Format("Assets/HotfixAssets/Fonst/{0}.ttf" , assetName);
+                return Utility.Text.Format("Assets/HotfixAssets/Fonst/{0}" , assetName);
             }
 
             /// <summary>

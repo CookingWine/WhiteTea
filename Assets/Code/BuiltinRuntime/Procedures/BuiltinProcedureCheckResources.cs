@@ -75,13 +75,12 @@ namespace WhiteTea.BuiltinRuntime
         /// <param name="updateTotalCompressedLength">可更新的压缩后总大小。</param>
         private void OnCheckResourcesComplete(int movedCount , int removedCount , int updateCount , long updateTotalLength , long updateTotalCompressedLength)
         {
-            IResourceGroupCollection resourceGroupCollection=WTGame.Resource.GetResourceGroupCollection(WTGame.AppBuiltinConfigs.MustResourceGroup);
+            IResourceGroupCollection resourceGroupCollection = WTGame.Resource.GetResourceGroupCollection(WTGame.AppBuiltinConfigs.MustResourceGroup);
             if(resourceGroupCollection == null)
             {
                 Log.Error("{0}资源组不存在" , WTGame.AppBuiltinConfigs.MustResourceGroup);
                 return;
             }
-
             m_CheckReourcesComplete = true;
             m_NeedUpdateResources = !resourceGroupCollection.Ready;
             m_UpdateResourceCount = resourceGroupCollection.TotalCount - resourceGroupCollection.ReadyCount;

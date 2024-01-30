@@ -12,7 +12,6 @@ namespace WhiteTea.HotfixLogic
         protected internal override void OnEnter(IFsm procedureOwner)
         {
             base.OnEnter(procedureOwner);
-            Log.Debug("进入登录流程");
             m_LoginInterfaceId = (int)WTGame.UI.OpenUIForm(UIFormId.HotfixGameLoginInterface);
         }
         protected internal override void OnUpdate(IFsm procedureOwner , float elapseSeconds , float realElapseSeconds)

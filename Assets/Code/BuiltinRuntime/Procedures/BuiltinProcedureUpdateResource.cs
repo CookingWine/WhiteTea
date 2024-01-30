@@ -102,7 +102,7 @@ namespace WhiteTea.BuiltinRuntime
             string currentUpdateLength = BuiltinRuntimeUtility.ValuerUtility.GetByteLengthString(currentTotalUpdateLength);
             string totalUpdateLength = BuiltinRuntimeUtility.ValuerUtility.GetByteLengthString(m_UpdateTotalCompressedLength);
             string currentSpeed = BuiltinRuntimeUtility.ValuerUtility.GetByteLengthString((int)WTGame.Download.CurrentSpeed);
-            Log.Debug($"当前更新成功个数{m_UpdateSuccessCount}更新总个数{m_UpdateCount}进度{progressTotal}已更新大小{currentUpdateLength}总大小{totalUpdateLength}当前下载速度{currentSpeed}");
+            WTGame.BuiltinData.GameMainInterface.SetUpdateSchedule(progressTotal , currentUpdateLength , totalUpdateLength , currentSpeed);
         }
         /// <summary>
         /// 使用可更新模式并更新指定资源组完成时的回调函数。

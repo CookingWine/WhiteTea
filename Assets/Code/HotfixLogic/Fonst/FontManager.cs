@@ -26,7 +26,7 @@ namespace WhiteTea.HotfixLogic
         /// </summary>
         public readonly string[] FontAssets = new string[]
         {
-            "DongFangDaKai",
+            "DongFangDaKai.ttf",
         };
         /// <summary>
         /// 缓存的字体

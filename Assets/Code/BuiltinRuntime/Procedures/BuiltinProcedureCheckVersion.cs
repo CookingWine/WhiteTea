@@ -104,6 +104,12 @@ namespace WhiteTea.BuiltinRuntime
                 Log.Error("解析版本文件失败");
                 return;
             }
+            IResourceGroup[] group = WTGame.Resource.GetAllResourceGroups( );
+            string gr = string.Empty;
+            foreach(var item in  group)
+            {
+                gr += item.Name+"\n";
+            }
             string info = $"<color=lime>" +
                 $"是否需要强制更新:{m_VersionInfo.ForceUpdateGame}\n" +
                 $"最新得游戏版本:{m_VersionInfo.LatestGameVersion}\n" +
@@ -114,11 +120,11 @@ namespace WhiteTea.BuiltinRuntime
                 $"资源版本列表哈希值:{m_VersionInfo.VersionListHashCode} \n" +
                 $"资源版本列表压缩后长度:{m_VersionInfo.VersionListCompressedLength}\n" +
                 $"资源版本列表压缩后哈希值:{m_VersionInfo.VersionListCompressedHashCode}" +
+                $"更新的资源组为{gr}"+
                 $"</color>";
 
             Log.Info(info);
             WTGame.Resource.UpdatePrefixUri = m_VersionInfo.UpdatePrefixUri;
-            Log.Debug("当前获取得版本号为{0}更新地址为{1}" , m_VersionInfo.InternalGameVersion , m_VersionInfo.UpdatePrefixUri);
             m_NeedUpdateVersion = WTGame.Resource.CheckVersionList(m_VersionInfo.InternalResourceVersion) == CheckVersionListResult.NeedUpdate;
             m_CheckVersionComplete = true;
         }
