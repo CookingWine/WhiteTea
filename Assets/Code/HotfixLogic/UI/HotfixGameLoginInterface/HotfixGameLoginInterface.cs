@@ -54,7 +54,7 @@ namespace WhiteTea.HotfixLogic
                 OpenPopUpWindwos("提示" , "请先同意用户条款");
                 return;
             }
-            Log.Debug("等待进入游戏");
+            WTGame.UI.OpenUIForm(UIFormId.TransitionInterface);
         }
         /// <summary>
         /// 点击注销后执行

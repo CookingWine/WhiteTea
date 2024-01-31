@@ -213,10 +213,10 @@ namespace WhiteTea.HotfixLogic
         /// <summary>
         /// 加载字体成功回调
         /// </summary>
-        /// <param name="assetName"></param>
-        /// <param name="asset"></param>
-        /// <param name="duration"></param>
-        /// <param name="userData"></param>
+        /// <param name="assetName">要加载的资源名称。</param>
+        /// <param name="asset">已加载的资源。</param>
+        /// <param name="duration">加载持续时间。</param>
+        /// <param name="userData">用户自定义数据。</param>
         private void LoadFontSuccess(string assetName , object asset , float duration , object userData)
         {
             m_LoadedFlag[assetName] = true;
@@ -228,10 +228,10 @@ namespace WhiteTea.HotfixLogic
         /// <summary>
         /// 加载字体资源失败回调
         /// </summary>
-        /// <param name="assetName"></param>
-        /// <param name="status"></param>
-        /// <param name="errorMessage"></param>
-        /// <param name="userData"></param>
+        /// <param name="assetName">要加载的资源名称。</param>
+        /// <param name="status">加载资源状态。</param>
+        /// <param name="errorMessage">错误信息。</param>
+        /// <param name="userData">用户自定义数据。</param>
         private void LoadFontFailed(string assetName , LoadResourceStatus status , string errorMessage , object userData)
         {
             Log.Error("Can not load font '{0}' from '{1}' with error message '{2}'" , assetName , assetName , errorMessage);
