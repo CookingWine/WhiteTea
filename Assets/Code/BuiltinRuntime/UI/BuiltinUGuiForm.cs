@@ -110,8 +110,7 @@ namespace WhiteTea.BuiltinRuntime
             for(int i = 0; i < texts.Length; i++)
             {
                 texts[i].font = font;
-                BuiltinLocalizationKey item = texts[i].gameObject.GetComponent<BuiltinLocalizationKey>( );
-                if(item != null)
+                if(texts[i].gameObject.TryGetComponent<BuiltinLocalizationKey>(out var item))
                 {
                     if(!string.IsNullOrEmpty(item.LocalizationKey))
                     {

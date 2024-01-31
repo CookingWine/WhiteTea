@@ -45,7 +45,7 @@ namespace WhiteTea.GameEditor
                 //类名
                 sw.WriteLine("\t/// <summary>");
                 sw.WriteLine($"\t/// {dataTableProcessor.GetValue(0 , 1)}");
-                sw.WriteLine("\t/// <summary>");
+                sw.WriteLine("\t/// </summary>");
                 sw.WriteLine($"\tpublic enum {datatableName}");
                 sw.WriteLine("\t{");
 
@@ -55,7 +55,7 @@ namespace WhiteTea.GameEditor
                 {
                     sw.WriteLine("\t\t/// <summary>");
                     sw.WriteLine($"\t\t///{dataTableProcessor.GetValue(i , 2)}");
-                    sw.WriteLine("\t\t/// <summary>");
+                    sw.WriteLine("\t\t/// </summary>");
                     sw.WriteLine($"\t\t{dataTableProcessor.GetValue(i , 3)} = {dataTableProcessor.GetValue(i , 1)},");
                 }
 

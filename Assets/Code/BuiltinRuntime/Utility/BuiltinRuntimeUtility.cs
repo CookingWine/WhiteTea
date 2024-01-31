@@ -55,6 +55,15 @@ namespace WhiteTea.BuiltinRuntime
                 return Utility.Text.Format("Assets/HotfixAssets/DataTables/{0}.bytes" , assetName);
             }
             /// <summary>
+            /// 获取热更资源内的UIUISprites资源
+            /// </summary>
+            /// <param name="assetName"></param>
+            /// <returns></returns>
+            public static string GetHotfixUISpritesAssets(string assetName)
+            {
+                return Utility.Text.Format("Assets/HotfixAssets/UI/UISprites/{0}" , assetName);
+            }
+            /// <summary>
             /// 加载字典
             /// </summary>
             /// <param name="assetName"></param>

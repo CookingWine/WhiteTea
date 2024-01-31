@@ -17,5 +17,10 @@ namespace WhiteTea.BuiltinRuntime
         }
 
         public string Values;
+
+        public void SetLocalizationKey(string key)
+        {
+            m_LocalizationKey = key;
+        }
     }
 }

@@ -1,37 +1,25 @@
 //------------------------------------------------------------
 // 此文件由工具自动生成，请勿直接修改。
-// 生成时间：2024-01-29
+// 生成时间：2024-02-01
 //------------------------------------------------------------
 namespace WhiteTea.HotfixLogic
 {
 	/// <summary>
 	/// 界面配置表
-	/// <summary>
+	/// </summary>
 	public enum UIFormId
 	{
 		/// <summary>
 		///弹窗
-		/// <summary>
+		/// </summary>
 		PopUpWindows = 1001,
 		/// <summary>
+		///过渡界面
+		/// </summary>
+		TransitionInterface = 1002,
+		/// <summary>
 		///热更登录界面
-		/// <summary>
+		/// </summary>
 		HotfixGameLoginInterface = 100001,
-		/// <summary>
-		///测试3
-		/// <summary>
-		TestUIC = 100003,
-		/// <summary>
-		///测试4
-		/// <summary>
-		TestUID = 100004,
-		/// <summary>
-		///测试5
-		/// <summary>
-		TestUIE = 100005,
-		/// <summary>
-		///测试6
-		/// <summary>
-		TestUIF = 100006,
 	}
 }

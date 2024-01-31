@@ -3,8 +3,5 @@
 #	int		string	string	bool	bool	string
 #	界面编号	策划备注	资源名称	界面组名称	是否允许多个界面实例	是否暂停被其覆盖的界面	预制体路径基于HotfixAssets下UI内
 	1001	弹窗	PopUpWindows	Overlay	FALSE	FALSE	UIForms/BuiltinRuntimesPrefab/PopUpWindows
+	1002	过渡界面	TransitionInterface	Overlay	FALSE	FALSE	UIForms/BuiltinRuntimesPrefab/TransitionInterface
 	100001	热更登录界面	HotfixGameLoginInterface	BaseUI	FALSE	FALSE	UIForms/BuiltinRuntimesPrefab/HotfixGameLoginInterface
-	100003	测试3	TestUIC	BaseUI	FALSE	FALSE	
-	100004	测试4	TestUID	BaseUI	FALSE	FALSE	
-	100005	测试5	TestUIE	BaseUI	FALSE	FALSE	
-	100006	测试6	TestUIF	BaseUI	FALSE	FALSE	
