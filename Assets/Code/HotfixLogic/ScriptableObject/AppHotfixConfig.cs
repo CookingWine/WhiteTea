@@ -17,7 +17,10 @@ namespace WhiteTea.HotfixLogic
         {
             get
             {
-                return m_DataTables;
+                //return m_DataTables;
+
+                string[] temp = new string[3] { "UIForm" , "Scenes" ,"Music"};
+                return temp;
             }
         }
         [SerializeField]

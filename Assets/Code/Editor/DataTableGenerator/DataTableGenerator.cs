@@ -18,7 +18,9 @@ namespace WhiteTea.GameEditor.DataTableTools
         private static readonly Regex NameRegex = new Regex(@"^[A-Z][A-Za-z0-9_]*$");
         private readonly static string[] m_TempUIDataTable = new[]
         {
-            "UIForm"
+            "UIForm",
+            "Scenes",
+            "Music"
         };
         /// <summary>
         /// 生成数据表

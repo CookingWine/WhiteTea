@@ -91,6 +91,25 @@ namespace WhiteTea.BuiltinRuntime
             {
                 return Utility.Text.Format("Assets/HotfixAssets/UI/{0}.prefab" , assetName);
             }
+            /// <summary>
+            /// 获取背景音乐资源
+            /// </summary>
+            /// <param name="assetName"></param>
+            /// <returns></returns>
+            public static string GetMusicAssets(string assetName)
+            {
+                return Utility.Text.Format("Assets/HotfixAssets/Music/{0}.mp3" , assetName);
+            }
+
+            /// <summary>
+            /// 获取场景资源路径
+            /// </summary>
+            /// <param name="assetName"></param>
+            /// <returns></returns>
+            public static string GetSceneAsset(string assetName)
+            {
+                return Utility.Text.Format("Assets/HotfixAssets/Scenes/{0}.unity" , assetName);
+            }
 
             /// <summary>
             /// 获取热更dll资源

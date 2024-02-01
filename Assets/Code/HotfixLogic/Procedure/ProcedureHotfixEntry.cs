@@ -45,7 +45,8 @@ namespace WhiteTea.HotfixLogic
             m_current += elapseSeconds;
             if(m_current > 2.0f && m_LoadSuccess >= m_LoadedFlag.Count)
             {
-                ChangeState<ProcedureLogin>(procedureOwner);
+                procedureOwner.SetData<VarInt32>(HotfixConstantUtility.NextSceneID , (int)ScenesId.HotfixEntryScenes);
+                ChangeState<ProcedureChangeScene>(procedureOwner);
             }
 
         }
@@ -66,7 +67,10 @@ namespace WhiteTea.HotfixLogic
         /// </summary>
         private void StartLoadResources( )
         {
-            LoadDataTable("UIForm");
+            for(int i = 0; i < HotfixEntry.AppRuntimeConfig.DataTables.Length; i++)
+            {
+                LoadDataTable(HotfixEntry.AppRuntimeConfig.DataTables[i]);
+            }
             for(int i = 0; i < HotfixEntry.FontManagers.FontAssets.Length; i++)
             {
                 LoadFont(HotfixEntry.FontManagers.FontAssets[i]);

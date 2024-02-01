@@ -11,7 +11,7 @@ namespace WhiteTea.HotfixLogic
         {
             base.OnInit(userdata);
             GetBindComponents(ComponentTool);
-            HotfixEntry.Timer.AddTimer(0.2f , WTGame.BuiltinData.EnableResourceUI);
+            HotfixEntry.Timer.AddTimer(0.2f , WTGame.BuiltinData.CloseResourceUI);
             InitLoginInterfaceEvent( );
         }
 
@@ -54,6 +54,7 @@ namespace WhiteTea.HotfixLogic
                 OpenPopUpWindwos("提示" , "请先同意用户条款");
                 return;
             }
+            WTGame.Sound.StopMusic( );
             WTGame.UI.OpenUIForm(UIFormId.TransitionInterface);
         }
         /// <summary>

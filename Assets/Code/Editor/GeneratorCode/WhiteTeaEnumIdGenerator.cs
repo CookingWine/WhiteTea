@@ -9,6 +9,8 @@ namespace WhiteTea.GameEditor
     {
         private static readonly string[] EnumIdName = {
             "UIForm",
+             "Scenes",
+             "Music"
         };
 
         public static void GeneratorEnumIdFile(string dataTableName , DataTableProcessor dataTableProcessor)

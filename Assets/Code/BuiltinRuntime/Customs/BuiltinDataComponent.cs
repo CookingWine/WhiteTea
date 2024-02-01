@@ -39,7 +39,7 @@ namespace WhiteTea.BuiltinRuntime
             }
         }
 
-        public void EnableResourceUI( )
+        public void CloseResourceUI( )
         {
             GameMainInterface.Close( );
         }

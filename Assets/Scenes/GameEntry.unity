@@ -1540,14 +1540,24 @@ MonoBehaviour:
   m_EnablePlaySoundUpdateEvent: 0
   m_EnablePlaySoundDependencyAssetEvent: 0
   m_InstanceRoot: {fileID: 0}
-  m_AudioMixer: {fileID: 0}
+  m_AudioMixer: {fileID: 24100000, guid: c167c7270f905f04ebda74a40c288ea5, type: 2}
   m_SoundHelperTypeName: UnityGameFramework.Runtime.DefaultSoundHelper
   m_CustomSoundHelper: {fileID: 0}
   m_SoundGroupHelperTypeName: UnityGameFramework.Runtime.DefaultSoundGroupHelper
   m_CustomSoundGroupHelper: {fileID: 0}
   m_SoundAgentHelperTypeName: UnityGameFramework.Runtime.DefaultSoundAgentHelper
   m_CustomSoundAgentHelper: {fileID: 0}
-  m_SoundGroups: []
+  m_SoundGroups:
+  - m_Name: Music
+    m_AvoidBeingReplacedBySamePriority: 0
+    m_Mute: 0
+    m_Volume: 1
+    m_AgentHelperCount: 2
+  - m_Name: Sound
+    m_AvoidBeingReplacedBySamePriority: 0
+    m_Mute: 0
+    m_Volume: 1
+    m_AgentHelperCount: 1
 --- !u!114 &4988577304424977474
 MonoBehaviour:
   m_ObjectHideFlags: 0
