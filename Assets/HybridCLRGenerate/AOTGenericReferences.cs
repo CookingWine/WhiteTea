@@ -18,6 +18,7 @@ public class AOTGenericReferences : UnityEngine.MonoBehaviour
 
 	// {{ AOT generic types
 	// GameFramework.DataTable.IDataTable<object>
+	// GameFramework.Variable<int>
 	// System.Action<object>
 	// System.Collections.Generic.ArraySortHelper<object>
 	// System.Collections.Generic.Comparer<object>
@@ -89,12 +90,17 @@ public class AOTGenericReferences : UnityEngine.MonoBehaviour
 		// GameFramework.DataTable.IDataTable<object> GameFramework.DataTable.IDataTableManager.GetDataTable<object>()
 		// System.Void GameFramework.GameFrameworkLog.Debug<object>(string,object)
 		// System.Void GameFramework.GameFrameworkLog.Error<object,object,object>(string,object,object,object)
+		// System.Void GameFramework.GameFrameworkLog.Error<object,object>(string,object,object)
 		// System.Void GameFramework.GameFrameworkLog.Error<object>(string,object)
 		// System.Void GameFramework.GameFrameworkLog.Fatal<object>(string,object)
+		// System.Void GameFramework.GameFrameworkLog.Info<object,object,object,object>(string,object,object,object,object)
+		// System.Void GameFramework.GameFrameworkLog.Info<object,object>(string,object,object)
 		// System.Void GameFramework.GameFrameworkLog.Warning<object>(string,object)
+		// string GameFramework.Utility.Text.Format<object,object,object,object>(string,object,object,object,object)
 		// string GameFramework.Utility.Text.Format<object,object,object>(string,object,object,object)
 		// string GameFramework.Utility.Text.Format<object,object>(string,object,object)
 		// string GameFramework.Utility.Text.Format<object>(string,object)
+		// string GameFramework.Utility.Text.ITextHelper.Format<object,object,object,object>(string,object,object,object,object)
 		// string GameFramework.Utility.Text.ITextHelper.Format<object,object,object>(string,object,object,object)
 		// string GameFramework.Utility.Text.ITextHelper.Format<object,object>(string,object,object)
 		// string GameFramework.Utility.Text.ITextHelper.Format<object>(string,object)
@@ -102,8 +108,11 @@ public class AOTGenericReferences : UnityEngine.MonoBehaviour
 		// GameFramework.DataTable.IDataTable<object> UnityGameFramework.Runtime.DataTableComponent.GetDataTable<object>()
 		// System.Void UnityGameFramework.Runtime.Log.Debug<object>(string,object)
 		// System.Void UnityGameFramework.Runtime.Log.Error<object,object,object>(string,object,object,object)
+		// System.Void UnityGameFramework.Runtime.Log.Error<object,object>(string,object,object)
 		// System.Void UnityGameFramework.Runtime.Log.Error<object>(string,object)
 		// System.Void UnityGameFramework.Runtime.Log.Fatal<object>(string,object)
+		// System.Void UnityGameFramework.Runtime.Log.Info<object,object,object,object>(string,object,object,object,object)
+		// System.Void UnityGameFramework.Runtime.Log.Info<object,object>(string,object,object)
 		// System.Void UnityGameFramework.Runtime.Log.Warning<object>(string,object)
 		// object WhiteTea.BuiltinRuntime.BuiltinComponentAutoBindTool.GetBindComponent<object>(int)
 	}

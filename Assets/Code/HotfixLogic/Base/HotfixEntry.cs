@@ -165,6 +165,7 @@ namespace WhiteTea.HotfixLogic
             Timer = new TimerManager( );
             Event = new EventManager( );
             FontManagers = FontManager.Instance;
+            SystemSettings.Instance.InitSystemSetting( );
             Procedure = new ProcedureManager( );
             Procedure.Initialize(Fsm , GetHotfixProduce( ));
             Procedure.StartProcedure<ProcedureHotfixEntry>( );

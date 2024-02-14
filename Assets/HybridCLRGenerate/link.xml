@@ -9,10 +9,13 @@
     <type fullname="GameFramework.Resource.LoadAssetFailureCallback" preserve="all" />
     <type fullname="GameFramework.Resource.LoadAssetSuccessCallback" preserve="all" />
     <type fullname="GameFramework.Resource.LoadResourceStatus" preserve="all" />
+    <type fullname="GameFramework.Sound.PlaySoundParams" preserve="all" />
     <type fullname="GameFramework.UI.IUIGroup" preserve="all" />
     <type fullname="GameFramework.Utility" preserve="all" />
+    <type fullname="GameFramework.Utility/Random" preserve="all" />
     <type fullname="GameFramework.Utility/Text" preserve="all" />
     <type fullname="GameFramework.Variable" preserve="all" />
+    <type fullname="GameFramework.Variable`1" preserve="all" />
   </assembly>
   <assembly fullname="System">
     <type fullname="System.Collections.Generic.LinkedListNode`1" preserve="all" />
@@ -22,9 +25,11 @@
   <assembly fullname="UnityEngine.CoreModule">
     <type fullname="UnityEngine.Color" preserve="all" />
     <type fullname="UnityEngine.Color32" preserve="all" />
+    <type fullname="UnityEngine.Component" preserve="all" />
     <type fullname="UnityEngine.CreateAssetMenuAttribute" preserve="all" />
     <type fullname="UnityEngine.Events.UnityAction" preserve="all" />
     <type fullname="UnityEngine.Events.UnityEvent" preserve="all" />
+    <type fullname="UnityEngine.GameObject" preserve="all" />
     <type fullname="UnityEngine.HeaderAttribute" preserve="all" />
     <type fullname="UnityEngine.Mathf" preserve="all" />
     <type fullname="UnityEngine.Object" preserve="all" />
@@ -32,7 +37,9 @@
     <type fullname="UnityEngine.Rect" preserve="all" />
     <type fullname="UnityEngine.ScriptableObject" preserve="all" />
     <type fullname="UnityEngine.SerializeField" preserve="all" />
+    <type fullname="UnityEngine.Sprite" preserve="all" />
     <type fullname="UnityEngine.TextAsset" preserve="all" />
+    <type fullname="UnityEngine.Texture2D" preserve="all" />
     <type fullname="UnityEngine.Time" preserve="all" />
     <type fullname="UnityEngine.Vector2" preserve="all" />
     <type fullname="UnityEngine.Vector3" preserve="all" />
@@ -45,7 +52,9 @@
   <assembly fullname="UnityEngine.UI">
     <type fullname="UnityEngine.UI.Button" preserve="all" />
     <type fullname="UnityEngine.UI.Button/ButtonClickedEvent" preserve="all" />
+    <type fullname="UnityEngine.UI.Image" preserve="all" />
     <type fullname="UnityEngine.UI.Slider" preserve="all" />
+    <type fullname="UnityEngine.UI.Text" preserve="all" />
     <type fullname="UnityEngine.UI.Toggle" preserve="all" />
   </assembly>
   <assembly fullname="UnityEngine.UIModule">
@@ -53,8 +62,10 @@
   </assembly>
   <assembly fullname="UnityGameFramework.Runtime">
     <type fullname="BinaryExtension" preserve="all" />
+    <type fullname="UnityGameFramework.Runtime.BaseComponent" preserve="all" />
     <type fullname="UnityGameFramework.Runtime.DataRowBase" preserve="all" />
     <type fullname="UnityGameFramework.Runtime.DataTableComponent" preserve="all" />
+    <type fullname="UnityGameFramework.Runtime.Entity" preserve="all" />
     <type fullname="UnityGameFramework.Runtime.EventComponent" preserve="all" />
     <type fullname="UnityGameFramework.Runtime.LoadConfigFailureEventArgs" preserve="all" />
     <type fullname="UnityGameFramework.Runtime.LoadConfigSuccessEventArgs" preserve="all" />
@@ -62,15 +73,24 @@
     <type fullname="UnityGameFramework.Runtime.LoadDataTableSuccessEventArgs" preserve="all" />
     <type fullname="UnityGameFramework.Runtime.LoadDictionaryFailureEventArgs" preserve="all" />
     <type fullname="UnityGameFramework.Runtime.LoadDictionarySuccessEventArgs" preserve="all" />
+    <type fullname="UnityGameFramework.Runtime.LoadSceneDependencyAssetEventArgs" preserve="all" />
+    <type fullname="UnityGameFramework.Runtime.LoadSceneFailureEventArgs" preserve="all" />
+    <type fullname="UnityGameFramework.Runtime.LoadSceneSuccessEventArgs" preserve="all" />
+    <type fullname="UnityGameFramework.Runtime.LoadSceneUpdateEventArgs" preserve="all" />
+    <type fullname="UnityGameFramework.Runtime.LocalizationComponent" preserve="all" />
     <type fullname="UnityGameFramework.Runtime.Log" preserve="all" />
     <type fullname="UnityGameFramework.Runtime.ResourceComponent" preserve="all" />
+    <type fullname="UnityGameFramework.Runtime.SceneComponent" preserve="all" />
     <type fullname="UnityGameFramework.Runtime.ShutdownType" preserve="all" />
+    <type fullname="UnityGameFramework.Runtime.SoundComponent" preserve="all" />
     <type fullname="UnityGameFramework.Runtime.UIComponent" preserve="all" />
+    <type fullname="UnityGameFramework.Runtime.VarInt32" preserve="all" />
   </assembly>
   <assembly fullname="WhiteTea.BuiltinRuntime">
     <type fullname="WhiteTea.BuiltinRuntime.AppBuiltinSettings" preserve="all" />
     <type fullname="WhiteTea.BuiltinRuntime.BuiltinComponentAutoBindTool" preserve="all" />
     <type fullname="WhiteTea.BuiltinRuntime.BuiltinDataComponent" preserve="all" />
+    <type fullname="WhiteTea.BuiltinRuntime.BuiltinRuntimeExtend" preserve="all" />
     <type fullname="WhiteTea.BuiltinRuntime.BuiltinRuntimeUtility" preserve="all" />
     <type fullname="WhiteTea.BuiltinRuntime.BuiltinRuntimeUtility/AssetsUtility" preserve="all" />
     <type fullname="WhiteTea.BuiltinRuntime.BuiltinUGuiForm" preserve="all" />

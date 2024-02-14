@@ -50,6 +50,13 @@ namespace WhiteTea.HotfixLogic
             WTGame.Event.Subscribe(LoadSceneUpdateEventArgs.EventId , OnLoadSceneUpdate);
             WTGame.Event.Subscribe(LoadSceneDependencyAssetEventArgs.EventId , OnLoadSceneDependencyAsset);
 
+            //停止加载所以音效
+            WTGame.Sound.StopAllLoadingSounds( );
+            WTGame.Sound.StopAllLoadedSounds( );
+
+            //隐藏所有的实体
+            WTGame.Entity.HideAllLoadingEntities( );
+            WTGame.Entity.HideAllLoadedEntities( );
             //卸载所以场景
             string[] loadSceneAssetName = WTGame.Scene.GetLoadedSceneAssetNames( );
             for(int i = 0; i < loadSceneAssetName.Length; i++)

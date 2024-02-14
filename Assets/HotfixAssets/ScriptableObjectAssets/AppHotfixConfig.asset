@@ -13,5 +13,11 @@ MonoBehaviour:
   m_Name: AppHotfixConfig
   m_EditorClassIdentifier: 
   m_DataTables: []
-  m_AotFileList: []
-  m_HotfixProcedures: []
+  m_AotFileList:
+  - GameFramework
+  - UnityGameFramework.Runtime
+  m_HotfixProcedures:
+  - WhiteTea.HotfixLogic.ProcedureChangeScene
+  - WhiteTea.HotfixLogic.ProcedureHotfixEntry
+  - WhiteTea.HotfixLogic.ProcedureLogin
+  m_MustResourceGroup: []

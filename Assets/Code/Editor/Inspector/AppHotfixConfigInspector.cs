@@ -63,6 +63,7 @@ namespace WhiteTea.GameEditor
 
         public override void OnInspectorGUI( )
         {
+            //绘制AOT界面
             EditorGUILayout.BeginVertical("box");
             {
                 DrawAotFileList( );
@@ -83,6 +84,7 @@ namespace WhiteTea.GameEditor
             {
                 SaveConfigs(m_AppHotfixConfig);
             }
+            serializedObject.ApplyModifiedProperties( );
         }
 
         /// <summary>
@@ -95,10 +97,6 @@ namespace WhiteTea.GameEditor
             {
                 m_AotFileScrollPos = GUILayout.BeginScrollView(m_AotFileScrollPos);
                 {
-                    if(GUILayout.Button("加载AOT文件"))
-                    {
-                        LoadAotFile(m_AppHotfixConfig);
-                    }
                     EditorGUI.BeginChangeCheck( );
                     {
                         foreach(var item in m_AotFileList)
@@ -108,7 +106,7 @@ namespace WhiteTea.GameEditor
                     }
                     if(EditorGUI.EndChangeCheck( ))
                     {
-                        
+                        SaveConfigs(m_AppHotfixConfig);
                     }
                     if(GUILayout.Button("all select"))
                     {
@@ -139,7 +137,7 @@ namespace WhiteTea.GameEditor
                     }
                     if(EditorGUI.EndChangeCheck( ))
                     {
-                       
+
                     }
                     if(GUILayout.Button("all select"))
                     {
@@ -189,6 +187,7 @@ namespace WhiteTea.GameEditor
             }
             config.GetType( ).GetField("m_HotfixProcedures" , BindingFlags.Instance | BindingFlags.NonPublic).SetValue(config , procedures);
             #endregion
+            EditorUtility.SetDirty(config);
         }
 
         /// <summary>

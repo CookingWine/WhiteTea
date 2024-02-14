@@ -32,7 +32,7 @@ namespace WhiteTea.HotfixLogic
         /// <summary>
         /// 缓存的图片
         /// </summary>
-        private List<Sprite> m_Cache = new List<Sprite>( );
+        private readonly List<Sprite> m_Cache = new List<Sprite>( );
         protected override void OnInit(object userdata)
         {
             base.OnInit(userdata);

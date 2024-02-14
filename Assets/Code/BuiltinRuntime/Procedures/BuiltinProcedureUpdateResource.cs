@@ -55,7 +55,7 @@ namespace WhiteTea.BuiltinRuntime
             if(Application.internetReachability == NetworkReachability.ReachableViaCarrierDataNetwork)
             {
                 //TODO:打开弹窗
-                return;
+                //return;
             }
             StartUpdateResources(WTGame.AppBuiltinConfigs.MustResourceGroup);
         }

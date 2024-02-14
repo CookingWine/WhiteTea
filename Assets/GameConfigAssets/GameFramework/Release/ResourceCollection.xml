@@ -6,17 +6,33 @@
       <Resource Name="DataTables" LoadType="0" Packed="True" ResourceGroups="BuiltinRuntimes" />
       <Resource Name="Fonst" LoadType="0" Packed="True" ResourceGroups="BuiltinRuntimes" />
       <Resource Name="HotfixDLL" LoadType="0" Packed="True" ResourceGroups="BuiltinRuntimes" />
+      <Resource Name="Music" LoadType="0" Packed="True" ResourceGroups="BuiltinRuntimes" />
+      <Resource Name="Scenes" LoadType="0" Packed="True" ResourceGroups="BuiltinRuntimes" />
       <Resource Name="ScriptableObjectAssets" LoadType="0" Packed="True" ResourceGroups="BuiltinRuntimes" />
       <Resource Name="UIFormBuiltinRuntimes" LoadType="0" Packed="True" ResourceGroups="BuiltinRuntimes" />
       <Resource Name="UISpritesBuiltinRuntimes" LoadType="0" Packed="True" ResourceGroups="BuiltinRuntimes" />
       <Resource Name="UISpritesCommon" LoadType="0" Packed="True" ResourceGroups="BuiltinRuntimes" />
     </Resources>
     <Assets>
+      <Asset Guid="0141a8f62c9a60e4b8e098c854ec72a4" ResourceName="UISpritesBuiltinRuntimes" />
+      <Asset Guid="0615dbcaa8398a644a9b17a757958023" ResourceName="UISpritesBuiltinRuntimes" />
+      <Asset Guid="0c480ea0e9ec4c2498c302ba222f9d7f" ResourceName="DataTables" />
+      <Asset Guid="23cb6c81fd977b144992bbefe809a7a2" ResourceName="UISpritesBuiltinRuntimes" />
+      <Asset Guid="27fc211f9eb53414ca8481ae36eae2ea" ResourceName="DataTables" />
+      <Asset Guid="2b203fbaf6d2294429aba97df2800c1c" ResourceName="UISpritesCommon" />
+      <Asset Guid="3205e0c73a30da2479e66e1a5a27c6df" ResourceName="UIFormBuiltinRuntimes" />
       <Asset Guid="323620e462a9cb8408c87b3df2f117d4" ResourceName="UISpritesCommon" />
+      <Asset Guid="325e88d6901da2248932b1e58f8865dc" ResourceName="UISpritesBuiltinRuntimes" />
       <Asset Guid="4587e6e081d5b424c8e63e4b20afeab6" ResourceName="UIFormBuiltinRuntimes" />
+      <Asset Guid="46323bf1ed7aa2d43a4e74ad2ada5d1f" ResourceName="UISpritesBuiltinRuntimes" />
+      <Asset Guid="4965c6271281e6744b0a6c72437e8df7" ResourceName="Scenes" />
+      <Asset Guid="49cb2c4a2bebec6418a41e17c1d64d47" ResourceName="UISpritesBuiltinRuntimes" />
       <Asset Guid="54efa25681d48944390d8c70a75e0562" ResourceName="UISpritesBuiltinRuntimes" />
+      <Asset Guid="61a7265ef59534848acba003e40db59f" ResourceName="UISpritesBuiltinRuntimes" />
+      <Asset Guid="8c71dcc4293b33e40a7e72cdfdcd3a18" ResourceName="UISpritesBuiltinRuntimes" />
       <Asset Guid="8ec13b0fb77c7af429033dbe6281bec0" ResourceName="DataTables" />
       <Asset Guid="907eb70d0b383b04d9dad9936e236095" ResourceName="Fonst" />
+      <Asset Guid="9cdd35468365c934cbe5b8bff6960d51" ResourceName="UISpritesBuiltinRuntimes" />
       <Asset Guid="af3dfd67c15d37145939a8d0e4bec965" ResourceName="UISpritesCommon" />
       <Asset Guid="afef011c29a672044b8e226e7551a4b5" ResourceName="AotMetadata" />
       <Asset Guid="b945c458a5ca7ae41be36dcf168435bb" ResourceName="UISpritesCommon" />
@@ -25,6 +41,8 @@
       <Asset Guid="cd543c1a94c9a114aa34abf49788ea12" ResourceName="HotfixDLL" />
       <Asset Guid="d9f5c1cd794a73c48a61abbd5e93485d" ResourceName="UIFormBuiltinRuntimes" />
       <Asset Guid="e5094272e111f5644bd1c9f450ba1049" ResourceName="AotMetadata" />
+      <Asset Guid="e9c2d0530039c6f4684ab68f8e2fade7" ResourceName="UISpritesBuiltinRuntimes" />
+      <Asset Guid="effb2625ef11a9e4f8dc3fbe502ff78d" ResourceName="Music" />
       <Asset Guid="f20095d0670c6044e8a5a67086b7f6bd" ResourceName="UISpritesCommon" />
     </Assets>
   </ResourceCollection>

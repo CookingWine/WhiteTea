@@ -103,3 +103,23 @@ MonoBehaviour:
     packed: 1
     filterType: 0
     searchPatterns: '*.*'
+  - valid: 1
+    name: Scenes
+    variant: 
+    fileSystem: 
+    groups: BuiltinRuntimes
+    assetsDirectoryPath: Assets/HotfixAssets/Scenes
+    loadType: 0
+    packed: 1
+    filterType: 0
+    searchPatterns: '*.*'
+  - valid: 1
+    name: Music
+    variant: 
+    fileSystem: 
+    groups: BuiltinRuntimes
+    assetsDirectoryPath: Assets/HotfixAssets/Music
+    loadType: 0
+    packed: 1
+    filterType: 0
+    searchPatterns: '*.*'

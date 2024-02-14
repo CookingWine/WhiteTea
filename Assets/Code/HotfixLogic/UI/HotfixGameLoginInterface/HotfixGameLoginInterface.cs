@@ -4,14 +4,16 @@ using WhiteTea.BuiltinRuntime;
 //自动生成于：
 namespace WhiteTea.HotfixLogic
 {
-
+    /// <summary>
+    /// 热更登录界面
+    /// </summary>
     public partial class HotfixGameLoginInterface:BuiltinUGuiForm
     {
         protected override void OnInit(object userdata)
         {
             base.OnInit(userdata);
             GetBindComponents(ComponentTool);
-            HotfixEntry.Timer.AddTimer(0.2f , WTGame.BuiltinData.CloseResourceUI);
+            HotfixEntry.Timer.AddTimer(0.2f , WTGame.BuiltinData.CloseGameMainInterface);
             InitLoginInterfaceEvent( );
         }
 
@@ -83,7 +85,7 @@ namespace WhiteTea.HotfixLogic
         /// </summary>
         private void SoundCallback( )
         {
-            OpenPopUpWindwos("提示" , "等待系统设置开发，谢谢！");
+           SystemSettings.Instance.ChangeTotalGameVolumeState( );
         }
 
 

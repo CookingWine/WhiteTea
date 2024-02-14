@@ -1,3 +1,9 @@
+#if UNITY_EDITOR
+using GameFramework;
+using GameFramework.Resource;
+using System.Threading.Tasks;
+using WhiteTea.BuiltinRuntime;
+#endif
 using UnityEngine;
 
 namespace WhiteTea.HotfixLogic
@@ -19,7 +25,7 @@ namespace WhiteTea.HotfixLogic
             {
                 //return m_DataTables;
 
-                string[] temp = new string[3] { "UIForm" , "Scenes" ,"Music"};
+                string[] temp = new string[3] { "UIForm" , "Scenes" , "Music" };
                 return temp;
             }
         }
@@ -67,5 +73,46 @@ namespace WhiteTea.HotfixLogic
                 return m_MustResourceGroup;
             }
         }
+
+#if UNITY_EDITOR
+        /// <summary>
+        /// 获取热更配置
+        /// </summary>
+        /// <returns></returns>
+        public static async Task<AppHotfixConfig> GetAppHotfixConfig( )
+        {
+            var config = BuiltinRuntimeUtility.AssetsUtility.GetHotfixUISpritesAssets(WTGame.AppBuiltinConfigs.AppHotfixConfig);
+            AppHotfixConfig data = await LoadAssets<AppHotfixConfig>(config);
+            return data;
+        }
+
+        private static Task<T> LoadAssets<T>(string assetName)
+        {
+            TaskCompletionSource<T> loadAssetTcs = new TaskCompletionSource<T>( );
+            WTGame.Resource.LoadAsset(assetName , typeof(T) , new LoadAssetCallbacks(
+                (tempAssetName , asset , duration , userdata) =>
+                {
+                    var source = loadAssetTcs;
+                    loadAssetTcs = null;
+                    if(asset is T tAsset)
+                    {
+                        source.SetResult(tAsset);
+                    }
+                    else
+                    {
+                        Debug.LogError($"Load asset failure load type is {asset.GetType( )} but asset type is {typeof(T)}.");
+                        source.SetException(new GameFrameworkException($"Load asset failure load type is {asset.GetType( )} but asset type is {typeof(T)}."));
+                    }
+                } ,
+                (tempAssetName , status , errorMessage , userdata) =>
+                {
+                    Debug.LogError(errorMessage);
+                    loadAssetTcs.SetException(new GameFrameworkException(errorMessage));
+                }
+            ));
+
+            return loadAssetTcs.Task;
+        }
+#endif
     }
 }
