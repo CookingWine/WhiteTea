@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 187bb3993d9802c4e8f46bc3ab4e1a5b, type: 3}
   m_Name: AppHotfixConfig
   m_EditorClassIdentifier: 
-  m_DataTables: []
+  m_DataTables:
+  - Music
+  - Scenes
+  - UIForm
   m_AotFileList:
   - GameFramework
   - UnityGameFramework.Runtime

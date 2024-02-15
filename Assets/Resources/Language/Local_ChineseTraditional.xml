@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Dictionaries>
-<Dictionary Language="ChineseTraditional">
-    <String Key="Language_English" Value="英語" />
-    <String Key="Language.ChineseSimplified" Value="簡體中文" />
-    <String Key="Language.ChineseTraditional" Value="繁體中文" />
-    <String Key="Language.Korean" Value="韓語" />
-    <String Key="CheckVersion.Tips" Value="正在檢查遊戲是否需要更新，請稍候……" />
-    <String Key="UpdateResource.Tips" Value="{0}/{1}, {2}/{3}, {4:P0}, {5}/s" />
-    <String Key="UpdateResource.Version" Value="當前版本號:{0}" />
-    <String Key="UpdateResource.CheckVersion" Value="检查版本..." />
-    <String Key="UpdateResource.UpdateVersion" Value="更新版本..." />
-    <String Key="UpdateResource.CheckResources" Value="检查资源..." />
-    <String Key="UpdateResource.UpdateResources" Value="更新资源..." />
-    <String Key="UpdateResource.PreloadResources" Value="正在加载资源..." />
-  </Dictionary>
+    <Dictionary Language="ChineseTraditional">
+        <String Key="Language_English" Value="英語" />
+        <String Key="Language.ChineseSimplified" Value="簡體中文" />
+        <String Key="Language.ChineseTraditional" Value="繁體中文" />
+        <String Key="CheckVersion.Tips" Value="正在檢查遊戲是否需要更新，請稍候……" />
+        <String Key="UpdateResource.Tips" Value="{0}/{1}, {2}/{3}, {4:P0}, {5}/s" />
+        <String Key="UpdateResource.Version" Value="當前版本號:{0}" />
+        <String Key="UpdateResource.CheckVersion" Value="检查版本..." />
+        <String Key="UpdateResource.UpdateVersion" Value="更新版本..." />
+        <String Key="UpdateResource.CheckResources" Value="检查资源..." />
+        <String Key="UpdateResource.UpdateResources" Value="更新资源..." />
+        <String Key="UpdateResource.PreloadResources" Value="正在加载资源..." />
+    </Dictionary>
 </Dictionaries>

@@ -278,8 +278,6 @@ namespace WhiteTea.GameEditor
             EditorGUILayout.EndVertical( );
         }
 
-
-
         /// <summary>
         /// 添加绑定数据
         /// </summary>

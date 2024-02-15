@@ -1,4 +1,6 @@
 using GameFramework;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using UnityEditor;
@@ -42,6 +44,13 @@ namespace WhiteTea.GameEditor
         private bool m_DrawProcedures;
         private Vector2 m_ProceduresScrollPos;
 
+        /// <summary>
+        /// 绘制数据表
+        /// </summary>
+        private List<SelectAssetsData> m_DataTable;
+        private bool m_DrawDataTableFile;
+        private Vector2 m_DataTableScrollPos;
+
         private void OnEnable( )
         {
             m_AppHotfixConfig = (AppHotfixConfig)target;
@@ -55,6 +64,7 @@ namespace WhiteTea.GameEditor
             m_SelectedStyle.normal.textColor = Color.green;
             m_DrawProcedures = true;
             m_DrawAotFile = true;
+            m_DrawDataTableFile = true;
             if(m_AppHotfixConfig != null)
             {
                 LoadAppHotfixConfigData(m_AppHotfixConfig);
@@ -76,6 +86,14 @@ namespace WhiteTea.GameEditor
             EditorGUILayout.BeginVertical("box");
             {
                 DrawProcedures( );
+            }
+            EditorGUILayout.EndVertical( );
+
+            EditorGUILayout.Space(2);
+            //绘制数据表
+            EditorGUILayout.BeginVertical("box");
+            {
+                DrawDataTable( );
             }
             EditorGUILayout.EndVertical( );
 
@@ -108,13 +126,13 @@ namespace WhiteTea.GameEditor
                     {
                         SaveConfigs(m_AppHotfixConfig);
                     }
-                    if(GUILayout.Button("all select"))
-                    {
-                        foreach(var item in m_AotFileList)
-                        {
-                            item.IsEnable = true;
-                        }
-                    }
+                    //if(GUILayout.Button("all select"))
+                    //{
+                    //    foreach(var item in m_AotFileList)
+                    //    {
+                    //        item.IsEnable = true;
+                    //    }
+                    //}
                 }
                 GUILayout.EndScrollView( );
             }
@@ -137,14 +155,35 @@ namespace WhiteTea.GameEditor
                     }
                     if(EditorGUI.EndChangeCheck( ))
                     {
-
+                        SaveConfigs(m_AppHotfixConfig);
                     }
-                    if(GUILayout.Button("all select"))
+                    //if(GUILayout.Button("all select"))
+                    //{
+                    //    foreach(var item in m_Procedures)
+                    //    {
+                    //        item.IsEnable = true;
+                    //    }
+                    //}
+                }
+                GUILayout.EndScrollView( );
+            }
+        }
+
+        private void DrawDataTable( )
+        {
+            m_DrawDataTableFile = EditorGUILayout.Foldout(m_DrawDataTableFile , "数据表:");
+            if(m_DrawDataTableFile)
+            {
+                m_DataTableScrollPos = GUILayout.BeginScrollView(m_DataTableScrollPos);
+                {
+                    EditorGUI.BeginChangeCheck( );
+                    foreach(var item in m_DataTable)
                     {
-                        foreach(var item in m_Procedures)
-                        {
-                            item.IsEnable = true;
-                        }
+                        item.IsEnable = EditorGUILayout.ToggleLeft(item.AssetsName , item.IsEnable , item.IsEnable ? m_SelectedStyle : m_NormalStyle);
+                    }
+                    if(EditorGUI.EndChangeCheck( ))
+                    {
+                        SaveConfigs(m_AppHotfixConfig);
                     }
                 }
                 GUILayout.EndScrollView( );
@@ -159,6 +198,7 @@ namespace WhiteTea.GameEditor
         {
             LoadAotFile(config);
             LoadHotfixProcedure(config);
+            LoadDataTable(config);
         }
 
         private void SaveConfigs(AppHotfixConfig config)
@@ -186,6 +226,20 @@ namespace WhiteTea.GameEditor
                 }
             }
             config.GetType( ).GetField("m_HotfixProcedures" , BindingFlags.Instance | BindingFlags.NonPublic).SetValue(config , procedures);
+            #endregion
+
+            #region DataTable
+            List<string> dataTemp = new List<string>( );
+            foreach(var item in m_DataTable)
+            {
+                if(item.IsEnable)
+                {
+                    string temp = Path.GetFileNameWithoutExtension(item.AssetsName);
+                    dataTemp.Add(temp);
+                }
+            }
+            config.GetType( ).GetField("m_DataTables" , BindingFlags.Instance | BindingFlags.NonPublic).SetValue(config , dataTemp.ToArray());
+
             #endregion
             EditorUtility.SetDirty(config);
         }
@@ -228,6 +282,34 @@ namespace WhiteTea.GameEditor
                     var proceName = proceClass.FullName;
                     ArrayUtility.Add(ref m_Procedures , new SelectAssetsData(proceName , config.HotfixProcedure.Contains(proceName)));
                 }
+            }
+        }
+
+        /// <summary>
+        /// 加载数据表
+        /// </summary>
+        private void LoadDataTable(AppHotfixConfig config)
+        {
+            string dataPath = WhiteTeaEditorConfigs.DataTablePath;
+            if(!Directory.Exists(dataPath) || config == null)
+            {
+                return;
+            }
+            var data = Directory.GetFiles(dataPath , "*" , SearchOption.AllDirectories);
+
+            data = data.Where(name =>
+            {
+                var ext = Path.GetExtension(name).ToLower( );
+                return ext.CompareTo(".txt") == 0;
+            }).ToArray( );
+            m_DataTable ??= new List<SelectAssetsData>( );
+            m_DataTable.Clear( );
+            foreach(var item in data)
+            {
+                var dataName = Path.GetFileNameWithoutExtension(item);
+
+                var isOn = ArrayUtility.Contains(config.DataTables , dataName);
+                m_DataTable.Add(new SelectAssetsData(dataName , isOn));
             }
         }
     }
