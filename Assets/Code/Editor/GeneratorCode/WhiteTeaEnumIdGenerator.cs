@@ -7,24 +7,9 @@ namespace WhiteTea.GameEditor
 {
     public static class WhiteTeaEnumIdGenerator
     {
-        private static readonly string[] EnumIdName = {
-            "UIForm",
-             "Scenes",
-             "Music"
-        };
-
         public static void GeneratorEnumIdFile(string dataTableName , DataTableProcessor dataTableProcessor)
         {
-
-            for(int i = 0; i < EnumIdName.Length; i++)
-            {
-                if(EnumIdName[i].Equals(dataTableName))
-                {
-                    StreamWriter(dataTableProcessor , WhiteTeaEditorConfigs.HotfixAssemblyMainReadOnly , WhiteTeaEditorConfigs.CSharpResourceCodePath , $"{EnumIdName[i]}Id");
-                    break;
-                }
-            }
-
+            StreamWriter(dataTableProcessor , WhiteTeaEditorConfigs.HotfixAssemblyMainReadOnly , WhiteTeaEditorConfigs.CSharpResourceCodePath , $"{dataTableName}Id");
         }
         private static void StreamWriter(DataTableProcessor dataTableProcessor , string nmespace , string codePath , string datatableName)
         {

@@ -215,7 +215,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1299293935}
+  - {fileID: 779128515}
   - {fileID: 1125297073}
   - {fileID: 1118788986}
   - {fileID: 1760156480}
@@ -295,17 +295,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!224 &1118788986 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 1894490937696150092, guid: 3205e0c73a30da2479e66e1a5a27c6df, type: 3}
-  m_PrefabInstance: {fileID: 1894490936583143222}
-  m_PrefabAsset: {fileID: 0}
---- !u!224 &1125297073 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 7376018312243124049, guid: 4587e6e081d5b424c8e63e4b20afeab6, type: 3}
-  m_PrefabInstance: {fileID: 7376018313301048544}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &1299293934
+--- !u!1001 &779128514
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -315,10 +305,6 @@ PrefabInstance:
     - target: {fileID: 8438938869033730352, guid: d9f5c1cd794a73c48a61abbd5e93485d, type: 3}
       propertyPath: m_Name
       value: HotfixGameLoginInterface
-      objectReference: {fileID: 0}
-    - target: {fileID: 8438938869033730352, guid: d9f5c1cd794a73c48a61abbd5e93485d, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8438938869033730355, guid: d9f5c1cd794a73c48a61abbd5e93485d, type: 3}
       propertyPath: m_Pivot.x
@@ -404,13 +390,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 4572388213487233435, guid: d9f5c1cd794a73c48a61abbd5e93485d, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d9f5c1cd794a73c48a61abbd5e93485d, type: 3}
---- !u!224 &1299293935 stripped
+--- !u!224 &779128515 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8438938869033730355, guid: d9f5c1cd794a73c48a61abbd5e93485d, type: 3}
-  m_PrefabInstance: {fileID: 1299293934}
+  m_PrefabInstance: {fileID: 779128514}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &1118788986 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 1894490937696150092, guid: 3205e0c73a30da2479e66e1a5a27c6df, type: 3}
+  m_PrefabInstance: {fileID: 1894490936583143222}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &1125297073 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 7376018312243124049, guid: 4587e6e081d5b424c8e63e4b20afeab6, type: 3}
+  m_PrefabInstance: {fileID: 7376018313301048544}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1416410484
 GameObject:

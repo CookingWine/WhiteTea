@@ -2,6 +2,7 @@ using GameFramework;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using UnityEditor;
@@ -16,18 +17,29 @@ namespace WhiteTea.GameEditor.DataTableTools
     {
         private static readonly Regex EndWithNumberRegex = new Regex(@"\d+$");
         private static readonly Regex NameRegex = new Regex(@"^[A-Z][A-Za-z0-9_]*$");
-        private readonly static string[] m_TempUIDataTable = new[]
-        {
-            "UIForm",
-            "Scenes",
-            "Music"
-        };
         /// <summary>
         /// 生成数据表
         /// </summary>
         public static void GeneratorDataTables( )
         {
-            foreach(string dataTableName in m_TempUIDataTable)
+            if(!Directory.Exists(WhiteTeaEditorConfigs.DataTablePath))
+            {
+                Debug.LogError("路径为空,生成数据表失败");
+                return;
+            }
+            var files = Directory.GetFiles(WhiteTeaEditorConfigs.DataTablePath , "*" , SearchOption.AllDirectories);
+            files = files.Where(name =>
+            {
+                var ext = Path.GetExtension(name).ToLower( );
+                return ext.CompareTo(".txt") == 0;
+            }).ToArray( );
+            List<string> temp = new List<string>( );
+            foreach(var item in files)
+            {
+                var dataTableName = Path.GetFileNameWithoutExtension(item);
+                temp.Add( dataTableName );
+            }
+            foreach(string dataTableName in temp)
             {
                 DataTableProcessor dataTableProcessor = CreateDataTableProcessor(dataTableName);
                 if(!CheckRawData(dataTableProcessor , dataTableName))
