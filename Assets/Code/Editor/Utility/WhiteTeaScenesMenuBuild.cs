@@ -23,7 +23,7 @@ namespace WhiteTea.GameEditor
                 string sceneFilename = AssetDatabase.GUIDToAssetPath(sceneGuid);
                 string sceneName = Path.GetFileNameWithoutExtension(sceneFilename);
                 string methodName = sceneFilename.Replace('/' , '_').Replace('\\' , '_').Replace('.' , '_').Replace('-' , '_');
-                stringBuilder.AppendLine(string.Format("        [MenuItem(\"White Tea Game/Scenes/{0}\", priority = 10)]" , sceneName));
+                stringBuilder.AppendLine(string.Format("        [MenuItem(\"白茶游戏配置/切换场景/{0}\", priority = 10)]" , sceneName));
                 stringBuilder.AppendLine(string.Format("        public static void {0}()" , methodName ));
                 stringBuilder.AppendLine("        {");
                 stringBuilder.AppendLine(string.Format("          OpenScene(\"{0}\"); ", sceneFilename));

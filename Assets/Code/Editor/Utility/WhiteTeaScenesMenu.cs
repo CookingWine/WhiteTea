@@ -4,13 +4,19 @@ namespace WhiteTea.GameEditor
 {
   public static class WhiteTeaScenesMenu
   {
-        [MenuItem("White Tea Game/Scenes/GameEntry", priority = 10)]
+        [MenuItem("白茶游戏配置/切换场景/HotfixEntryScenes", priority = 10)]
+        public static void Assets_HotfixAssets_Scenes_HotfixEntryScenes_unity()
+        {
+          OpenScene("Assets/HotfixAssets/Scenes/HotfixEntryScenes.unity"); 
+        }
+
+        [MenuItem("白茶游戏配置/切换场景/GameEntry", priority = 10)]
         public static void Assets_Scenes_GameEntry_unity()
         {
           OpenScene("Assets/Scenes/GameEntry.unity"); 
         }
 
-        [MenuItem("White Tea Game/Scenes/UIEditorScene", priority = 10)]
+        [MenuItem("白茶游戏配置/切换场景/UIEditorScene", priority = 10)]
         public static void Assets_Scenes_UIEditorScene_unity()
         {
           OpenScene("Assets/Scenes/UIEditorScene.unity"); 

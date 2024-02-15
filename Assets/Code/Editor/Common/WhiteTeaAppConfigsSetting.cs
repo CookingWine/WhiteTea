@@ -2,6 +2,7 @@ using UnityEditor;
 using UnityEngine;
 using WhiteTea.BuiltinRuntime;
 using WhiteTea.GameEditor.DataTableTools;
+using WhiteTea.HotfixLogic;
 namespace WhiteTea.GameEditor
 {
     internal sealed partial class WhiteTeaEditorConfigs
@@ -11,27 +12,23 @@ namespace WhiteTea.GameEditor
         /// <summary>
         /// 生成app配置
         /// </summary>
-        [MenuItem("White Tea Game/App Setting/Builting Config" , false , 11)]
+        [MenuItem("白茶游戏配置/应用设置/生成App配置" , false , 11)]
         private static void GeneratorAppBuiltinSettings( )
         {
             if(AppBuiltinSettings.Instance == null)
             {
                 AssetDatabase.CreateAsset(ScriptableObject.CreateInstance<AppBuiltinSettings>( ) , $"Assets/Resources/{BuiltinRuntimeUtility.AppBuiltinSettingsName}.asset");
             }
+            else
+            {
+                EditorUtility.DisplayDialog("警告！" , "已经生成过APP配置了，请勿再次生成！" , "确定");
+            }
         }
 
-        /// <summary>
-        /// 生成hotfix配置
-        /// </summary>
-        [MenuItem("White Tea Game/App Setting/Hotfix Config" , false , 12)]
-        private static void GeneratorAppHotfixSettings( )
-        {
-
-        }
         /// <summary>
         /// 本地化语言编辑器
         /// </summary>
-        [MenuItem("White Tea Game/App Setting/Localization Languages Editor" , false , 13)]
+        [MenuItem("白茶游戏配置/应用设置/本地语言编辑器" , false , 13)]
         private static void LocalizationLanguageSetting( )
         {
             WhiteTeaLocalizationConfigs.LoadLocalizationLanguage( );
@@ -39,7 +36,7 @@ namespace WhiteTea.GameEditor
         /// <summary>
         /// 游戏配置器
         /// </summary>
-        [MenuItem("White Tea Game/Game Config" , false , 1)]
+        [MenuItem("白茶游戏配置/游戏配置" , false , 1)]
         private static void WhiteTeaGameConfigs( )
         {
             GameConfigs.WhiteTeaGameConfigs.Instance.LoadWhiteTeaGameConfigsWindow( );
@@ -48,12 +45,12 @@ namespace WhiteTea.GameEditor
         /// <summary>
         /// 生成数据表
         /// </summary>
-        [MenuItem("White Tea Game/Generator/ Data Table" , false , 121)]
+        [MenuItem("白茶游戏配置/生成配置/生成数据表" , false , 121)]
         private static void GeneratorDataTables( )
         {
             DataTableGenerator.GeneratorDataTables( );
         }
-        [MenuItem("White Tea Game/Generator/Entity And UIForm Code")]
+        [MenuItem("白茶游戏配置/生成配置/实体与UI代码生成")]
         private static void OpenCodeGeneratorWindow( )
         {
             WhiteTeaEntityAndUIFormGenerator.OpenCodeGeneratorWindow( );
@@ -61,7 +58,7 @@ namespace WhiteTea.GameEditor
         /// <summary>
         /// 生成热更dll
         /// </summary>
-        [MenuItem("White Tea Game/Generator/Hotfix Dll" , false , 123)]
+        [MenuItem("白茶游戏配置/生成配置/生成Hotfix配置" , false , 123)]
         private static void GeneratorHotfixDLL( )
         {
             WhiteTeaHybridCLRConfigs.CopyHotUpdateAssemblies( );
@@ -70,7 +67,7 @@ namespace WhiteTea.GameEditor
         /// <summary>
         /// 补充aot数据
         /// </summary>
-        [MenuItem("White Tea Game/Generator/Aot Data" , false , 124)]
+        [MenuItem("白茶游戏配置/生成配置/生成AOT数据" , false , 124)]
         private static void GeneratorAotData( )
         {
             WhiteTeaHybridCLRConfigs.CopyAOTAssemblies( );
@@ -78,7 +75,7 @@ namespace WhiteTea.GameEditor
         /// <summary>
         /// 生成所有的数据
         /// </summary>
-        [MenuItem("White Tea Game/Generator/Generator All Game Data" , false , 100)]
+        [MenuItem("白茶游戏配置/生成配置/生成所有游戏配置" , false , 100)]
         private static void GeneratorAllGameFile( )
         {
             GeneratorDataTables( );
@@ -87,7 +84,7 @@ namespace WhiteTea.GameEditor
 
         #endregion
 
-        [MenuItem("White Tea Game/Scenes/Update This List" , false , 140)]
+        [MenuItem("白茶游戏配置/切换场景/更新场景列表" , false , 140)]
         private static void UpdateSceneList( )
         {
             WhiteTeaScenesMenuBuild.UpdateList( );
@@ -98,7 +95,7 @@ namespace WhiteTea.GameEditor
         /// <summary>
         /// 切换为正式版本
         /// </summary>
-        [MenuItem("White Tea Game/Game Macro/Switch Release" , false , 52)]
+        [MenuItem("白茶游戏配置/宏配置/切换到正式版" , false , 52)]
         private static void BetaPackageSetting( )
         {
             WhiteTeaGameUtility.SetAppCompanyAndProductName("WhiteTea");
@@ -108,7 +105,7 @@ namespace WhiteTea.GameEditor
         /// <summary>
         /// 切换Beta版本
         /// </summary>
-        [MenuItem("White Tea Game/Game Macro/Switch Beta" , false , 52)]
+        [MenuItem("白茶游戏配置/宏配置/切换到测试版" , false , 52)]
         private static void ReleasePackageSetting( )
         {
             WhiteTeaGameUtility.SetAppCompanyAndProductName("WhiteTea_Beta");
