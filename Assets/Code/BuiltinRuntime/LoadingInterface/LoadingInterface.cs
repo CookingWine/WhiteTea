@@ -28,7 +28,25 @@ namespace WhiteTea.BuiltinRuntime
             yield return new WaitForEndOfFrame( );
             gameObject.SetActive(false);
         }
-
+        /// <summary>
+        /// 设置更新进度
+        /// </summary>
+        /// <param name="schedule">进度</param>
+        public void SetUpdateSchedule(float schedule)
+        {
+            UpdateProgressBar.fillAmount = schedule;
+            ProgressBarText.text = (int)( schedule * 100 ) + "%";
+        }
+        /// <summary>
+        /// 设置更新进度
+        /// </summary>
+        /// <param name="content">内容</param>
+        /// /// <param name="schedule">进度</param>
+        public void SetUpdateSchedule(string content , float schedule)
+        {
+            UpdateProgressBar.fillAmount = schedule;
+            ProgressBarText.text = content + (int)( schedule * 100 ) + "%";
+        }
         /// <summary>
         /// 设置更新进度
         /// </summary>
@@ -39,7 +57,7 @@ namespace WhiteTea.BuiltinRuntime
         public void SetUpdateSchedule(float schedule , string currentUpdateLength , string totalUpdateLength , string currentSpeed)
         {
             UpdateProgressBar.fillAmount = schedule;
-            ProgressBarText.text = schedule * 100 + "%";
+            ProgressBarText.text = (int)( schedule * 100 ) + "%";
         }
     }
 }

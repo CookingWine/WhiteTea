@@ -12,6 +12,7 @@ namespace WhiteTea.HotfixLogic
         {
             base.OnEnter(procedureOwner);
             m_LoginInterfaceId = (int)WTGame.UI.OpenUIForm(UIFormId.HotfixGameLoginInterface);
+            //TODO:验证本地账户是否登录
         }
         protected internal override void OnUpdate(IFsm procedureOwner , float elapseSeconds , float realElapseSeconds)
         {

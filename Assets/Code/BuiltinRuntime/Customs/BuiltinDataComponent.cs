@@ -20,6 +20,10 @@ namespace WhiteTea.BuiltinRuntime
         }
 
         /// <summary>
+        /// UI相机
+        /// </summary>
+        private Camera m_UICamera;
+        /// <summary>
         /// 加载默认界面UI
         /// </summary>
         public void InitDefalutResourceUI( )
@@ -37,11 +41,23 @@ namespace WhiteTea.BuiltinRuntime
                 GameMainInterface.transform.SetLocalPositionAndRotation(Vector3.one , Quaternion.identity);
                 GameMainInterface.transform.localScale = Vector3.one;
             }
+            InitGameBuiltinData( );
         }
 
         public void CloseGameMainInterface( )
         {
             GameMainInterface.Close( );
+        }
+
+        /// <summary>
+        /// 初始化
+        /// </summary>
+        private void InitGameBuiltinData( )
+        {
+            if(GameObject.Find("UICamera").TryGetComponent<Camera>(out m_UICamera))
+            {
+                m_UICamera.transform.localPosition = new Vector3(99999.0f , 99999.0f , 99999.0f);
+            }
         }
     }
 }

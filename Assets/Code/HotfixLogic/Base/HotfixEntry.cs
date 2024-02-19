@@ -143,6 +143,7 @@ namespace WhiteTea.HotfixLogic
                     if(state)
                     {
                         m_CurrentProcess++;
+                        WTGame.BuiltinData.GameMainInterface.SetUpdateSchedule("加载数据" , m_CurrentProcess / AppRuntimeConfig.AotFileList.Length);
                     }
                     Log.Debug($"LoadMetadataForAOTAssembly:{userData}.Load state:{state}");
                     //等待AOT数据加载完毕后，再去初始化组件数据

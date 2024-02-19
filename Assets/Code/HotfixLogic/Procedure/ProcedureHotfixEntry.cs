@@ -45,8 +45,8 @@ namespace WhiteTea.HotfixLogic
             m_current += elapseSeconds;
             if(m_current > 2.0f && m_LoadSuccess >= m_LoadedFlag.Count)
             {
-                procedureOwner.SetData<VarInt32>(HotfixConstantUtility.NextSceneID , (int)ScenesId.HotfixEntryScenes);
-                ChangeState<ProcedureChangeScene>(procedureOwner);
+                //这里去验证加载的SDK
+                ChangeState<ProcedureVerificationSDK>(procedureOwner);
             }
 
         }
@@ -91,6 +91,7 @@ namespace WhiteTea.HotfixLogic
                     m_LoadSuccess++;
                 }
             }
+            WTGame.BuiltinData.GameMainInterface.SetUpdateSchedule("加载资源" , m_LoadSuccess / m_LoadedFlag.Count);
             return m_LoadSuccess;
         }
 
