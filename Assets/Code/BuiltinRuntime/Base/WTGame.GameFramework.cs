@@ -208,7 +208,7 @@ namespace WhiteTea.BuiltinRuntime
             Sound = GameEntry.GetComponent<SoundComponent>( );
             UI = GameEntry.GetComponent<UIComponent>( );
             WebRequest = GameEntry.GetComponent<WebRequestComponent>( );
-            Debugger.ActiveWindow = false;
+            Debugger.ActiveWindow = true;
         }
     }
 }

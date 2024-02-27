@@ -45,6 +45,8 @@ namespace WhiteTea.BuiltinRuntime
             Log.Debug("Load app config success.");
             BuiltinData = GameEntry.GetComponent<BuiltinDataComponent>( );
             Hybridclr = GameEntry.GetComponent<HybridclrComponent>( );
+
+            DontDestroyOnLoad(this);
         }
 
         /// <summary>

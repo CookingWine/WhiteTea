@@ -1,9 +1,16 @@
 {
     "name": "AVProVideo.Extensions.VisualEffectGraph",
+    "rootNamespace": "",
     "references": [
         "AVProVideo.Runtime"
     ],
-    "optionalUnityReferences": [],
     "includePlatforms": [],
-    "excludePlatforms": []
+    "excludePlatforms": [],
+    "allowUnsafeCode": true,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
 }

@@ -1,8 +1,16 @@
 {
     "name": "AVProVideo.Extensions.UnityUI",
+    "rootNamespace": "",
     "references": [
         "AVProVideo.Runtime"
     ],
     "includePlatforms": [],
-    "excludePlatforms": []
+    "excludePlatforms": [],
+    "allowUnsafeCode": true,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
 }

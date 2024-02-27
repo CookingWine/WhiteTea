@@ -50,12 +50,31 @@ namespace WhiteTea.HotfixLogic
                 return m_HotfixProcedures;
             }
         }
-        [Header("热更新的资源组")]
+        /// <summary>
+        /// 热更内使用得sdk
+        /// </summary>
+        [SerializeField]
+        private string[] m_HotfixGameSDK;
+        /// <summary>
+        /// 热更内使用得sdk
+        /// </summary>
+        public string[] HotfixGameSDK
+        {
+            get
+            {
+                return new string[] { "WhiteTea.HotfixLogic.AndroidCommunication" };
+                //return m_HotfixGameSDK;
+            }
+        }
+
+        /// <summary>
+        /// 热更新资源组
+        /// </summary>
         [SerializeField]
         private string[] m_MustResourceGroup;
 
         /// <summary>
-        /// 必须的资源组
+        /// 热更新资源组
         /// </summary>
         public string[] MustResourceGroup
         {

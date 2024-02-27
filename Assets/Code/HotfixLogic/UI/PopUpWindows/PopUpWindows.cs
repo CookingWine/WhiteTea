@@ -3,7 +3,9 @@ using WhiteTea.BuiltinRuntime;
 //自动生成于：
 namespace WhiteTea.HotfixLogic
 {
-
+    /// <summary>
+    /// 弹窗
+    /// </summary>
     public partial class PopUpWindows:BuiltinUGuiForm
     {
         protected override void OnInit(object userdata)

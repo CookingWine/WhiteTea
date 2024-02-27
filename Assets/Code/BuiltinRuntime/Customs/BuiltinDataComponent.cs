@@ -54,7 +54,7 @@ namespace WhiteTea.BuiltinRuntime
         /// </summary>
         private void InitGameBuiltinData( )
         {
-            if(GameObject.Find("UICamera").TryGetComponent<Camera>(out m_UICamera))
+            if(GameObject.Find("UICamera").TryGetComponent(out m_UICamera))
             {
                 m_UICamera.transform.localPosition = new Vector3(99999.0f , 99999.0f , 99999.0f);
             }

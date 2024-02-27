@@ -42,6 +42,7 @@
       <Asset Guid="d9f5c1cd794a73c48a61abbd5e93485d" ResourceName="UIFormBuiltinRuntimes" />
       <Asset Guid="e5094272e111f5644bd1c9f450ba1049" ResourceName="AotMetadata" />
       <Asset Guid="e9c2d0530039c6f4684ab68f8e2fade7" ResourceName="UISpritesBuiltinRuntimes" />
+      <Asset Guid="edc0cda6332d2e340a2f1a9363ceff99" ResourceName="AotMetadata" />
       <Asset Guid="effb2625ef11a9e4f8dc3fbe502ff78d" ResourceName="Music" />
       <Asset Guid="f20095d0670c6044e8a5a67086b7f6bd" ResourceName="UISpritesCommon" />
     </Assets>

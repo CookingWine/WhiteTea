@@ -17,6 +17,7 @@ MonoBehaviour:
   - Scenes
   - UIForm
   m_AotFileList:
+  - Facebook.Unity
   - GameFramework
   - UnityGameFramework.Runtime
   m_HotfixProcedures:
