@@ -9,10 +9,12 @@ namespace WhiteTea.HotfixLogic
     /// </summary>
     public partial class HotfixGameLoginInterface:BuiltinUGuiForm
     {
+        private ProcedureLogin m_LoginPorcedure = null;
         protected override void OnInit(object userdata)
         {
             base.OnInit(userdata);
             GetBindComponents(ComponentTool);
+            m_LoginPorcedure = userdata as ProcedureLogin;
             HotfixEntry.Timer.AddTimer(0.2f , WTGame.BuiltinData.CloseGameMainInterface);
             InitLoginInterfaceEvent( );
         }
@@ -57,7 +59,8 @@ namespace WhiteTea.HotfixLogic
                 return;
             }
             WTGame.Sound.StopMusic( );
-            WTGame.UI.OpenUIForm(UIFormId.TransitionInterface);
+            m_LoginPorcedure?.NextProcedure( );
+
         }
         /// <summary>
         /// 点击注销后执行
@@ -85,7 +88,7 @@ namespace WhiteTea.HotfixLogic
         /// </summary>
         private void SoundCallback( )
         {
-           SystemSettings.Instance.ChangeTotalGameVolumeState( );
+            SystemSettings.Instance.ChangeTotalGameVolumeState( );
         }
 
 

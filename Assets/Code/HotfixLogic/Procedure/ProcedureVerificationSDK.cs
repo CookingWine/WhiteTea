@@ -35,8 +35,8 @@ namespace WhiteTea.HotfixLogic
             WTGame.BuiltinData.GameMainInterface.SetUpdateSchedule("加载SDK" , m_current / m_AllSDKLenth);
             if(m_current >= m_AllSDKLenth)
             {
-                //procedureOwner.SetData<VarInt32>(HotfixConstantUtility.NextSceneID , (int)ScenesId.HotfixEntryScenes);
-                ChangeState<ProcedureLogin>(procedureOwner);
+                procedureOwner.SetData<VarInt32>(HotfixConstantUtility.NextSceneID , (int)ScenesId.HotfixEntryScenes);
+                ChangeState<ProcedureChangeScene>(procedureOwner);
             }
         }
 
