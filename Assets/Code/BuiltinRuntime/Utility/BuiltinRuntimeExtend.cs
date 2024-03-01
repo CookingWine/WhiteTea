@@ -9,6 +9,7 @@ using System.Collections;
 using System.Diagnostics;
 using System.Linq;
 using System.IO;
+using Codice.Client.Common;
 
 namespace WhiteTea.BuiltinRuntime
 {
@@ -532,19 +533,69 @@ namespace WhiteTea.BuiltinRuntime
     public static class BuiltinRuntimeDateTimeExtend
     {
         /// <summary>
-		/// 获取时间戳
-		/// </summary>
-		/// <param name="time">时间</param>
-		/// <returns>时间戳</returns>
-		public static double GetTimeStamp(this DateTime time)
+        /// 多久之前枚举
+        /// </summary>
+        public enum TimeLongAgo
         {
-            return ( time - new DateTime(1970 , 1 , 1 , 0 , 0 , 0 , 0) ).TotalSeconds;
+            /// <summary>
+            /// 秒
+            /// </summary>
+            Second = 0 << 1,
+            /// <summary>
+            /// 分钟
+            /// </summary>
+            Minute = 1 << 1,
+            /// <summary>
+            /// 小时
+            /// </summary>
+            Hour = 2 << 1,
+            /// <summary>
+            /// 天
+            /// </summary>
+            Sky = 3 << 1,
+            /// <summary>
+            /// 月
+            /// </summary>
+            Month = 4 << 1,
+            /// <summary>
+            /// 年
+            /// </summary>
+            Year = 5 << 1,
         }
+
         /// <summary>
-		/// 距离今天结束还有多少秒.
-		/// </summary>
-		/// <returns>今天剩余秒数</returns>
-		public static int TodayTimeRemainingSecond( )
+        /// 获取时间戳
+        /// </summary>
+        /// <returns></returns>
+        public static long GetTimeSwap( )
+        {
+            return DateTime.UtcNow.Ticks;
+        }
+
+        /// <summary>
+        /// 将时间戳转换为多久之前
+        /// </summary>
+        /// <param name="timeSwap"></param>
+        /// <returns></returns>
+        public static double GetTimeLongAgo(double timeSwap , TimeLongAgo ago = TimeLongAgo.Hour)
+        {
+            return ago switch
+            {
+                TimeLongAgo.Second => timeSwap,
+                TimeLongAgo.Minute => Math.Floor(timeSwap / 60),
+                TimeLongAgo.Hour => Math.Floor(timeSwap / 3600),
+                TimeLongAgo.Sky => Math.Floor(timeSwap / 86400),
+                TimeLongAgo.Year => Math.Floor(timeSwap / 2592000),
+                TimeLongAgo.Month => Math.Floor(timeSwap / 31104000),
+                _ => Math.Floor(timeSwap / 3600),
+            };
+        }
+
+        /// <summary>
+        /// 距离今天结束还有多少秒.
+        /// </summary>
+        /// <returns>今天剩余秒数</returns>
+        public static int TodayTimeRemainingSecond( )
         {
             return ( ( 23 - DateTime.Now.Hour ) * 60 + 59 - DateTime.Now.Minute ) * 60 + 60 - DateTime.Now.Second;
         }
