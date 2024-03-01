@@ -7,58 +7,48 @@ namespace WhiteTea.HotfixLogic
     public partial class SystemSettings
     {
         private static SystemSettings m_Instance;
+
+        /// <summary>
+        /// 是否初始化配置
+        /// </summary>
+        private bool m_InitializedSetting;
+
         public static SystemSettings Instance
         {
             get
             {
-                if(m_Instance == null)
-                {
-                    m_Instance = new SystemSettings( );
-                    LoadSystemSettings( );
-                }
+                m_Instance ??= new SystemSettings( );
                 return m_Instance;
-            }
-        }
-        /// <summary>
-        /// 系统设置
-        /// </summary>
-        private SystemSettings( ) { }
-        /// <summary>
-        /// 声音设置
-        /// </summary>
-        private static GameVolume m_GameVolumeSettings;
-        /// <summary>
-        /// 是否静音
-        /// </summary>
-        public bool IsMute
-        {
-            get
-            {
-                return m_GameVolumeSettings.TotalVolumeMute;
             }
         }
 
         /// <summary>
-        /// 获取游戏总音量大小
+        /// 系统设置
         /// </summary>
-        public float GameTotalVolumeSize
+        private SystemSettings( )
         {
-            get
-            {
-                return m_GameVolumeSettings.TotalVolumeValue;
-            }
-            set
-            {
-                m_GameVolumeSettings.TotalVolumeValue = value;
-            }
+            m_InitializedSetting = false;
+            LoadSystemSettings( );
         }
+        /// <summary>
+        /// 声音设置
+        /// </summary>
+        public GameVolume GameVolumeSetting { get; private set; }
+
+        /// <summary>
+        /// 用户信息
+        /// </summary>
+        public UserSettings GameUser { get; private set; }
+
 
         /// <summary>
         /// 加载系统配置
         /// </summary>
-        private static void LoadSystemSettings( )
+        private void LoadSystemSettings( )
         {
-            m_GameVolumeSettings = new GameVolume( );
+            GameUser = new UserSettings( );
+
+            GameVolumeSetting = new GameVolume( );
         }
 
         /// <summary>
@@ -66,9 +56,15 @@ namespace WhiteTea.HotfixLogic
         /// </summary>
         public void InitSystemSetting( )
         {
+            //防止其它地方调用，导致多次初始化配置
+            if(m_InitializedSetting)
+            {
+                return;
+            }
             //进入游戏时不静音
-            m_GameVolumeSettings.TotalVolumeMute = false;
+            GameVolumeSetting.TotalVolumeMute = false;
 
+            m_InitializedSetting = true;
         }
         /// <summary>
         /// 改变游戏总音量的状态
@@ -76,8 +72,8 @@ namespace WhiteTea.HotfixLogic
         /// <returns>是否静音</returns>
         public bool ChangeTotalGameVolumeState( )
         {
-            m_GameVolumeSettings.TotalVolumeMute = !m_GameVolumeSettings.TotalVolumeMute;
-            return m_GameVolumeSettings.TotalVolumeMute;
+            GameVolumeSetting.TotalVolumeMute = !GameVolumeSetting.TotalVolumeMute;
+            return GameVolumeSetting.TotalVolumeMute;
         }
     }
 }

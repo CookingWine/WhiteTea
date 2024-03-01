@@ -8,18 +8,9 @@ namespace WhiteTea.HotfixLogic
     /// </summary>
     public class FontManager
     {
-        private FontManager( )
+        public FontManager( )
         {
             m_CacheFonts = new Dictionary<string , Font>( );
-        }
-        private static FontManager m_instance;
-        public static FontManager Instance
-        {
-            get
-            {
-                m_instance ??= new FontManager( );
-                return m_instance;
-            }
         }
         /// <summary>
         /// 需要加载的字体

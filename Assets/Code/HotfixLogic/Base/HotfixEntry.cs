@@ -165,7 +165,7 @@ namespace WhiteTea.HotfixLogic
             Fsm = new FsmManager( );
             Timer = new TimerManager( );
             Event = new EventManager( );
-            FontManagers = FontManager.Instance;
+            FontManagers = new FontManager( );
             SystemSettings.Instance.InitSystemSetting( );
             Procedure = new ProcedureManager( );
             Procedure.Initialize(Fsm , GetHotfixProduce( ));

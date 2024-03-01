@@ -7,7 +7,7 @@ namespace WhiteTea.HotfixLogic
         /// <summary>
         /// 游戏音量
         /// </summary>
-        private class GameVolume
+        public class GameVolume
         {
             ///// <summary>
             ///// 游戏背景音乐组
