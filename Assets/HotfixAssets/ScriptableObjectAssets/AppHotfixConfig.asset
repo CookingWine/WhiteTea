@@ -25,4 +25,6 @@ MonoBehaviour:
   - WhiteTea.HotfixLogic.ProcedureHotfixEntry
   - WhiteTea.HotfixLogic.ProcedureLogin
   - WhiteTea.HotfixLogic.ProcedureVerificationSDK
+  - WhiteTea.HotfixLogic.ProrcedureUserSelection
+  m_HotfixGameSDK: []
   m_MustResourceGroup: []
