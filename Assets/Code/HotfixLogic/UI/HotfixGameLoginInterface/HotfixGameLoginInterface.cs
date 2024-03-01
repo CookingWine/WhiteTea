@@ -39,12 +39,10 @@ namespace WhiteTea.HotfixLogic
         /// </summary>
         private void InitLoginInterfaceEvent( )
         {
-            m_Tog_Toggle.isOn = false;
-            m_Btn_Logout.onClick.AddListener(LogoutClickCallback);
-            m_Btn_Help.onClick.AddListener(HelpClickCallback);
-            m_Btn_StandAlone.onClick.AddListener(StandAloneCallback);
-            m_Btn_Sound.onClick.AddListener(SoundCallback);
-            m_Btn_StartGame.onClick.AddListener(StartGameClickCallback);
+            //先进行事件绑定
+            EventDataDinding( );
+            //根据本地是否有用户数据进行更新显示
+            UpdateInterfaceExhibition( );
         }
 
 
@@ -67,6 +65,7 @@ namespace WhiteTea.HotfixLogic
         /// </summary>
         private void LogoutClickCallback( )
         {
+
             OpenPopUpWindwos("提示" , "暂时无法注销");
         }
         /// <summary>
@@ -91,7 +90,6 @@ namespace WhiteTea.HotfixLogic
             SystemSettings.Instance.ChangeTotalGameVolumeState( );
         }
 
-
         /// <summary>
         /// 打开弹窗
         /// </summary>
@@ -101,6 +99,29 @@ namespace WhiteTea.HotfixLogic
         {
             WTGame.UI.OpenUIForm(UIFormId.PopUpWindows , new PopUpWindowsDataConvert(title , content));
         }
+        
+        /// <summary>
+        /// 初始化数据与事件得绑定
+        /// </summary>
+        private void EventDataDinding( )
+        {
+            m_Tog_Toggle.onValueChanged.AddListener((ison) =>
+            {
+                SystemSettings.Instance.GameUser.IsAgreeToUserTerms = ison;
+            });
+            m_Btn_Logout.onClick.AddListener(LogoutClickCallback);
+            m_Btn_Help.onClick.AddListener(HelpClickCallback);
+            m_Btn_StandAlone.onClick.AddListener(StandAloneCallback);
+            m_Btn_Sound.onClick.AddListener(SoundCallback);
+            m_Btn_StartGame.onClick.AddListener(StartGameClickCallback);
+        }
 
+        /// <summary>
+        /// 更新界面展示
+        /// </summary>
+        private void UpdateInterfaceExhibition( )
+        {
+            m_Tog_Toggle.isOn = SystemSettings.Instance.GameUser.UserDataExistsLocally && SystemSettings.Instance.GameUser.IsAgreeToUserTerms;
+        }
     }
 }

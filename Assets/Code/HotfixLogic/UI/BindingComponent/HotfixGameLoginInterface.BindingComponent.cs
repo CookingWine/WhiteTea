@@ -19,6 +19,7 @@ namespace WhiteTea.HotfixLogic
 		private Button m_Btn_StartGame;
 		private Toggle m_Tog_Toggle;
 		private Button m_Btn_Logout;
+		private Text m_Txt_UserNames;
 
 		private void GetBindComponents(BuiltinComponentAutoBindTool autoBindTool)
 		{
@@ -32,6 +33,7 @@ namespace WhiteTea.HotfixLogic
 			m_Btn_StartGame = autoBindTool.GetBindComponent<Button>(7);
 			m_Tog_Toggle = autoBindTool.GetBindComponent<Toggle>(8);
 			m_Btn_Logout = autoBindTool.GetBindComponent<Button>(9);
+			m_Txt_UserNames = autoBindTool.GetBindComponent<Text>(10);
 		}
 
 	}

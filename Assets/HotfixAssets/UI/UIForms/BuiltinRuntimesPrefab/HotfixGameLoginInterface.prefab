@@ -1095,6 +1095,8 @@ MonoBehaviour:
     BindCom: {fileID: 8438938869504450405}
   - Name: Btn_Logout
     BindCom: {fileID: 8438938868939196335}
+  - Name: Txt_UserNames
+    BindCom: {fileID: 8438938869488317328}
   ScriptSpaceName: WhiteTea.HotfixLogic
   ScriptTypeName: HotfixGameLoginInterface
   m_BindComs:
@@ -1108,6 +1110,7 @@ MonoBehaviour:
   - {fileID: 8438938869261114942}
   - {fileID: 8438938869504450405}
   - {fileID: 8438938868939196335}
+  - {fileID: 8438938869488317328}
 --- !u!114 &9043272162959973652
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1670,9 +1673,8 @@ GameObject:
   - component: {fileID: 8438938869488317329}
   - component: {fileID: 8438938869488317331}
   - component: {fileID: 8438938869488317328}
-  - component: {fileID: 4253473492990624499}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Txt_UserNames
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1740,20 +1742,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "\u767D\u8336"
---- !u!114 &4253473492990624499
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8438938869488317334}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 785e8806141a90b4db257c1425eb89fd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_LocalizationKey: 
-  Values: "\u767D\u8336"
 --- !u!1 &8438938869496482394
 GameObject:
   m_ObjectHideFlags: 0
